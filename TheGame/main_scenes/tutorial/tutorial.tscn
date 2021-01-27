@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://main_scenes/tutorial/tutorial.gd" type="Script" id=1]
+
+[node name="tutorial" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="to_main_menu" type="Button" parent="CanvasLayer"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -150.891
+margin_top = 19.1091
+margin_right = -20.8909
+margin_bottom = 39.1091
+text = "Go to main menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="CanvasLayer/to_main_menu" to="." method="_on_to_main_menu_pressed"]
