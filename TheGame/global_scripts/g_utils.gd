@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 
 # Declare member variables here. Examples:
@@ -14,7 +14,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #    pass
-
-
-func _on_to_main_menu_pressed():
-    GSceneManager.goto_scene_wloader("res://main_scenes/main_menu/main_menu.tscn")
+func get_resized_texture(t: Texture, width: int = 0, height: int = 0):
+    var image = t.get_data()
+    if width > 0 && height > 0:
+        image.resize(width, height)
+        var itex = ImageTexture.new()
+        itex.create_from_image(image)
+        return itex
