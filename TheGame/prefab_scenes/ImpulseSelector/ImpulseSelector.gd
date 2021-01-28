@@ -3,8 +3,8 @@ extends Node2D
 onready var line = $Line2D
 onready var sprite = $Sprite
 
-export var max_angle = 270
-export var min_angle = 90
+export var max_angle = 0
+export var min_angle = 360
 
 export var max_length = 230
 export var min_length= 30
@@ -15,6 +15,10 @@ export var is_input_provided = false
 var is_controlled = false
 var is_just_received_control_command = false
 
+var initial_state = null
+
+onready var parent_ball = get_parent() 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -24,12 +28,47 @@ func _process(delta):
 	if is_controlled:
 		process_mouse_input()
 
+func load_saved_state():
+	if initial_state:
+		load_state(initial_state)
+	else:
+		print("called load_saved_state without saved initial_state")
+
+func save_initial_state():
+	initial_state = {
+		"is_input_disabled":is_input_disabled,
+		"is_input_provided":is_input_provided, 
+		"is_controlled":false, 
+		"is_just_received_control_command":false, 
+		"end_position":line.points[1],
+		"visible": visible
+	}
+	
+func load_state(state):
+	is_input_disabled = state["is_input_disabled"]
+	is_input_provided = state["is_input_provided"]
+	is_controlled = state["is_controlled"]
+	is_just_received_control_command = state["is_just_received_control_command"]
+	visible = state["visible"]
+	
+	line.points[1] = state["end_position"]
+	sprite.position = state["end_position"]
+	sprite.rotation = state["end_position"].angle() + 0.5 * PI
+
+func set_default_initial_impulse():
+	var angle = 0.5 * (max_angle + min_angle) * PI / 180
+	var end_position = Vector2(min_length, 0).rotated(angle)
+	set_end_position(end_position)
 
 func get_impulse():
 	if not is_input_provided:
 		print("Getting impulse without input")
 		
 	var impulse =  line.points[1]
+	
+	if parent_ball:
+		impulse = impulse.rotated(parent_ball.rotation)
+
 	return impulse
 	
 
@@ -45,6 +84,8 @@ func process_mouse_input():
 	is_just_received_control_command = false
 	
 func set_end_position(end_position):
+	if parent_ball:
+		end_position = end_position.rotated(-parent_ball.rotation)
 	line.points[1] = end_position
 	sprite.position = end_position
 	sprite.rotation = end_position.angle() + 0.5 * PI

@@ -98,6 +98,8 @@ position = Vector2( 613.723, 192.817 )
 position = Vector2( 936.096, 190.286 )
 
 [node name="Ball2" parent="Balls" instance=ExtResource( 2 )]
-position = Vector2( 316.497, 378.86 )
+position = Vector2( 295.17, 275.594 )
+rotation = 1.5708
+min_impulse_angle = 180
 [connection signal="pressed" from="CanvasLayer/Control/UpperCentralMarginContainer/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/UpperCentralMarginContainer/VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]

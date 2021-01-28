@@ -1,17 +1,27 @@
 extends RigidBody2D
 
 onready var impulse_selector = $ImpulseSelector
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 var is_hovered = false
-#var is_launched = false
 var is_active_mode = false
+
+export var min_impulse_angle = 0
+export var max_impulse_angle = 360
+
+export var min_impulse_length = 30
+export var max_impulse_length = 230
+
+
+var initial_state = null
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	impulse_selector.min_angle = min_impulse_angle
+	impulse_selector.max_angle = max_impulse_angle
+	impulse_selector.min_length = min_impulse_length
+	impulse_selector.max_length = max_impulse_length
+	impulse_selector.set_default_initial_impulse()
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,12 +30,7 @@ func _process(delta):
 
 func process_input():
 	pass
-#	if Input.is_action_just_pressed("right_click") \
-#		and not is_active_mode \
-#		and not impulse_selector.is_controlled \
-#		and impulse_selector.is_input_provided:
-#			initial_launch()
-			
+
 
 func can_launch():
 	return impulse_selector.is_input_provided \
@@ -40,6 +45,33 @@ func go_to_actibe_mode():
 	impulse_selector.visible = false
 	sleeping = false
 
+func load_saved_state():
+	if initial_state:
+		load_state(initial_state)
+	else:
+		print("called load_saved_state without saved initial_state")
+
+func save_initial_state():
+	initial_state = {
+	"position": position,
+	"rotation": rotation,
+	"is_active_mode": is_active_mode,
+	"is_hovered": false,
+	"sleeping": sleeping,
+	"applied_force": applied_force,
+	"applied_torque": applied_torque,
+	"inertia": inertia
+}
+
+func load_state(state):
+	position = state["position"]
+	rotation = state["rotation"]
+	is_active_mode = state["is_active_mode"]
+	is_hovered = state["is_hovered"]
+	sleeping = state["sleeping"]
+	applied_force = state["applied_force"]
+	applied_torque = state["applied_torque"]
+	inertia = state["inertia"]
 
 func initial_launch():
 	go_to_actibe_mode()

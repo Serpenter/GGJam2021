@@ -41,6 +41,7 @@ func on_victory():
 
 func on_level_restart():
 	victory_label.visible = false
+	get_tree().call_group("Resetable", "load_saved_state")
 	
 
 func _on_StartButton_pressed():
@@ -51,6 +52,16 @@ func _on_StartButton_pressed():
 			# add some popup
 			# or maybe have some default impulse for all balls
 			return
+			
+	var resatable_list = get_tree().get_nodes_in_group("Resetable")
+	
+	for resetable in resatable_list:
+		if resetable.has_method("save_initial_state"):
+			resetable.save_initial_state()
+
+#	get_tree().call_group("Resetable", "save_initial_state")
+			
+		
 	
 	for ball in balls:
 		ball.initial_launch()
@@ -58,4 +69,5 @@ func _on_StartButton_pressed():
 
 
 func _on_RestartButton_pressed():
-	GSceneManager.goto_scene_wloader("res://test_scenes/TestLevel01/TestLevel01.tscn")
+	on_level_restart()
+#	GSceneManager.goto_scene_wloader("res://test_scenes/TestLevel01/TestLevel01.tscn")
