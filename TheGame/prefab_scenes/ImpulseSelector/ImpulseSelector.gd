@@ -129,8 +129,8 @@ func angle_to_allowed_angle(angle_rad):
 	if is_angle_allowed_deg(angle_deg):
 		return angle_rad
 		
-	var min_diff = min(abs(min_angle - angle_deg), abs(360 + min_angle - angle_deg))
-	var max_diff = min(abs(max_angle - angle_deg), abs(360 + max_angle - angle_deg))
+	var min_diff = min(abs(min_angle - angle_deg), abs(360 - abs(min_angle - angle_deg)))
+	var max_diff = min(abs(max_angle - angle_deg), abs(360 - abs(max_angle - angle_deg)))
 	
 	if max_diff < min_diff:
 		angle_deg = max_angle
