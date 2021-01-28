@@ -3,6 +3,7 @@ extends TextureRect
 
 export(int) var how_many
 export(PackedScene) var item
+export(Array, int) var compatible_tile_ids
 
 export(Color, RGBA) var shade_color
 
