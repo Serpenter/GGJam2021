@@ -2,15 +2,18 @@ extends Node2D
 
 
 var is_paused = false
+var is_launched = false
 
 onready var victory_label = $CanvasLayer/Control/UpperCentralMarginContainer/VBoxContainer/VictoryLabel
+onready var launch_button = $CanvasLayer/Control/UpperCentralMarginContainer/VBoxContainer/LaunchButton
+onready var reset_button = $CanvasLayer/Control/UpperCentralMarginContainer/VBoxContainer/ResetButton
 
 onready var victory_zones = get_tree().get_nodes_in_group("VictoryZone")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
 #	pause_game()
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,11 +43,15 @@ func on_victory():
 	victory_label.visible = true
 
 func on_level_restart():
+	is_launched = false
 	victory_label.visible = false
 	get_tree().call_group("Resetable", "load_saved_state")
-	
+	launch_button.disabled = false
 
-func _on_StartButton_pressed():
+func _on_LaunchButton_pressed():
+	if is_launched:
+		return
+
 	var balls = get_tree().get_nodes_in_group("Ball")
 	
 	for ball in balls:
@@ -54,20 +61,21 @@ func _on_StartButton_pressed():
 			return
 			
 	var resatable_list = get_tree().get_nodes_in_group("Resetable")
+
 	
 	for resetable in resatable_list:
 		if resetable.has_method("save_initial_state"):
 			resetable.save_initial_state()
-
+# 	don't use call group, it doesn't work instantly
 #	get_tree().call_group("Resetable", "save_initial_state")
 			
 		
-	
+	is_launched = true
 	for ball in balls:
 		ball.initial_launch()
-	
+		
+	launch_button.disabled = true
+	reset_button.disabled = false
 
-
-func _on_RestartButton_pressed():
+func _on_ResetButton_pressed():
 	on_level_restart()
-#	GSceneManager.goto_scene_wloader("res://test_scenes/TestLevel01/TestLevel01.tscn")

@@ -59,16 +59,17 @@ __meta__ = {
 margin_right = 200.0
 margin_bottom = 100.0
 
-[node name="StartButton" type="Button" parent="CanvasLayer/Control/UpperCentralMarginContainer/VBoxContainer"]
+[node name="LaunchButton" type="Button" parent="CanvasLayer/Control/UpperCentralMarginContainer/VBoxContainer"]
 margin_right = 200.0
 margin_bottom = 20.0
 text = "Launch the balls"
 
-[node name="RestartButton" type="Button" parent="CanvasLayer/Control/UpperCentralMarginContainer/VBoxContainer"]
+[node name="ResetButton" type="Button" parent="CanvasLayer/Control/UpperCentralMarginContainer/VBoxContainer"]
 margin_top = 24.0
 margin_right = 200.0
 margin_bottom = 44.0
-text = "Restart"
+disabled = true
+text = "Reset"
 
 [node name="VictoryLabel" type="Label" parent="CanvasLayer/Control/UpperCentralMarginContainer/VBoxContainer"]
 visible = false
@@ -101,5 +102,5 @@ position = Vector2( 936.096, 190.286 )
 position = Vector2( 295.17, 275.594 )
 rotation = 1.5708
 min_impulse_angle = 180
-[connection signal="pressed" from="CanvasLayer/Control/UpperCentralMarginContainer/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/UpperCentralMarginContainer/VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/UpperCentralMarginContainer/VBoxContainer/LaunchButton" to="." method="_on_LaunchButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/UpperCentralMarginContainer/VBoxContainer/ResetButton" to="." method="_on_ResetButton_pressed"]
