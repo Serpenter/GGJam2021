@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://prefab_scenes/items/item1.gd" type="Script" id=1]
+[ext_resource path="res://prefab_scenes/obstacles/item1.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/triangle_64x64.png" type="Texture" id=2]
-[ext_resource path="res://prefab_scenes/items/ItemUIData.gd" type="Script" id=3]
+[ext_resource path="res://prefab_scenes/obstacles/ItemUIData.gd" type="Script" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "itemidle"
@@ -72,6 +72,7 @@ polygon = PoolVector2Array( -27.4661, 22.2361, -0.22142, -25.3136, 26.3807, 22.1
 
 [node name="ItemUIData" type="Node2D" parent="."]
 script = ExtResource( 3 )
+item_ui_size = Vector2( 64, 64 )
 item_ui_texture = ExtResource( 2 )
 item_ui_color = Color( 0.929412, 0.054902, 0.054902, 1 )
 
