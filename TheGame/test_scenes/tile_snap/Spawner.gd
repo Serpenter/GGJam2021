@@ -7,6 +7,8 @@ class ObstacleInGameHadle:
 
 
 export(Color) var modulate_selector 
+export(String) var path_to_pickers
+
 const FOLLOW_SPEED = 8.0
 # Declare member variables here. Examples:
 # var a = 2
@@ -28,7 +30,7 @@ var target_tile_map_pos
 # Called when the node enters the scene tree for the first time.
 func _ready():
 
-    for item in get_parent().get_node("CanvasLayer/Selector/HBoxContainer").get_children():
+    for item in get_parent().get_node(path_to_pickers).get_children():
         item.connect("selected", self, "_on_item_selected")
     tile_map = get_parent().get_node("TileMap")
     tile_highlight = tile_map.get_node("Highlight")

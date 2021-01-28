@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://resources/prototype_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://test_scenes/tile_snap/Spawner.gd" type="Script" id=2]
@@ -8,15 +8,18 @@
 [ext_resource path="res://prefab_scenes/obstacles/item2.tscn" type="PackedScene" id=6]
 [ext_resource path="res://prefab_scenes/obstacles/item3.tscn" type="PackedScene" id=7]
 [ext_resource path="res://test_scenes/tile_snap/Highlight.gd" type="Script" id=8]
+[ext_resource path="res://prefab_scenes/Ball/Ball.tscn" type="PackedScene" id=9]
+[ext_resource path="res://test_scenes/tile_snap/tile_snap.gd" type="Script" id=10]
+[ext_resource path="res://prefab_scenes/obstacles/NewObstacle.tscn" type="PackedScene" id=11]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 20.0
 
 [node name="tile_snap" type="Node2D"]
+script = ExtResource( 10 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 2, 2 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -36,30 +39,97 @@ highlight_color = Color( 0.145098, 0.941176, 0.921569, 1 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Selector" type="Control" parent="CanvasLayer"]
-self_modulate = Color( 1, 1, 1, 0 )
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_top = -96.0
-margin_right = 256.0
-grow_vertical = 2
-rect_min_size = Vector2( 256, 96 )
-mouse_filter = 1
+[node name="TopHUD" type="HBoxContainer" parent="CanvasLayer"]
+anchor_right = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+grow_horizontal = 2
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Selector"]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="SpacerL" type="Control" parent="CanvasLayer/TopHUD"]
+margin_right = 388.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TopHUD"]
+margin_left = 392.0
+margin_right = 586.0
+margin_bottom = 44.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Picker_01" type="TextureRect" parent="CanvasLayer/Selector/HBoxContainer"]
-margin_bottom = 40.0
+[node name="Start" type="Button" parent="CanvasLayer/TopHUD/VBoxContainer"]
+margin_right = 194.0
+margin_bottom = 20.0
+text = "Launch"
+
+[node name="Restart" type="Button" parent="CanvasLayer/TopHUD/VBoxContainer"]
+margin_top = 24.0
+margin_right = 194.0
+margin_bottom = 44.0
+text = "Restart"
+
+[node name="Victory" type="Label" parent="CanvasLayer/TopHUD/VBoxContainer"]
+visible = false
+margin_top = 48.0
+margin_right = 195.0
+margin_bottom = 62.0
+text = "Good job!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpacerR" type="Control" parent="CanvasLayer/TopHUD"]
+margin_left = 590.0
+margin_right = 881.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/TopHUD"]
+margin_left = 885.0
+margin_right = 984.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="MainMenu" type="Button" parent="CanvasLayer/TopHUD/VBoxContainer2"]
+margin_right = 99.0
+margin_bottom = 20.0
+text = "Main menu"
+
+[node name="Exit" type="Button" parent="CanvasLayer/TopHUD/VBoxContainer2"]
+margin_top = 24.0
+margin_right = 99.0
+margin_bottom = 44.0
+text = "Exit"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = -40.0
+margin_right = 40.0
+margin_bottom = -20.0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Picker_01" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+margin_bottom = 20.0
 mouse_filter = 0
 script = ExtResource( 4 )
 how_many = 10
@@ -68,7 +138,7 @@ compatible_tile_ids = [ 0, 1 ]
 shade_color = Color( 0.882353, 0.819608, 0.819608, 0.54902 )
 resize_texture = true
 
-[node name="Label" type="Label" parent="CanvasLayer/Selector/HBoxContainer/Picker_01"]
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/Picker_01"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -81,10 +151,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Picker_02" type="TextureRect" parent="CanvasLayer/Selector/HBoxContainer"]
+[node name="Picker_02" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
 margin_left = 4.0
 margin_right = 4.0
-margin_bottom = 40.0
+margin_bottom = 20.0
 mouse_filter = 0
 script = ExtResource( 4 )
 how_many = 5
@@ -93,7 +163,7 @@ compatible_tile_ids = [ 1 ]
 shade_color = Color( 0.882353, 0.819608, 0.819608, 0.54902 )
 resize_texture = true
 
-[node name="Label" type="Label" parent="CanvasLayer/Selector/HBoxContainer/Picker_02"]
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/Picker_02"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -106,10 +176,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Picker_03" type="TextureRect" parent="CanvasLayer/Selector/HBoxContainer"]
+[node name="Picker_03" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
 margin_left = 8.0
 margin_right = 8.0
-margin_bottom = 40.0
+margin_bottom = 20.0
 mouse_filter = 0
 script = ExtResource( 4 )
 how_many = 5
@@ -118,7 +188,7 @@ compatible_tile_ids = [ 2, 3, 4 ]
 shade_color = Color( 0.882353, 0.819608, 0.819608, 0.54902 )
 resize_texture = true
 
-[node name="Label" type="Label" parent="CanvasLayer/Selector/HBoxContainer/Picker_03"]
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/Picker_03"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -131,10 +201,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Picker_04" type="TextureRect" parent="CanvasLayer/Selector/HBoxContainer"]
+[node name="Picker_04" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
 margin_left = 12.0
 margin_right = 12.0
-margin_bottom = 40.0
+margin_bottom = 20.0
 mouse_filter = 0
 stretch_mode = 1
 script = ExtResource( 4 )
@@ -144,7 +214,33 @@ compatible_tile_ids = [ 0, 1 ]
 shade_color = Color( 0.882353, 0.819608, 0.819608, 0.54902 )
 resize_texture = true
 
-[node name="Label" type="Label" parent="CanvasLayer/Selector/HBoxContainer/Picker_04"]
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/Picker_04"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -7.0
+margin_right = 20.0
+margin_bottom = 7.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Picker_05" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+margin_left = 16.0
+margin_right = 16.0
+margin_bottom = 20.0
+mouse_filter = 0
+stretch_mode = 1
+script = ExtResource( 4 )
+how_many = 5
+item = ExtResource( 11 )
+compatible_tile_ids = [ 0, 1 ]
+shade_color = Color( 0.929412, 0.054902, 0.054902, 1 )
+resize_texture = true
+
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/Picker_05"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -160,6 +256,7 @@ __meta__ = {
 [node name="Spawner" type="Position2D" parent="."]
 script = ExtResource( 2 )
 modulate_selector = Color( 1, 1, 1, 0.376471 )
+path_to_pickers = "CanvasLayer/HBoxContainer"
 
 [node name="Sprite" type="Sprite" parent="Spawner"]
 
@@ -169,4 +266,15 @@ modulate_selector = Color( 1, 1, 1, 0.376471 )
 shape = SubResource( 1 )
 
 [node name="Obstacles" type="Node2D" parent="."]
+
+[node name="Balls" type="Node2D" parent="."]
+
+[node name="Ball" parent="Balls" instance=ExtResource( 9 )]
+
+[node name="Ball2" parent="Balls" instance=ExtResource( 9 )]
+position = Vector2( 262.277, 1.50735 )
+
+[node name="VictoryZones" type="Node2D" parent="."]
+[connection signal="pressed" from="CanvasLayer/TopHUD/VBoxContainer2/MainMenu" to="." method="_on_MainMenu_pressed"]
+[connection signal="pressed" from="CanvasLayer/TopHUD/VBoxContainer2/Exit" to="." method="_on_Exit_pressed"]
 [connection signal="input_event" from="Spawner/Area2D" to="Spawner" method="_on_Area2D_input_event"]

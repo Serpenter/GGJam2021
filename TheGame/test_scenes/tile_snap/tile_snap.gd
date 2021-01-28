@@ -16,15 +16,9 @@ func _ready():
 #    pass
 
 
-func _on_play_game_pressed():
-    GSceneManager.goto_scene_wloader("res://main_scenes/main_game/main_game.tscn")
-    pass # Replace with function body.
+func _on_MainMenu_pressed():
+    GSceneManager.goto_scene_wloader("res://main_scenes/main_menu/main_menu.tscn")
 
 
-func _on_tutorial_pressed():
-    GSceneManager.goto_scene_wloader("res://test_scenes/tile_snap/tile_snap.tscn")
-    pass # Replace with function body.
-
-
-func _on_exit_pressed():
+func _on_Exit_pressed():
     get_tree().quit()
