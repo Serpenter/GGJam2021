@@ -52,16 +52,15 @@ func _on_LaunchButton_pressed():
 	if is_launched:
 		return
 
-	var balls = get_tree().get_nodes_in_group("Ball")
+	var launchable_list = get_tree().get_nodes_in_group("ShouldLaunch")
 	
-	for ball in balls:
-		if not ball.can_launch():
+	for launchable in launchable_list:
+		if not launchable.can_launch():
 			# add some popup
 			# or maybe have some default impulse for all balls
 			return
 			
 	var resatable_list = get_tree().get_nodes_in_group("Resetable")
-
 	
 	for resetable in resatable_list:
 		if resetable.has_method("save_initial_state"):
@@ -71,8 +70,8 @@ func _on_LaunchButton_pressed():
 			
 		
 	is_launched = true
-	for ball in balls:
-		ball.initial_launch()
+	for launchable in launchable_list:
+		launchable.initial_launch()
 		
 	launch_button.disabled = true
 	reset_button.disabled = false

@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/images/circle_64x64.png" type="Texture" id=1]
-[ext_resource path="res://prefab_scenes/Ball/Ball.gd" type="Script" id=2]
-[ext_resource path="res://prefab_scenes/ImpulseSelector/ImpulseSelector.tscn" type="PackedScene" id=3]
+[ext_resource path="res://prefab_scenes/Ball02/Ball02.gd" type="Script" id=2]
 [ext_resource path="res://assets/images/white.png" type="Texture" id=4]
 [ext_resource path="res://assets/images/face_normal.png" type="Texture" id=5]
 [ext_resource path="res://assets/images/face_sad.png" type="Texture" id=6]
@@ -17,8 +16,6 @@ radius = 25.0
 
 [node name="Ball" type="RigidBody2D" groups=[
 "Ball",
-"Resetable",
-"ShouldLaunch",
 ]]
 input_pickable = true
 physics_material_override = SubResource( 1 )
@@ -65,14 +62,9 @@ rotation = -1.5708
 z_index = 1
 texture = ExtResource( 6 )
 
-[node name="ImpulseSelector" parent="." groups=[
-"Resetable",
-] instance=ExtResource( 3 )]
-
 [node name="InteractionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource( 3 )
-[connection signal="input_event" from="InteractionArea" to="." method="_on_InteractionArea_input_event"]
 [connection signal="mouse_entered" from="InteractionArea" to="." method="_on_InteractionArea_mouse_entered"]
 [connection signal="mouse_exited" from="InteractionArea" to="." method="_on_InteractionArea_mouse_exited"]

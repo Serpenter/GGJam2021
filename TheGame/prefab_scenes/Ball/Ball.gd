@@ -13,9 +13,13 @@ export var max_impulse_length = 230
 
 var initial_state = null
 
+onready var face_normal_sprite = $FaceNormalSprite
+onready var face_sad_sprite = $FaceSadSprite
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	face_normal_sprite.visible = true
+	face_sad_sprite.visible = false
 	impulse_selector.min_angle = min_impulse_angle
 	impulse_selector.max_angle = max_impulse_angle
 	impulse_selector.min_length = min_impulse_length
