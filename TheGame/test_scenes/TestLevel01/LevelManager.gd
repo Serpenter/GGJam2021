@@ -45,6 +45,13 @@ func on_victory():
 func on_level_restart():
 	is_launched = false
 	victory_label.visible = false
+
+#	get_tree().call_group("Deletable", "queue_free")
+	var deletable_list = get_tree().get_nodes_in_group("Deletable")
+
+	for deletable in deletable_list:
+		deletable.queue_free()
+	
 	get_tree().call_group("Resetable", "load_saved_state")
 	launch_button.disabled = false
 

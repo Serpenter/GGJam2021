@@ -23,7 +23,6 @@ export var infinite_ball_spawn = true
 
 export var max_balls_number = 10
 var spawned_balls = 0
-
 var is_launched = false
 
 var is_hovered = false
@@ -77,15 +76,21 @@ func load_saved_state():
 
 func save_initial_state():
 	initial_state = {
+		"spawned_balls": spawned_balls,
 		"is_input_disabled":is_input_disabled,
 		"is_input_provided":is_input_provided, 
 		"is_controlled":false, 
 		"is_just_received_control_command":false, 
 		"end_position":line.points[1],
-		"visible": visible
+		"visible": visible,
+		"has_ball": current_ball != null
 	}
 	
 func load_state(state):
+	ball_spawn_timer.stop()
+	ball_launch_timer.stop()
+	spawned_balls = state["spawned_balls"]
+
 	is_input_disabled = state["is_input_disabled"]
 	is_input_provided = state["is_input_provided"]
 	is_controlled = state["is_controlled"]
@@ -95,6 +100,9 @@ func load_state(state):
 	line.points[1] = state["end_position"]
 	arrow_sprite.position = state["end_position"]
 	arrow_sprite.rotation = state["end_position"].angle() + 0.5 * PI
+	
+	if state["has_ball"]:
+		spawn_ball()
 
 func set_default_initial_impulse():
 	var angle = 0.5 * (max_angle + min_angle) * PI / 180

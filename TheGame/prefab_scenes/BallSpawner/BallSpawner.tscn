@@ -8,6 +8,7 @@
 radius = 30.3694
 
 [node name="BallSpawner" type="Node2D" groups=[
+"Resetable",
 "ShouldLaunch",
 ]]
 script = ExtResource( 3 )
