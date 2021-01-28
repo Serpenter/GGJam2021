@@ -1,32 +1,72 @@
 extends Node2D
 
+onready var ball_prefab = preload("res://prefab_scenes/Ball02/Ball02.tscn")
+
 onready var line = $Line2D
+onready var arrow_sprite = $ArrowSprite
 onready var sprite = $Sprite
+onready var ball_spawn = $BallSpawn
+onready var current_ball = $BallSpawn/Ball
+onready var ball_spawn_timer = $BallSpawnTimer
+onready var ball_launch_timer = $BallLaunchTimer
 
-export var max_angle = 0
-export var min_angle = 360
+export var min_angle = 0
+export var max_angle = 360
 
-export var max_length = 230
-export var min_length= 30
+export var min_length= 50
+export var max_length = 250
+
 
 export var is_input_disabled = false
 export var is_input_provided = false
+export var infinite_ball_spawn = true
+
+export var max_balls_number = 10
+var spawned_balls = 0
+var is_launched = false
+
+var is_hovered = false
 
 var is_controlled = false
 var is_just_received_control_command = false
 
 var initial_state = null
 
-onready var parent_ball = get_parent() 
+var default_ball_spawn_pos = Vector2(25,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	spawn_ball()
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if is_controlled:
 		process_mouse_input()
+
+func initial_launch():
+	is_launched = true
+	is_input_disabled = true
+	launch_ball()
+	
+	if infinite_ball_spawn or spawned_balls < max_balls_number:
+		ball_spawn_timer.start()
+
+	
+
+func launch_ball():
+	if not current_ball:
+		print("called launch_ball without current_ball")
+		return
+	
+	current_ball.go_to_actibe_mode()
+	var initial_impulse = get_impulse()
+	current_ball.apply_central_impulse(initial_impulse)
+#	get_tree().call_group("BallManager", "take_control_of_ball", current_ball)
+	current_ball = null
+
+func can_launch():
+	return is_input_provided and not is_controlled;
 
 func load_saved_state():
 	if initial_state:
@@ -36,15 +76,21 @@ func load_saved_state():
 
 func save_initial_state():
 	initial_state = {
+		"spawned_balls": spawned_balls,
 		"is_input_disabled":is_input_disabled,
 		"is_input_provided":is_input_provided, 
 		"is_controlled":false, 
 		"is_just_received_control_command":false, 
 		"end_position":line.points[1],
-		"visible": visible
+		"visible": visible,
+		"has_ball": current_ball != null
 	}
 	
 func load_state(state):
+	ball_spawn_timer.stop()
+	ball_launch_timer.stop()
+	spawned_balls = state["spawned_balls"]
+
 	is_input_disabled = state["is_input_disabled"]
 	is_input_provided = state["is_input_provided"]
 	is_controlled = state["is_controlled"]
@@ -52,8 +98,11 @@ func load_state(state):
 	visible = state["visible"]
 	
 	line.points[1] = state["end_position"]
-	sprite.position = state["end_position"]
-	sprite.rotation = state["end_position"].angle() + 0.5 * PI
+	arrow_sprite.position = state["end_position"]
+	arrow_sprite.rotation = state["end_position"].angle() + 0.5 * PI
+	
+	if state["has_ball"]:
+		spawn_ball()
 
 func set_default_initial_impulse():
 	var angle = 0.5 * (max_angle + min_angle) * PI / 180
@@ -63,12 +112,8 @@ func set_default_initial_impulse():
 func get_impulse():
 	if not is_input_provided:
 		print("Getting impulse without input")
-		
-	var impulse =  line.points[1]
 	
-	if parent_ball:
-		impulse = impulse.rotated(parent_ball.rotation)
-
+	var impulse =  line.points[1]
 	return impulse
 	
 
@@ -84,11 +129,13 @@ func process_mouse_input():
 	is_just_received_control_command = false
 	
 func set_end_position(end_position):
-	if parent_ball:
-		end_position = end_position.rotated(-parent_ball.rotation)
+
 	line.points[1] = end_position
-	sprite.position = end_position
-	sprite.rotation = end_position.angle() + 0.5 * PI
+	arrow_sprite.position = end_position
+	arrow_sprite.rotation = end_position.angle() + 0.5 * PI
+	sprite.rotation = end_position.angle()
+	ball_spawn.position = default_ball_spawn_pos.rotated(end_position.angle())
+	ball_spawn.rotation = end_position.angle()
 	
 func update_by_position(target_position):
 	var relative_position = target_position - global_transform.origin
@@ -141,3 +188,43 @@ func angle_to_allowed_angle(angle_rad):
 	var allowed_angle_rad = angle_deg * PI / 180
 #	print(allowed_angle_rad)
 	return allowed_angle_rad
+	
+func spawn_ball():
+	if current_ball:
+		print("attempt to spawn ball with ball already present in ball spawner")
+		return
+	
+	if not infinite_ball_spawn and spawned_balls >= max_balls_number:
+		print("attempt to spawn ball with max number of balls already spawned")
+
+	current_ball = ball_prefab.instance()
+	ball_spawn.add_child(current_ball)
+	current_ball.rotate(PI)
+	spawned_balls += 1
+
+func _on_InteractionArea_mouse_entered():
+	is_hovered = true
+
+func _on_InteractionArea_mouse_exited():
+	is_hovered = false
+
+func _on_InteractionArea_input_event(viewport, event, shape_idx):
+	
+	if not is_input_disabled \
+	and not is_controlled \
+	and event is InputEventMouseButton \
+	and event.button_index == BUTTON_LEFT \
+	and event.pressed:
+		is_controlled = true
+		is_just_received_control_command = true
+
+
+func _on_BallSpawnTimer_timeout():
+	spawn_ball()
+	ball_launch_timer.start()
+
+
+func _on_BallLaunchTimer_timeout():
+	launch_ball()
+	if infinite_ball_spawn or spawned_balls < max_balls_number:
+		ball_spawn_timer.start()
