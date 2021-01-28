@@ -5,6 +5,7 @@
 [ext_resource path="res://assets/images/circle_64x64.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
+radius = 7.0
 
 [node name="ActivationZone" type="Node2D" groups=[
 "ActivationZone",

@@ -56,10 +56,6 @@ func activate():
 
 
 func _on_InteractionArea_body_entered(body):
-	pass # Replace with function body.
-
-
-func _on_InteractionArea_body_exited(body):
 	for group_name in activation_groups:
 		if body.is_in_group(group_name):
 			activate()
@@ -67,3 +63,7 @@ func _on_InteractionArea_body_exited(body):
 				body.on_activation_zone_activated(self)
 
 			return
+
+
+func _on_InteractionArea_body_exited(body):
+	pass
