@@ -80,7 +80,8 @@ func initial_launch():
 	
 func on_activation_zone_activated(activation_zone):
 	if activation_zone.is_in_group("VictoryZone"):
-		go_to_sleep_mode()
+#		go_to_sleep_mode()
+		pass
 
 func _on_InteractionArea_mouse_entered():
 	is_hovered = true
