@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://resources/prototype_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://test_scenes/tile_snap/Spawner.gd" type="Script" id=2]
-[ext_resource path="res://assets/images/triangle_64x64.png" type="Texture" id=3]
 [ext_resource path="res://prefab_scenes/items/SelectorItem.gd" type="Script" id=4]
 [ext_resource path="res://prefab_scenes/items/item1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://prefab_scenes/items/item2.tscn" type="PackedScene" id=6]
@@ -59,10 +58,8 @@ __meta__ = {
 }
 
 [node name="Picker_01" type="TextureRect" parent="CanvasLayer/Selector/HBoxContainer"]
-margin_right = 64.0
-margin_bottom = 64.0
+margin_bottom = 40.0
 mouse_filter = 0
-texture = ExtResource( 3 )
 script = ExtResource( 4 )
 how_many = 10
 item = ExtResource( 5 )
@@ -83,11 +80,10 @@ __meta__ = {
 }
 
 [node name="Picker_02" type="TextureRect" parent="CanvasLayer/Selector/HBoxContainer"]
-margin_left = 68.0
-margin_right = 132.0
-margin_bottom = 64.0
+margin_left = 4.0
+margin_right = 4.0
+margin_bottom = 40.0
 mouse_filter = 0
-texture = ExtResource( 3 )
 script = ExtResource( 4 )
 how_many = 5
 item = ExtResource( 6 )
@@ -108,11 +104,10 @@ __meta__ = {
 }
 
 [node name="Picker_03" type="TextureRect" parent="CanvasLayer/Selector/HBoxContainer"]
-margin_left = 136.0
-margin_right = 200.0
-margin_bottom = 64.0
+margin_left = 8.0
+margin_right = 8.0
+margin_bottom = 40.0
 mouse_filter = 0
-texture = ExtResource( 3 )
 script = ExtResource( 4 )
 how_many = 5
 item = ExtResource( 7 )
@@ -120,6 +115,30 @@ compatible_tile_ids = [ 2, 3, 4 ]
 shade_color = Color( 0.882353, 0.819608, 0.819608, 0.54902 )
 
 [node name="Label" type="Label" parent="CanvasLayer/Selector/HBoxContainer/Picker_03"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -7.0
+margin_right = 20.0
+margin_bottom = 7.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Picker_04" type="TextureRect" parent="CanvasLayer/Selector/HBoxContainer"]
+margin_left = 12.0
+margin_right = 12.0
+margin_bottom = 40.0
+mouse_filter = 0
+script = ExtResource( 4 )
+how_many = 2
+item = ExtResource( 5 )
+compatible_tile_ids = [ 2 ]
+shade_color = Color( 0.882353, 0.819608, 0.819608, 0.54902 )
+
+[node name="Label" type="Label" parent="CanvasLayer/Selector/HBoxContainer/Picker_04"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
