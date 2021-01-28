@@ -30,7 +30,7 @@ size_flags_horizontal = 3
 
 [node name="MenuButtons" type="VBoxContainer" parent="CanvasLayer/MarginContainer/HBoxContainer"]
 margin_left = 342.0
-margin_right = 681.0
+margin_right = 680.0
 margin_bottom = 600.0
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -38,7 +38,7 @@ alignment = 1
 
 [node name="play_game" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons"]
 margin_top = 266.0
-margin_right = 339.0
+margin_right = 338.0
 margin_bottom = 286.0
 text = "Game"
 __meta__ = {
@@ -47,7 +47,7 @@ __meta__ = {
 
 [node name="tutorial" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons"]
 margin_top = 290.0
-margin_right = 339.0
+margin_right = 338.0
 margin_bottom = 310.0
 text = "Tutorial"
 __meta__ = {
@@ -56,7 +56,7 @@ __meta__ = {
 
 [node name="exit" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons"]
 margin_top = 314.0
-margin_right = 339.0
+margin_right = 338.0
 margin_bottom = 334.0
 text = "Exit"
 __meta__ = {
@@ -64,7 +64,7 @@ __meta__ = {
 }
 
 [node name="SpacerR" type="Control" parent="CanvasLayer/MarginContainer/HBoxContainer"]
-margin_left = 685.0
+margin_left = 684.0
 margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
