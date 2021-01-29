@@ -99,6 +99,13 @@ func save_initial_state():
     }
     
 func load_state(state):
+    if current_ball:
+        current_ball.queue_free()
+        current_ball = null
+
+    if state["has_ball"]:
+        spawn_ball()
+        
     ball_spawn_timer.stop()
     ball_launch_timer.stop()
     spawned_balls = state["spawned_balls"]
@@ -113,13 +120,6 @@ func load_state(state):
     line.points[1] = state["end_position"]
     arrow_sprite.position = state["end_position"]
     arrow_sprite.rotation = state["end_position"].angle() + 0.5 * PI
-    
-    if current_ball:
-        current_ball.queue_free()
-        current_ball = null
-    
-    if state["has_ball"]:
-        spawn_ball()
         
     update_label()
 
