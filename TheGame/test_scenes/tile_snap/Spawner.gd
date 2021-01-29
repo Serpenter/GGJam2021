@@ -10,9 +10,7 @@ export(Color) var modulate_selector
 export(String) var path_to_pickers
 
 const FOLLOW_SPEED = 8.0
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
 var current_prefab = null
 var current_picker = null
 
