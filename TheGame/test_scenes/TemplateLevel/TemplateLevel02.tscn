@@ -239,6 +239,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Picker_06" type="TextureRect" parent="CanvasLayer/Pickers"]
+margin_left = 20.0
+margin_right = 20.0
+margin_bottom = 20.0
+mouse_filter = 0
+stretch_mode = 1
+script = ExtResource( 4 )
+how_many = 5
+item = ExtResource( 10 )
+compatible_tile_ids = [ 0, 1 ]
+shade_color = Color( 0.929412, 0.054902, 0.054902, 1 )
+resize_texture = true
+
+[node name="Label" type="Label" parent="CanvasLayer/Pickers/Picker_06"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -7.0
+margin_right = 20.0
+margin_bottom = 7.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="GameFlowControls" type="HBoxContainer" parent="CanvasLayer"]
 anchor_left = 1.0
 anchor_top = 1.0
@@ -419,7 +445,7 @@ position = Vector2( 177.517, -97.1511 )
 position = Vector2( -191.106, 317.219 )
 
 [node name="CatCaptureZone" parent="." instance=ExtResource( 10 )]
-position = Vector2( -191.106, 192.766 )
+position = Vector2( -191.947, 189.403 )
 [connection signal="timeout" from="MinLevelDuration" to="." method="_on_MinLevelDuration_timeout"]
 [connection signal="input_event" from="Spawner/Area2D" to="Spawner" method="_on_Area2D_input_event"]
 [connection signal="pressed" from="CanvasLayer/GameFlowControls/Start" to="." method="_on_Start_pressed"]

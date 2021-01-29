@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://prefab_scenes/obstacles/ItemUIData.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/white_big.png" type="Texture" id=2]
 [ext_resource path="res://prefab_scenes/CatCaptureZone/CatCaptureZone.gd" type="Script" id=3]
+[ext_resource path="res://assets/images/cat_food_logo_1.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 64, 64 )
@@ -13,8 +14,8 @@ script = ExtResource( 3 )
 [node name="ItemUIData" type="Node2D" parent="."]
 script = ExtResource( 1 )
 item_ui_size = Vector2( 64, 64 )
-item_ui_texture = ExtResource( 2 )
-item_ui_color = Color( 0.607843, 0.121569, 0.647059, 1 )
+item_ui_texture = ExtResource( 4 )
+item_ui_color = Color( 0.921569, 1, 0, 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 self_modulate = Color( 1, 0.913725, 0, 0.392157 )
