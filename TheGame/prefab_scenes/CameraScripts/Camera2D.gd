@@ -2,7 +2,7 @@ extends Camera2D
 var zoom_pos
 
 
-export var max_zoom = Vector2(5.0, 5.0)
+export var max_zoom = Vector2(3.0, 3.0)
 export var min_zoom = Vector2(0.6, 0.6)
 export var zoom_step = Vector2(0.1, 0.1)
 

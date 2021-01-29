@@ -6,6 +6,8 @@ extends Node2D
 # var b = "text"
 
 export(int) var speed = 1000
+export var max_position = Vector2(1500, 1500)
+export var min_position = Vector2(-1500, -1500)
 
 var current_speed = Vector2(0,0)
 # Called when the node enters the scene tree for the first time.
@@ -22,4 +24,8 @@ func _process(delta):
     current_speed.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 
     position += current_speed * speed * delta
-
+    position.x = min(max_position.x, position.x)
+    position.x = max(min_position.x, position.x)
+    position.y = min(max_position.y, position.y)
+    position.y = max(min_position.y, position.y)
+    
