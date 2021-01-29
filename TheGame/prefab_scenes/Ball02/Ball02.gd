@@ -7,11 +7,13 @@ onready var face_normal_sprite = $FaceNormalSprite
 onready var face_sad_sprite = $FaceSadSprite
 onready var face_timer = $FaceTimer
 
+export var default_forcefield_pass = "green"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	hide_all_faces()
-	set_face_color(Color.green)
 	face_normal_sprite.visible = true
+	set_forcefield_pass(default_forcefield_pass)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,22 +35,36 @@ func on_activation_zone_activated(activation_zone):
 		pass
 		
 func disable_all_forcefield_passes():
-	set_collision_mask_bit(3, true)
-	set_collision_mask_bit(4, true)
-	set_collision_mask_bit(5, true)
-	set_face_color(Color.green)
+	var layers_list = Forcefields.get_all_forcefield_layers()
+	
+	for layer in layers_list:
+		set_collision_mask_bit(layer, true)
+	
+	
+func set_forcefield_pass(forcefield_name):
+
+	if not Forcefields.is_forcefield_exists(forcefield_name):
+		print("attempt to set nonexistant forcefield " + forcefield_name)
+		return
+		
+	disable_all_forcefield_passes()
+
+	var layer = Forcefields.get_forcefield_layer(forcefield_name)
+	var color = Forcefields.get_forcefield_color(forcefield_name)
+	
+	set_collision_mask_bit(layer, false)
+	set_face_color(color)
+		
+
 		
 func on_forcefield_panel_activation(forcefield_panel):
-	disable_all_forcefield_passes()
-	set_collision_mask_bit(forcefield_panel.forcefield_collision_layer, false)
-	set_face_color(forcefield_panel.color)
+	set_forcefield_pass(forcefield_panel.forcefield_name)
 
 func _on_InteractionArea_mouse_entered():
 	is_hovered = true
 
 func _on_InteractionArea_mouse_exited():
 	is_hovered = false
-
 
 func _on_Ball_body_entered(body):
 	hide_all_faces()

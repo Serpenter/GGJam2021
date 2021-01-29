@@ -83,7 +83,7 @@ func save_initial_state():
 		"is_just_received_control_command":false, 
 		"end_position":line.points[1],
 		"visible": visible,
-		"has_ball": current_ball != null
+		"has_ball": true
 	}
 	
 func load_state(state):

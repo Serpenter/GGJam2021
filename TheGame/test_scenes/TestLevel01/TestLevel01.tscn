@@ -1,13 +1,23 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://prefab_scenes/Wall01/Wall01Long.tscn" type="PackedScene" id=1]
-[ext_resource path="res://prefab_scenes/Forcefield/ForcefieldBlue.tscn" type="PackedScene" id=2]
+[ext_resource path="res://prefab_scenes/ForcefieldWall/ForcefieldWallGreen.tscn" type="PackedScene" id=2]
 [ext_resource path="res://prefab_scenes/Wall01/Wall01.tscn" type="PackedScene" id=3]
 [ext_resource path="res://test_scenes/TestLevel01/LevelManager.gd" type="Script" id=4]
 [ext_resource path="res://prefab_scenes/ActivationZone/ActivationZone.tscn" type="PackedScene" id=5]
 [ext_resource path="res://prefab_scenes/BallSpawner/BallSpawner.tscn" type="PackedScene" id=6]
 [ext_resource path="res://test_scenes/TestLevel01/BallManager.gd" type="Script" id=7]
-[ext_resource path="res://prefab_scenes/ForcefieldPanel/ForcefieldPanel.tscn" type="PackedScene" id=8]
+[ext_resource path="res://prefab_scenes/ForcefieldWall/ForcefieldWallRed.tscn" type="PackedScene" id=8]
+[ext_resource path="res://prefab_scenes/ForcefieldPanel/ForcefieldPanelAqua.tscn" type="PackedScene" id=9]
+[ext_resource path="res://prefab_scenes/ForcefieldWall/ForcefieldWallViolet.tscn" type="PackedScene" id=10]
+[ext_resource path="res://prefab_scenes/ForcefieldPanel/ForcefieldPanelRed.tscn" type="PackedScene" id=11]
+[ext_resource path="res://prefab_scenes/ForcefieldWall/ForcefieldWallAqua.tscn" type="PackedScene" id=12]
+[ext_resource path="res://prefab_scenes/ForcefieldPanel/ForcefieldPanelGreen.tscn" type="PackedScene" id=13]
+[ext_resource path="res://prefab_scenes/ForcefieldPanel/ForcefieldPanelViolet.tscn" type="PackedScene" id=14]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.0
+bounce = 1.0
 
 [node name="Level" type="Node2D" groups=[
 "ActivationZoneSubscriber",
@@ -35,7 +45,16 @@ position = Vector2( 520.197, 476.018 )
 rotation = 0.6353
 
 [node name="Wall06" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 461.463, 125.203 )
+position = Vector2( 411.463, 122.203 )
+rotation = 0.6353
+
+[node name="Wall08" parent="Walls" instance=ExtResource( 3 )]
+position = Vector2( 543.463, 219.203 )
+rotation = 0.6353
+physics_material_override = SubResource( 1 )
+
+[node name="Wall07" parent="Walls" instance=ExtResource( 3 )]
+position = Vector2( 332.38, 337.348 )
 rotation = 0.6353
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -89,12 +108,12 @@ uppercase = true
 [node name="ActivationZone" parent="VictoryZones" groups=[
 "VictoryZone",
 ] instance=ExtResource( 5 )]
-position = Vector2( 39.0228, 265.777 )
+position = Vector2( 72.3938, 506.048 )
 
 [node name="ActivationZone2" parent="VictoryZones" groups=[
 "VictoryZone",
 ] instance=ExtResource( 5 )]
-position = Vector2( 613.723, 192.817 )
+position = Vector2( 729.534, 82.5296 )
 
 [node name="Balls" type="Node2D" parent="." groups=[
 "BallManager",
@@ -104,24 +123,79 @@ script = ExtResource( 7 )
 [node name="BallSpawners" type="Node2D" parent="."]
 
 [node name="BallSpawner" parent="BallSpawners" instance=ExtResource( 6 )]
-position = Vector2( 925.018, 319.83 )
+position = Vector2( 746.838, 435.647 )
 
 [node name="BallSpawner2" parent="BallSpawners" instance=ExtResource( 6 )]
-position = Vector2( 356.868, 246.883 )
+position = Vector2( 96.8112, 79.3308 )
 infinite_ball_spawn = false
 max_balls_number = 2
 
 [node name="Forcefields" type="Node2D" parent="."]
 
 [node name="Forcefield" parent="Forcefields" instance=ExtResource( 2 )]
-position = Vector2( 599.36, 281.842 )
-rotation = 2.28464
-scale = Vector2( 1, 1 )
+position = Vector2( 258, 147 )
+rotation = -0.888373
+
+[node name="Forcefield2" parent="Forcefields" instance=ExtResource( 12 )]
+position = Vector2( 541, 355 )
+rotation = -0.888373
+
+[node name="Forcefield3" parent="Forcefields" instance=ExtResource( 10 )]
+position = Vector2( 449.056, 287.416 )
+rotation = -0.888373
+
+[node name="Forcefield4" parent="Forcefields" instance=ExtResource( 8 )]
+position = Vector2( 347.067, 212.378 )
+rotation = -0.888373
 
 [node name="ForcefieldsPanels" type="Node2D" parent="."]
 
-[node name="ForcefieldPanel" parent="." instance=ExtResource( 8 )]
-position = Vector2( 538.64, 476.434 )
+[node name="ForcefieldPanel" parent="ForcefieldsPanels" instance=ExtResource( 9 )]
+position = Vector2( 530.65, 470.527 )
 rotation = 0.6353
+
+[node name="ForcefieldPanel2" parent="ForcefieldsPanels" instance=ExtResource( 9 )]
+position = Vector2( 507.053, 453.538 )
+rotation = 0.6353
+
+[node name="ForcefieldPanel3" parent="ForcefieldsPanels" instance=ExtResource( 9 )]
+position = Vector2( 553.303, 487.045 )
+rotation = 0.6353
+
+[node name="ForcefieldPanel4" parent="ForcefieldsPanels" instance=ExtResource( 14 )]
+position = Vector2( 538.201, 228.896 )
+rotation = 0.637045
+
+[node name="ForcefieldPanel5" parent="ForcefieldsPanels" instance=ExtResource( 14 )]
+position = Vector2( 558.967, 244.941 )
+rotation = 0.637045
+
+[node name="ForcefieldPanel6" parent="ForcefieldsPanels" instance=ExtResource( 14 )]
+position = Vector2( 578.316, 258.628 )
+rotation = 0.637045
+
+[node name="ForcefieldPanel7" parent="ForcefieldsPanels" instance=ExtResource( 11 )]
+position = Vector2( 347.067, 332.722 )
+rotation = 0.628319
+
+[node name="ForcefieldPanel8" parent="ForcefieldsPanels" instance=ExtResource( 11 )]
+position = Vector2( 330.549, 321.867 )
+rotation = 0.628319
+
+[node name="ForcefieldPanel9" parent="ForcefieldsPanels" instance=ExtResource( 11 )]
+position = Vector2( 310.256, 307.709 )
+rotation = 0.628319
+
+[node name="ForcefieldPanel10" parent="ForcefieldsPanels" instance=ExtResource( 13 )]
+position = Vector2( 381.703, 113.261 )
+rotation = 0.645772
+
+[node name="ForcefieldPanel11" parent="ForcefieldsPanels" instance=ExtResource( 13 )]
+position = Vector2( 363.051, 98.9747 )
+rotation = 0.645772
+
+[node name="ForcefieldPanel12" parent="ForcefieldsPanels" instance=ExtResource( 13 )]
+position = Vector2( 345.59, 86.2755 )
+rotation = 0.645772
 [connection signal="pressed" from="CanvasLayer/Control/UpperCentralMarginContainer/VBoxContainer/LaunchButton" to="." method="_on_LaunchButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/UpperCentralMarginContainer/VBoxContainer/ResetButton" to="." method="_on_ResetButton_pressed"]
