@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var ball_prefab = preload("res://prefab_scenes/CatFood/CatFood.tscn")
+export(bool) var is_alignable = true
 
 onready var line = $Line2D
 onready var arrow_sprite = $ArrowSprite

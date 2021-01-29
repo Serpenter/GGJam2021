@@ -2,6 +2,8 @@ extends Node2D
 
 onready var ball_prefab = preload("res://prefab_scenes/Ball02/Ball02.tscn")
 
+export(bool) var is_alignable = true
+
 onready var line = $Line2D
 onready var arrow_sprite = $ArrowSprite
 onready var sprite = $Sprite
@@ -14,8 +16,8 @@ onready var label = $Labels/Label
 export var min_angle = 0
 export var max_angle = 360
 
-export var min_length= 50
-export var max_length = 250
+export var min_length = 50
+export var max_length = 350
 
 
 export var is_input_disabled = false
@@ -35,7 +37,7 @@ var is_just_received_control_command = false
 
 var initial_state = null
 
-var default_ball_spawn_pos = Vector2(25,0)
+var default_ball_spawn_pos = Vector2(0,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

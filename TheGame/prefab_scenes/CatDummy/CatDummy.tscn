@@ -13,10 +13,10 @@ friction = 0.5
 bounce = 0.5
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 15.0
+radius = 32.0
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 25.0
+radius = 32.0
 
 [node name="Cat" type="RigidBody2D" groups=[
 "Cat",
@@ -40,7 +40,6 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.5, 0.5 )
 z_index = 1
 texture = ExtResource( 1 )
 __meta__ = {
@@ -48,7 +47,6 @@ __meta__ = {
 }
 
 [node name="Sprite2" type="Sprite" parent="."]
-scale = Vector2( 0.5, 0.5 )
 z_index = 1
 texture = ExtResource( 7 )
 __meta__ = {
@@ -56,7 +54,6 @@ __meta__ = {
 }
 
 [node name="Sprite3" type="Sprite" parent="."]
-scale = Vector2( 0.5, 0.5 )
 z_index = 1
 texture = ExtResource( 4 )
 __meta__ = {
@@ -64,7 +61,6 @@ __meta__ = {
 }
 
 [node name="Sprite4" type="Sprite" parent="."]
-scale = Vector2( 0.5, 0.5 )
 z_index = 1
 texture = ExtResource( 3 )
 __meta__ = {
@@ -74,13 +70,10 @@ __meta__ = {
 [node name="FaceSadSprite" type="Sprite" parent="."]
 visible = false
 modulate = Color( 1, 0, 0, 1 )
-scale = Vector2( 0.5, 0.5 )
 z_index = 1
 texture = ExtResource( 6 )
 
 [node name="FaceNormalSprite" type="Sprite" parent="."]
-modulate = Color( 0, 1, 0, 1 )
-scale = Vector2( 0.5, 0.5 )
 z_index = 1
 texture = ExtResource( 5 )
 

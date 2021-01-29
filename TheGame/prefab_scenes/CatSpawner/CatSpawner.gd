@@ -2,6 +2,8 @@ extends Node2D
 
 onready var ball_prefab = preload("res://prefab_scenes/CatDummy/CatDummy.tscn")
 
+export(bool) var is_alignable = true
+
 onready var line = $Line2D
 onready var arrow_sprite = $ArrowSprite
 onready var sprite = $Sprite
@@ -220,7 +222,8 @@ func spawn_ball():
     current_ball.sleeping = true
     current_ball.mode = 1
     ball_spawn.add_child(current_ball)
-    current_ball.rotate(PI)
+    if line.points[1] != Vector2.ZERO:
+        current_ball.rotate(PI)
     spawned_balls += 1
 
 func spawn_additional_cat(cat_global_position):

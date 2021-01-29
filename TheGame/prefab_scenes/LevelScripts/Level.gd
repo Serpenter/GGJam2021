@@ -5,7 +5,7 @@ var is_paused = false
 var is_launched = false
 
 # equals or more
-export(int) var captured_cats_to_win = 10
+export(int) var captured_cats_to_win = 1
 
 # equals or less
 export(int) var free_cats_to_win = 0

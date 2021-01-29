@@ -32,7 +32,10 @@ func _ready():
 
 func _gui_input(event):
     if (event is InputEventMouseButton):
-        if event.button_index == 1 and event.pressed and is_items_available():
+        if event.button_index == 1 \
+        and event.pressed \
+        and is_items_available() \
+        and User.current_control == 0:
             emit_signal("selected", item, self)
 
 

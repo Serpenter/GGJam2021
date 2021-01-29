@@ -2,6 +2,7 @@ extends Node2D
 
 # presistent parameters - to be saved-restored-loaded
 var initial_rotation
+export(bool) var is_alignable = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
