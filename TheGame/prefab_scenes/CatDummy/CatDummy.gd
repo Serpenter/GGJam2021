@@ -3,54 +3,57 @@ extends RigidBody2D
 var is_hovered = false
 var is_active_mode = false
 
+var is_captured = false
+var is_dead = false
+
 onready var face_normal_sprite = $FaceNormalSprite
 onready var face_sad_sprite = $FaceSadSprite
 onready var face_timer = $FaceTimer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	hide_all_faces()
-	face_normal_sprite.visible = true
+    hide_all_faces()
+    face_normal_sprite.visible = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	process_input()
+    process_input()
 
 func process_input():
-	pass
+    pass
 
 func go_to_sleep_mode():
-	sleeping = true
+    sleeping = true
 
 func go_to_actibe_mode():
-	sleeping = false
+    sleeping = false
 
 func on_activation_zone_activated(activation_zone):
-	if activation_zone.is_in_group("CaptureZone"):
-		go_to_sleep_mode()
-		pass
+    if activation_zone.is_in_group("CaptureZone"):
+        go_to_sleep_mode()
+        pass
 
 
 func _on_InteractionArea_mouse_entered():
-	is_hovered = true
+    is_hovered = true
 
 func _on_InteractionArea_mouse_exited():
-	is_hovered = false
+    is_hovered = false
 
 func _on_Cat_body_entered(body):
-	hide_all_faces()
-	face_sad_sprite.visible = true
-	face_timer.start()
+    hide_all_faces()
+    face_sad_sprite.visible = true
+    face_timer.start()
 
 func set_face_color(color):
-	face_normal_sprite.modulate = color
-	face_sad_sprite.modulate = color
+    face_normal_sprite.modulate = color
+    face_sad_sprite.modulate = color
 
 func hide_all_faces():
-	face_normal_sprite.visible = false
-	face_sad_sprite.visible = false
+    face_normal_sprite.visible = false
+    face_sad_sprite.visible = false
 
 func _on_FaceTimer_timeout():
-	hide_all_faces()
-	face_normal_sprite.visible = true
+    hide_all_faces()
+    face_normal_sprite.visible = true

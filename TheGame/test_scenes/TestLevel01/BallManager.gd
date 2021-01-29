@@ -8,13 +8,13 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+    pass # Replace with function body.
 
 func take_control_of_ball(ball):
-	if ball.get_parent():
-		ball.get_parent().remove_child(ball)
-	
-	add_child(ball)
+    if ball.get_parent():
+        ball.get_parent().remove_child(ball)
+    
+    add_child(ball)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

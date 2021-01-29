@@ -7,14 +7,11 @@ extends Node2D
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-    pass # Replace with function body.
+#func _ready():
+#	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#    pass
-
-
-func _on_to_main_menu_pressed():
-    GSceneManager.goto_scene_wloader("res://main_scenes/main_menu/main_menu.tscn")
+func _process(delta):
+    if Input.is_mouse_button_pressed(3):
+        set_global_position(get_global_mouse_position())
