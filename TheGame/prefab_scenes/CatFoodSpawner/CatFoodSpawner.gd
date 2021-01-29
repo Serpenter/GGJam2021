@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var ball_prefab = preload("res://prefab_scenes/CatDummy/CatDummy.tscn")
+onready var ball_prefab = preload("res://prefab_scenes/CatFood/CatFood.tscn")
 
 onready var line = $Line2D
 onready var arrow_sprite = $ArrowSprite
@@ -31,7 +31,7 @@ var is_controlled = false
 var is_just_received_control_command = false
 
 var initial_state = null
-export var default_end_pos = Vector2(1, 0)
+export var default_end_pos = Vector2(0, 0)
 var default_ball_spawn_pos = Vector2(0,0)
 
 # Called when the node enters the scene tree for the first time.
@@ -213,13 +213,6 @@ func spawn_ball():
 	ball_spawn.add_child(current_ball)
 	current_ball.rotate(PI)
 	spawned_balls += 1
-
-func spawn_additional_cat(cat_global_position):
-	var new_cat = ball_prefab.instance()
-	ball_spawn.add_child(new_cat)
-	new_cat.sleeping = false
-	new_cat.mode = 0
-	new_cat.set_global_position(cat_global_position)
 
 func _on_InteractionArea_mouse_entered():
 	is_hovered = true

@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/images/cat_example.png" type="Texture" id=1]
+[ext_resource path="res://assets/images/cat_food_example.png" type="Texture" id=1]
 [ext_resource path="res://assets/images/triangle_64x64.png" type="Texture" id=2]
-[ext_resource path="res://prefab_scenes/CatSpawner/CatSpawner.gd" type="Script" id=3]
+[ext_resource path="res://prefab_scenes/CatFoodSpawner/CatFoodSpawner.gd" type="Script" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 30.3694
 
-[node name="CatSpawner" type="Node2D" groups=[
+[node name="CatFoodSpawner" type="Node2D" groups=[
 "Resetable",
 "ShouldLaunch",
 ]]
