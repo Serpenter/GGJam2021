@@ -9,6 +9,7 @@ onready var ball_spawn = $BallSpawn
 onready var current_ball = null
 onready var ball_spawn_timer = $BallSpawnTimer
 onready var ball_launch_timer = $BallLaunchTimer
+onready var label = $Labels/Label
 
 export var min_angle = 0
 export var max_angle = 360
@@ -23,6 +24,7 @@ export var infinite_ball_spawn = false
 
 export var max_balls_number = 1
 var spawned_balls = 0
+var launched_balls = 0
 var is_launched = false
 
 var is_hovered = false
@@ -36,7 +38,9 @@ var default_ball_spawn_pos = Vector2(0,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	label.visible = false
 	sprite.visible = false
+	update_label()
 	set_end_position(default_end_pos)
 	spawn_ball()
 	pass # Replace with function body.
@@ -70,6 +74,7 @@ func launch_ball():
 	current_ball.apply_central_impulse(initial_impulse)
 #	get_tree().call_group("BallManager", "take_control_of_ball", current_ball)
 	current_ball = null
+	update_label()
 
 func can_launch():
 	return is_input_provided and not is_controlled;
@@ -83,6 +88,7 @@ func load_saved_state():
 func save_initial_state():
 	initial_state = {
 		"spawned_balls": spawned_balls,
+		"launched_balls":launched_balls,
 		"is_input_disabled":is_input_disabled,
 		"is_input_provided":is_input_provided, 
 		"is_controlled":false, 
@@ -96,6 +102,7 @@ func load_state(state):
 	ball_spawn_timer.stop()
 	ball_launch_timer.stop()
 	spawned_balls = state["spawned_balls"]
+	launched_balls = state["launched_balls"]
 
 	is_input_disabled = state["is_input_disabled"]
 	is_input_provided = state["is_input_provided"]
@@ -113,6 +120,8 @@ func load_state(state):
 	
 	if state["has_ball"]:
 		spawn_ball()
+		
+	update_label()
 
 func set_default_initial_impulse():
 	var angle = 0.5 * (max_angle + min_angle) * PI / 180
@@ -240,3 +249,9 @@ func _on_BallLaunchTimer_timeout():
 	launch_ball()
 	if infinite_ball_spawn or spawned_balls < max_balls_number:
 		ball_spawn_timer.start()
+
+func update_label():
+	if infinite_ball_spawn:
+		label.text = "-"
+	else:
+		label.text = str(max_balls_number - launched_balls)

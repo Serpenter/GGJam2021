@@ -5,7 +5,7 @@
 [ext_resource path="res://prefab_scenes/BallSpawner/BallSpawner.gd" type="Script" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 30.3694
+radius = 50.0
 
 [node name="BallSpawner" type="Node2D" groups=[
 "Resetable",
@@ -37,7 +37,6 @@ texture = ExtResource( 2 )
 [node name="InteractionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-visible = false
 position = Vector2( 0, -0.140306 )
 shape = SubResource( 1 )
 
@@ -53,6 +52,26 @@ one_shot = true
 
 [node name="BallSpawn" type="Node2D" parent="."]
 position = Vector2( -25, 0 )
+
+[node name="Labels" type="Node2D" parent="."]
+position = Vector2( 0, -20 )
+scale = Vector2( 2, 2 )
+z_index = 2
+
+[node name="Label" type="Label" parent="Labels"]
+modulate = Color( 0.109804, 1, 0, 1 )
+margin_left = -20.2679
+margin_top = -6.45901
+margin_right = 19.7321
+margin_bottom = 24.541
+text = "1
+"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="input_event" from="InteractionArea" to="." method="_on_InteractionArea_input_event"]
 [connection signal="mouse_entered" from="InteractionArea" to="." method="_on_InteractionArea_mouse_entered"]
 [connection signal="mouse_exited" from="InteractionArea" to="." method="_on_InteractionArea_mouse_exited"]
