@@ -5,11 +5,13 @@ var is_active_mode = false
 
 onready var face_normal_sprite = $FaceNormalSprite
 onready var face_sad_sprite = $FaceSadSprite
+onready var face_timer = $FaceTimer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	hide_all_faces()
+	set_face_color(Color.green)
 	face_normal_sprite.visible = true
-	face_sad_sprite.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,3 +38,21 @@ func _on_InteractionArea_mouse_entered():
 
 func _on_InteractionArea_mouse_exited():
 	is_hovered = false
+
+
+func _on_Ball_body_entered(body):
+	hide_all_faces()
+	face_sad_sprite.visible = true
+	face_timer.start()
+
+func set_face_color(color):
+	face_normal_sprite.modulate = color
+	face_sad_sprite.modulate = color
+
+func hide_all_faces():
+	face_normal_sprite.visible = false
+	face_sad_sprite.visible = false
+
+func _on_FaceTimer_timeout():
+	hide_all_faces()
+	face_normal_sprite.visible = true
