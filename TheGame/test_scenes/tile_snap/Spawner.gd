@@ -13,6 +13,8 @@ const FOLLOW_SPEED = 8.0
 
 var current_prefab = null
 var current_picker = null
+var current_prefab_rotation = 0.0
+var current_prefab_rotation_step = 90.0
 
 var obstacles_container = null
 var obstacles_dict = {}
@@ -54,6 +56,8 @@ func _on_item_selected(item_pfb, picker):
     $Sprite.self_modulate = picker.self_modulate
     $Sprite.modulate = modulate_selector
     $Sprite.show()
+    current_prefab_rotation = 0.0
+    current_prefab_rotation_step = picker.item_ui_rotation_step
 
     current_prefab = item_pfb
     current_picker = picker
@@ -72,6 +76,18 @@ func _on_item_selected(item_pfb, picker):
     tile_highlight.update()
 
 
+func _input(event):
+
+    if event is InputEventKey\
+    and event.pressed:
+        if event.scancode == KEY_Q:
+            current_prefab_rotation -= current_prefab_rotation_step
+            $Sprite.rotation_degrees = current_prefab_rotation
+        if event.scancode == KEY_E:
+            current_prefab_rotation += current_prefab_rotation_step
+            $Sprite.rotation_degrees = current_prefab_rotation
+
+
 func _on_Area2D_input_event(viewport, event, shape_idx):
 
     if (event is InputEventMouseButton) \
@@ -86,6 +102,8 @@ func clear_selection():
     User.current_control = 0
     current_picker = null
     current_prefab = null
+    current_prefab_rotation = 0.0
+    current_prefab_rotation_step = 0.0
     $Sprite.hide()
     tile_highlight.tiles.clear()
     tile_highlight.update()
@@ -101,6 +119,7 @@ func _handle_event_with_item(event):
 
         var new_obstacle = current_prefab.instance()
         new_obstacle.position = target_position
+        new_obstacle.rotation_degrees = current_prefab_rotation
         obstacles_container.add_child(new_obstacle)
 
         var obj_handle = ObstacleInGameHadle.new()
