@@ -7,18 +7,21 @@
 [ext_resource path="res://assets/images/face_sad.png" type="Texture" id=6]
 
 [sub_resource type="PhysicsMaterial" id=1]
+friction = 0.5
+bounce = 0.5
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 15.0
+radius = 30.0
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 25.0
+radius = 40.0
 
 [node name="Ball" type="RigidBody2D" groups=[
 "Ball",
 "Deletable",
 ]]
 input_pickable = true
+collision_mask = 123
 physics_material_override = SubResource( 1 )
 continuous_cd = 1
 contacts_reported = 10
@@ -35,7 +38,6 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.5, 0.5 )
 z_index = 1
 texture = ExtResource( 1 )
 __meta__ = {
@@ -46,13 +48,14 @@ __meta__ = {
 modulate = Color( 0.176471, 0.160784, 0.160784, 1 )
 position = Vector2( -5.78883e-09, -0.132433 )
 rotation = -1.5708
-scale = Vector2( 1.3973, 1 )
+scale = Vector2( 2.7, 2 )
 z_index = 1
 texture = ExtResource( 4 )
 
 [node name="FaceNormalSprite" type="Sprite" parent="."]
 modulate = Color( 0, 1, 0, 1 )
 rotation = -1.5708
+scale = Vector2( 2, 2 )
 z_index = 1
 texture = ExtResource( 5 )
 
@@ -60,6 +63,7 @@ texture = ExtResource( 5 )
 visible = false
 modulate = Color( 1, 0, 0, 1 )
 rotation = -1.5708
+scale = Vector2( 2, 2 )
 z_index = 1
 texture = ExtResource( 6 )
 
@@ -67,5 +71,10 @@ texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource( 3 )
+
+[node name="FaceTimer" type="Timer" parent="."]
+one_shot = true
+[connection signal="body_entered" from="." to="." method="_on_Ball_body_entered"]
 [connection signal="mouse_entered" from="InteractionArea" to="." method="_on_InteractionArea_mouse_entered"]
 [connection signal="mouse_exited" from="InteractionArea" to="." method="_on_InteractionArea_mouse_exited"]
+[connection signal="timeout" from="FaceTimer" to="." method="_on_FaceTimer_timeout"]

@@ -1,0 +1,309 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://test_scenes/TemplateLevel/TemplateLevel.gd" type="Script" id=1]
+[ext_resource path="res://test_scenes/tile_snap/Highlight.gd" type="Script" id=2]
+[ext_resource path="res://prefab_scenes/GameTime/GameTime.gd" type="Script" id=3]
+[ext_resource path="res://prefab_scenes/obstacles/SelectorItem.gd" type="Script" id=4]
+[ext_resource path="res://test_scenes/tile_snap/Spawner.gd" type="Script" id=5]
+[ext_resource path="res://prefab_scenes/Ball/Ball.tscn" type="PackedScene" id=6]
+[ext_resource path="res://prefab_scenes/CatSpawner/CatSpawner.tscn" type="PackedScene" id=7]
+[ext_resource path="res://prefab_scenes/ObstacleAligner/ObstaclesAligner.gd" type="Script" id=8]
+[ext_resource path="res://prefab_scenes/ActivationZone/ActivationZone.tscn" type="PackedScene" id=9]
+[ext_resource path="res://prefab_scenes/obstacles/GenericObstacle.tscn" type="PackedScene" id=10]
+[ext_resource path="res://prefab_scenes/obstacles/item2.tscn" type="PackedScene" id=12]
+[ext_resource path="res://prefab_scenes/obstacles/item1.tscn" type="PackedScene" id=13]
+[ext_resource path="res://prefab_scenes/BallSpawner/BallSpawner.tscn" type="PackedScene" id=14]
+[ext_resource path="res://prefab_scenes/Tilemaps/testtilemap.tscn" type="PackedScene" id=15]
+[ext_resource path="res://prefab_scenes/CameraScripts/CameraJoint.gd" type="Script" id=16]
+[ext_resource path="res://test_scenes/TestLevel01/BallManager.gd" type="Script" id=17]
+[ext_resource path="res://prefab_scenes/CameraScripts/Camera2D.gd" type="Script" id=18]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 20.0
+
+[node name="TemplateLevel" type="Node2D" groups=[
+"ActivationZoneSubscriber",
+]]
+script = ExtResource( 1 )
+
+[node name="TileMap" parent="." instance=ExtResource( 15 )]
+
+[node name="Highlight" type="Control" parent="TileMap"]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 1
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+highlight_color = Color( 0.145098, 0.941176, 0.921569, 1 )
+
+[node name="MinLevelDuration" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="MaxLevelDuration" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+
+[node name="CameraJoint" type="Node2D" parent="."]
+script = ExtResource( 16 )
+
+[node name="Camera2D" type="Camera2D" parent="CameraJoint"]
+current = true
+limit_smoothed = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+script = ExtResource( 18 )
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="GenericObstacle2" parent="Obstacles" instance=ExtResource( 10 )]
+position = Vector2( 448, -64 )
+
+[node name="GenericObstacle" parent="Obstacles" instance=ExtResource( 10 )]
+position = Vector2( -64, -192 )
+
+[node name="ObstaclesAligner" type="Node2D" parent="."]
+script = ExtResource( 8 )
+path_to_obstacle_parent = "Obstacles"
+path_to_tilemap = "TileMap"
+
+[node name="Spawner" type="Position2D" parent="."]
+script = ExtResource( 5 )
+modulate_selector = Color( 1, 1, 1, 0.376471 )
+path_to_pickers = "CanvasLayer/Pickers"
+
+[node name="Sprite" type="Sprite" parent="Spawner"]
+
+[node name="Area2D" type="Area2D" parent="Spawner"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawner/Area2D"]
+shape = SubResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Menu" type="VBoxContainer" parent="CanvasLayer"]
+margin_left = 905.0
+margin_top = 20.0
+margin_right = 1004.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenu" type="Button" parent="CanvasLayer/Menu"]
+margin_right = 99.0
+margin_bottom = 20.0
+text = "Main menu"
+
+[node name="Exit" type="Button" parent="CanvasLayer/Menu"]
+margin_top = 24.0
+margin_right = 99.0
+margin_bottom = 44.0
+text = "Exit"
+
+[node name="Pickers" type="HBoxContainer" parent="CanvasLayer"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = -40.0
+margin_right = 40.0
+margin_bottom = -20.0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Picker_01" type="TextureRect" parent="CanvasLayer/Pickers"]
+margin_bottom = 20.0
+mouse_filter = 0
+script = ExtResource( 4 )
+how_many = 10
+item = ExtResource( 13 )
+compatible_tile_ids = [ 0 ]
+shade_color = Color( 0.882353, 0.819608, 0.819608, 0.54902 )
+resize_texture = true
+
+[node name="Label" type="Label" parent="CanvasLayer/Pickers/Picker_01"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -7.0
+margin_right = 20.0
+margin_bottom = 7.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Picker_02" type="TextureRect" parent="CanvasLayer/Pickers"]
+margin_left = 4.0
+margin_right = 4.0
+margin_bottom = 20.0
+mouse_filter = 0
+script = ExtResource( 4 )
+how_many = 5
+item = ExtResource( 12 )
+compatible_tile_ids = [ 1 ]
+shade_color = Color( 0.882353, 0.819608, 0.819608, 0.54902 )
+resize_texture = true
+
+[node name="Label" type="Label" parent="CanvasLayer/Pickers/Picker_02"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -7.0
+margin_right = 20.0
+margin_bottom = 7.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameFlowControls" type="HBoxContainer" parent="CanvasLayer"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -172.0
+margin_top = -32.0
+margin_right = -20.0
+margin_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_min_size = Vector2( 0, 32 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="Button" parent="CanvasLayer/GameFlowControls"]
+margin_right = 57.0
+margin_bottom = 32.0
+text = "Launch"
+
+[node name="Pause" type="Button" parent="CanvasLayer/GameFlowControls"]
+margin_left = 61.0
+margin_right = 111.0
+margin_bottom = 32.0
+text = "Pause"
+
+[node name="Restart" type="Button" parent="CanvasLayer/GameFlowControls"]
+margin_left = 115.0
+margin_right = 172.0
+margin_bottom = 32.0
+text = "Restart"
+
+[node name="FlatCatInfo" type="VBoxContainer" parent="CanvasLayer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cats" type="Label" parent="CanvasLayer/FlatCatInfo"]
+margin_right = 59.0
+margin_bottom = 14.0
+text = "Flat cats"
+
+[node name="Free" type="Label" parent="CanvasLayer/FlatCatInfo"]
+margin_top = 18.0
+margin_right = 59.0
+margin_bottom = 32.0
+text = "Free: 0"
+
+[node name="Caught" type="Label" parent="CanvasLayer/FlatCatInfo"]
+margin_top = 36.0
+margin_right = 59.0
+margin_bottom = 50.0
+text = "Caught: 0"
+
+[node name="Dead" type="Label" parent="CanvasLayer/FlatCatInfo"]
+margin_top = 54.0
+margin_right = 59.0
+margin_bottom = 68.0
+text = "Dead: 0"
+
+[node name="GameTime" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -20.0
+margin_top = 20.0
+margin_right = 20.0
+margin_bottom = 14.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelTime" type="Timer" parent="CanvasLayer/GameTime"]
+autostart = true
+
+[node name="OnVictoryPopup" type="VBoxContainer" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OnFailPopup" type="VBoxContainer" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Balls" type="Node2D" parent="."]
+
+[node name="VictoryZones" type="Node2D" parent="."]
+
+[node name="ActivationZone" parent="VictoryZones" groups=[
+"VictoryZone",
+] instance=ExtResource( 9 )]
+position = Vector2( 72.3938, 506.048 )
+
+[node name="ActivationZone2" parent="VictoryZones" groups=[
+"VictoryZone",
+] instance=ExtResource( 9 )]
+position = Vector2( 729.534, 82.5296 )
+
+[node name="Balls2" type="Node2D" parent="." groups=[
+"BallManager",
+]]
+script = ExtResource( 17 )
+
+[node name="Ball" parent="Balls2" instance=ExtResource( 6 )]
+
+[node name="Ball2" parent="Balls2" instance=ExtResource( 6 )]
+position = Vector2( 262.277, 1.50735 )
+
+[node name="BallSpawners" type="Node2D" parent="."]
+
+[node name="BallSpawner" parent="BallSpawners" instance=ExtResource( 14 )]
+position = Vector2( 746.838, 435.647 )
+
+[node name="BallSpawner2" parent="BallSpawners" instance=ExtResource( 14 )]
+position = Vector2( 96.8112, 79.3308 )
+infinite_ball_spawn = false
+max_balls_number = 2
+
+[node name="CatSpawners" type="Node2D" parent="."]
+
+[node name="CatSpawner" parent="CatSpawners" instance=ExtResource( 7 )]
+position = Vector2( 109.622, 166.088 )
+default_end_pos = Vector2( 100, 50 )
+[connection signal="timeout" from="MinLevelDuration" to="." method="_on_MinLevelDuration_timeout"]
+[connection signal="input_event" from="Spawner/Area2D" to="Spawner" method="_on_Area2D_input_event"]
+[connection signal="pressed" from="CanvasLayer/GameFlowControls/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameFlowControls/Pause" to="." method="_on_Pause_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameFlowControls/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="timeout" from="CanvasLayer/GameTime/LevelTime" to="CanvasLayer/GameTime" method="_on_LevelTime_timeout"]

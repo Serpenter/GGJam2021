@@ -10,9 +10,7 @@ export(Color) var modulate_selector
 export(String) var path_to_pickers
 
 const FOLLOW_SPEED = 8.0
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
 var current_prefab = null
 var current_picker = null
 
@@ -49,6 +47,8 @@ func _process(delta):
 
 
 func _on_item_selected(item_pfb, picker):
+    
+    User.current_control = 3
 
     $Sprite.texture = picker.texture
     $Sprite.self_modulate = picker.self_modulate
@@ -74,7 +74,8 @@ func _on_item_selected(item_pfb, picker):
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
 
-    if (event is InputEventMouseButton) and event.pressed:
+    if (event is InputEventMouseButton) \
+    and event.pressed:
         if current_prefab:
             _handle_event_with_item(event)
         else:
@@ -82,6 +83,7 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 
 
 func clear_selection():
+    User.current_control = 0
     current_picker = null
     current_prefab = null
     $Sprite.hide()
@@ -91,7 +93,7 @@ func clear_selection():
 
 func _handle_event_with_item(event):
 
-    if event.button_index == 1:
+    if event.button_index == BUTTON_LEFT:
 
         if not target_tile_id in current_picker.compatible_tile_ids\
             or target_tile_map_pos in obstacles_dict:
@@ -112,11 +114,14 @@ func _handle_event_with_item(event):
         if not current_picker.is_items_available():
             clear_selection()
 
-    elif event.button_index == 2:
+    elif event.button_index == BUTTON_RIGHT:
         clear_selection()
 
 
 func _handle_event_without_item(event):
+    
+    if User.current_control != 0:
+        return
 
     if target_tile_map_pos in obstacles_dict and event.button_index in [1, 2]:
 
@@ -129,7 +134,7 @@ func _handle_event_without_item(event):
 
         obj_handle.picker.on_item_removed()
 
-        if event.button_index == 1:
+        if event.button_index == BUTTON_LEFT:
 
             current_picker = obj_handle.picker
             current_prefab = obj_handle.picker.item
