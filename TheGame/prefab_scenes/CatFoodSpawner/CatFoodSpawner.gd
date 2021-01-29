@@ -218,10 +218,9 @@ func spawn_ball():
         print("attempt to spawn ball with max number of balls already spawned")
 
     current_ball = ball_prefab.instance()
-    current_ball.sleeping = true
-    current_ball.mode = 1
+    current_ball.sleeping = false
+    current_ball.mode = 0
     ball_spawn.add_child(current_ball)
-    current_ball.rotate(PI)
     spawned_balls += 1
 
 func _on_InteractionArea_mouse_entered():

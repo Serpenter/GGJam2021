@@ -39,8 +39,18 @@ __meta__ = {
 }
 highlight_color = Color( 0.145098, 0.941176, 0.921569, 1 )
 
-[node name="MinLevelDuration" type="Timer" parent="."]
+[node name="VictoryTimer" type="Timer" parent="."]
+process_mode = 0
 wait_time = 5.0
+one_shot = true
+
+[node name="LimitTimer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 120.0
+one_shot = true
+
+[node name="MinLevelDuration" type="Timer" parent="."]
+wait_time = 0.1
 one_shot = true
 
 [node name="MaxLevelDuration" type="Timer" parent="."]
@@ -64,6 +74,7 @@ script = ExtResource( 18 )
 
 [node name="ObstaclesAligner" type="Node2D" parent="."]
 script = ExtResource( 8 )
+rerun = false
 path_to_obstacle_parent = "Obstacles"
 path_to_tilemap = "TileMap"
 
@@ -220,14 +231,16 @@ margin_bottom = 32.0
 text = "Launch"
 
 [node name="Pause" type="Button" parent="CanvasLayer/GameFlowControls"]
+visible = false
 margin_left = 61.0
 margin_right = 111.0
 margin_bottom = 32.0
+toggle_mode = true
 text = "Pause"
 
 [node name="Restart" type="Button" parent="CanvasLayer/GameFlowControls"]
-margin_left = 115.0
-margin_right = 172.0
+margin_left = 61.0
+margin_right = 118.0
 margin_bottom = 32.0
 text = "Restart"
 
@@ -258,25 +271,11 @@ margin_bottom = 50.0
 text = "Caught: 0"
 
 [node name="Dead" type="Label" parent="CanvasLayer/FlatCatInfo"]
+visible = false
 margin_top = 54.0
 margin_right = 59.0
 margin_bottom = 68.0
 text = "Dead: 0"
-
-[node name="GameTime" type="Label" parent="CanvasLayer"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -20.0
-margin_top = 20.0
-margin_right = 20.0
-margin_bottom = 14.0
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="LevelTime" type="Timer" parent="CanvasLayer/GameTime"]
-autostart = true
 
 [node name="OnVictoryPopup" type="VBoxContainer" parent="CanvasLayer"]
 margin_right = 40.0
@@ -292,8 +291,52 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="TimerVBox" type="VBoxContainer" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -20.0
+margin_right = 20.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameTime" type="Label" parent="CanvasLayer/TimerVBox"]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 472.0
+margin_top = 20.0
+margin_right = 512.0
+margin_bottom = 34.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelTime" type="Timer" parent="CanvasLayer/TimerVBox/GameTime"]
+autostart = true
+
+[node name="LimitTimerLabel" type="Label" parent="CanvasLayer/TimerVBox"]
+margin_right = 40.0
+margin_bottom = 14.0
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VictoryTimerLabel" type="Label" parent="CanvasLayer/TimerVBox"]
+margin_top = 18.0
+margin_right = 40.0
+margin_bottom = 32.0
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="BallSpawners" type="Node2D" parent="."]
 script = ExtResource( 8 )
+rerun = false
 path_to_obstacle_parent = "BallSpawners"
 path_to_tilemap = "TileMap"
 
@@ -311,6 +354,7 @@ max_balls_number = 1
 
 [node name="CatFoodSpawners" type="Node2D" parent="."]
 script = ExtResource( 8 )
+rerun = false
 path_to_obstacle_parent = "CatFoodSpawners"
 path_to_tilemap = "TileMap"
 
@@ -319,15 +363,18 @@ position = Vector2( 306.598, 54.4864 )
 
 [node name="CatSpawners" type="Node2D" parent="."]
 script = ExtResource( 8 )
+rerun = false
 path_to_obstacle_parent = "CatSpawners"
 path_to_tilemap = "TileMap"
 
 [node name="CatSpawner" parent="CatSpawners" instance=ExtResource( 7 )]
 position = Vector2( 64, 64 )
 default_end_pos = Vector2( 0, 0 )
+[connection signal="timeout" from="VictoryTimer" to="." method="_on_VictoryTimer_timeout"]
+[connection signal="timeout" from="LimitTimer" to="." method="_on_LimitTimer_timeout"]
 [connection signal="timeout" from="MinLevelDuration" to="." method="_on_MinLevelDuration_timeout"]
 [connection signal="input_event" from="Spawner/Area2D" to="Spawner" method="_on_Area2D_input_event"]
 [connection signal="pressed" from="CanvasLayer/GameFlowControls/Start" to="." method="_on_Start_pressed"]
-[connection signal="pressed" from="CanvasLayer/GameFlowControls/Pause" to="." method="_on_Pause_pressed"]
+[connection signal="toggled" from="CanvasLayer/GameFlowControls/Pause" to="." method="_on_Pause_toggled"]
 [connection signal="pressed" from="CanvasLayer/GameFlowControls/Restart" to="." method="_on_Restart_pressed"]
-[connection signal="timeout" from="CanvasLayer/GameTime/LevelTime" to="CanvasLayer/GameTime" method="_on_LevelTime_timeout"]
+[connection signal="timeout" from="CanvasLayer/TimerVBox/GameTime/LevelTime" to="CanvasLayer/TimerVBox/GameTime" method="_on_LevelTime_timeout"]
