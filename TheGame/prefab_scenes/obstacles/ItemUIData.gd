@@ -4,7 +4,7 @@ extends Node2D
 export(Vector2) var item_ui_size = Vector2(128, 128)
 export(Texture) var item_ui_texture
 export(Color, RGBA) var item_ui_color
-
+export(float) var item_ui_rotation_step = 90.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

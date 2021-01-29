@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://prefab_scenes/LevelScripts/Level.gd" type="Script" id=1]
 [ext_resource path="res://test_scenes/tile_snap/Highlight.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://prefab_scenes/CatSpawner/CatSpawner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://prefab_scenes/ObstacleAligner/ObstaclesAligner.gd" type="Script" id=8]
 [ext_resource path="res://prefab_scenes/CatFoodSpawner/CatFoodSpawner.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/images/cat_food_logo_1.png" type="Texture" id=10]
 [ext_resource path="res://prefab_scenes/obstacles/item2.tscn" type="PackedScene" id=12]
 [ext_resource path="res://prefab_scenes/obstacles/item1.tscn" type="PackedScene" id=13]
 [ext_resource path="res://prefab_scenes/BallSpawner/BallSpawner.tscn" type="PackedScene" id=14]
@@ -101,6 +102,10 @@ modulate_selector = Color( 1, 1, 1, 0.376471 )
 path_to_pickers = "CanvasLayer/Pickers"
 
 [node name="Sprite" type="Sprite" parent="Spawner"]
+
+[node name="DirectionMark" type="Sprite" parent="Spawner/Sprite"]
+texture = ExtResource( 10 )
+offset = Vector2( 0, -48 )
 
 [node name="Area2D" type="Area2D" parent="Spawner"]
 

@@ -9,6 +9,9 @@ export(Color, RGBA) var shade_color
 
 export(bool) var resize_texture = false
 
+var item_ui_rotation_step = 90.0
+
+
 signal selected(_packed_scene, _texture, _mod_color)
 
 
@@ -24,7 +27,7 @@ func _ready():
     self_modulate = tmp_instance.item_ui_color
 
     $Label.text = str(how_many)
-
+    item_ui_rotation_step = tmp_instance.item_ui_rotation_step
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
