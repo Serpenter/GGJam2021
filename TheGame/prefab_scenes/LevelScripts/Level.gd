@@ -39,25 +39,39 @@ onready var cat_free = $CanvasLayer/FlatCatInfo/Free
 onready var cat_caught = $CanvasLayer/FlatCatInfo/Caught
 onready var cat_dead = $CanvasLayer/FlatCatInfo/Dead
 
-onready var game_time = $CanvasLayer/GameTime
+onready var limit_timer_label = $CanvasLayer/TimerVBox/LimitTimerLabel
+onready var victory_timer_label = $CanvasLayer/TimerVBox/VictoryTimerLabel
+
+onready var game_time = $CanvasLayer/TimerVBox/GameTime
+
+onready var victory_timer = $VictoryTimer
+onready var limit_timer = $LimitTimer
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+    pause_button.disabled = true
+    reset_button.disabled = true
+    limit_timer_label.visible = false
+    victory_timer_label.visible = false
     _on_cat_changed()
     pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+    update_limit_timer_label()
+    update_victory_timer_label()
     pass
 
 
 func on_victory():
     victory_popup.visible = true
+    _on_level_restart()
 
 
 func on_failure():
     failure_popup.visible = true
+    _on_level_restart()
 
     
 func _on_cat_changed():
@@ -78,9 +92,9 @@ func _on_cat_changed():
 
 
 func _update_cat_info():
-    cat_free.text = "Free: %d" % free_cats
-    cat_caught.text  = "Captured: %d" % captured_cats
-    cat_dead.text  = "Dead: %d" % dead_cats
+    cat_free.text = "Free: %d / %d" % [free_cats, free_cats_to_win]
+    cat_caught.text  = "Captured: %d / %d" % [captured_cats, captured_cats_to_win]
+    cat_dead.text  = "Dead: %d / %d" % [dead_cats, dead_cats_to_fail]
 
 
 func _reset_cat_stats():
@@ -91,11 +105,19 @@ func _reset_cat_stats():
 
 func check_win_condition():
     # equals or less
-    if free_cats_to_win <= free_cats\
-    and captured_cats_to_win >= captured_cats\
+    if free_cats <= free_cats_to_win\
+    and  captured_cats >= captured_cats_to_win\
     and _extra_win_condition():
-        on_victory()
-        return
+        
+        if victory_timer.is_stopped():
+            victory_timer.start()
+            victory_timer_label.visible = true
+            update_victory_timer_label()
+    #        on_victory()
+            return
+    else:
+        victory_timer.stop()
+        victory_timer_label.visible = false
 
     if free_cats >= free_cats_to_fail\
     and dead_cats >= dead_cats_to_fail:
@@ -130,6 +152,10 @@ func _on_Start_pressed():
     game_time.start_time()
     $MinLevelDuration.start()
     $MaxLevelDuration.start()
+    limit_timer.start()
+    limit_timer_label.visible = true
+    update_limit_timer_label()
+
 
     var resatable_list = get_tree().get_nodes_in_group("Resetable")
 
@@ -145,6 +171,7 @@ func _on_Start_pressed():
         
     launch_button.disabled = true
     reset_button.disabled = false
+    pause_button.disabled = false
     User.current_control = 1
 
 
@@ -157,12 +184,22 @@ func _on_Restart_pressed():
 
 
 func _on_level_restart():
+
+    limit_timer_label.visible = false
+    victory_timer_label.visible = false
+    limit_timer.stop()
+    victory_timer.stop()
+
+    pause_button.disabled = true
+    pause_button.set_pressed(false)
     User.current_control = 0
     is_launched = false
     victory_popup.visible = false
     failure_popup.visible = false
     is_level_end_check_allowed = false
 
+    victory_timer.stop()
+    limit_timer.stop()
     $MinLevelDuration.stop()
     $MaxLevelDuration.stop()
 
@@ -187,3 +224,30 @@ func unpause_game():
 
 func _on_MinLevelDuration_timeout():
     is_level_end_check_allowed = true
+
+
+func _on_Pause_toggled(button_pressed):
+    pass
+#    if button_pressed:
+#        pause_game()
+#    else:
+#        unpause_game()
+#    pass # Replace with function body.
+
+
+func _on_LimitTimer_timeout():
+    on_failure()
+
+
+func _on_VictoryTimer_timeout():
+    on_victory()
+
+func update_limit_timer_label():
+    if not limit_timer_label.visible:
+        return
+    limit_timer_label.text = GUtils.format_time(limit_timer.time_left)
+
+func update_victory_timer_label():
+    if not victory_timer_label.visible:
+        return
+    victory_timer_label.text = GUtils.format_time(victory_timer.time_left)

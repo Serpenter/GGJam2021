@@ -42,7 +42,7 @@ func format_time(time, format = TimeFormat.FORMAT_MINUTES | TimeFormat.FORMAT_SE
         digits.append(minutes)
 
     if format & TimeFormat.FORMAT_SECONDS:
-        var seconds = digit_format % [int(ceil(time)) % 60]
+        var seconds = digit_format % [int(floor(time)) % 60]
         digits.append(seconds)
 
     var formatted = String()
