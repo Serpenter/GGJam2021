@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var ball_prefab = preload("res://prefab_scenes/Ball02/Ball02.tscn")
+onready var ball_prefab = preload("res://prefab_scenes/CatDummy/CatDummy.tscn")
 
 onready var line = $Line2D
 onready var arrow_sprite = $ArrowSprite
@@ -13,15 +13,15 @@ onready var ball_launch_timer = $BallLaunchTimer
 export var min_angle = 0
 export var max_angle = 360
 
-export var min_length= 50
+export var min_length= 0
 export var max_length = 250
 
 
-export var is_input_disabled = false
-export var is_input_provided = false
-export var infinite_ball_spawn = true
+export var is_input_disabled = true
+export var is_input_provided = true
+export var infinite_ball_spawn = false
 
-export var max_balls_number = 10
+export var max_balls_number = 1
 var spawned_balls = 0
 var is_launched = false
 
@@ -31,11 +31,13 @@ var is_controlled = false
 var is_just_received_control_command = false
 
 var initial_state = null
-
+export var default_end_pos = Vector2(1, 0)
 var default_ball_spawn_pos = Vector2(25,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	sprite.visible = false
+	set_end_position(default_end_pos)
 	spawn_ball()
 	pass # Replace with function body.
 
@@ -45,6 +47,8 @@ func _process(delta):
 		process_mouse_input()
 
 func initial_launch():
+	line.visible = false
+	arrow_sprite.visible = false
 	is_launched = true
 	is_input_disabled = true
 	launch_ball()

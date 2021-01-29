@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://prefab_scenes/Wall01/Wall01Long.tscn" type="PackedScene" id=1]
 [ext_resource path="res://prefab_scenes/ForcefieldWall/ForcefieldWallGreen.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://prefab_scenes/ForcefieldWall/ForcefieldWallAqua.tscn" type="PackedScene" id=12]
 [ext_resource path="res://prefab_scenes/ForcefieldPanel/ForcefieldPanelGreen.tscn" type="PackedScene" id=13]
 [ext_resource path="res://prefab_scenes/ForcefieldPanel/ForcefieldPanelViolet.tscn" type="PackedScene" id=14]
+[ext_resource path="res://prefab_scenes/CatSpawner/CatSpawner.tscn" type="PackedScene" id=15]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -197,5 +198,11 @@ rotation = 0.645772
 [node name="ForcefieldPanel12" parent="ForcefieldsPanels" instance=ExtResource( 13 )]
 position = Vector2( 345.59, 86.2755 )
 rotation = 0.645772
+
+[node name="CatSpawners" type="Node2D" parent="."]
+
+[node name="CatSpawner" parent="CatSpawners" instance=ExtResource( 15 )]
+position = Vector2( 109.622, 166.088 )
+default_end_pos = Vector2( 100, 50 )
 [connection signal="pressed" from="CanvasLayer/Control/UpperCentralMarginContainer/VBoxContainer/LaunchButton" to="." method="_on_LaunchButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/UpperCentralMarginContainer/VBoxContainer/ResetButton" to="." method="_on_ResetButton_pressed"]
