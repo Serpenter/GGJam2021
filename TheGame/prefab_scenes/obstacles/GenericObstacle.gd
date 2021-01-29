@@ -1,7 +1,7 @@
 extends Node2D
 
 # presistent parameters - to be saved-restored-loaded
-var initial_rotation
+var initial_state
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -10,3 +10,10 @@ func _ready():
 func get_item_ui_data():
     return $ItemUIData
 
+func save_initial_state():
+    initial_state = {
+        "initial_rotation": rotation
+    }
+
+func load_state(state):
+    rotation = initial_state["initial_rotation"]
