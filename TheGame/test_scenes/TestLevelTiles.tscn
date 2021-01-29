@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://test_scenes/TemplateLevel/TemplateLevel.gd" type="Script" id=1]
 [ext_resource path="res://test_scenes/tile_snap/Highlight.gd" type="Script" id=2]
@@ -7,7 +7,9 @@
 [ext_resource path="res://test_scenes/tile_snap/Spawner.gd" type="Script" id=5]
 [ext_resource path="res://prefab_scenes/Ball/Ball.tscn" type="PackedScene" id=6]
 [ext_resource path="res://prefab_scenes/CatSpawner/CatSpawner.tscn" type="PackedScene" id=7]
+[ext_resource path="res://prefab_scenes/ObstacleAligner/ObstaclesAligner.gd" type="Script" id=8]
 [ext_resource path="res://prefab_scenes/ActivationZone/ActivationZone.tscn" type="PackedScene" id=9]
+[ext_resource path="res://prefab_scenes/obstacles/GenericObstacle.tscn" type="PackedScene" id=10]
 [ext_resource path="res://prefab_scenes/obstacles/item2.tscn" type="PackedScene" id=12]
 [ext_resource path="res://prefab_scenes/obstacles/item1.tscn" type="PackedScene" id=13]
 [ext_resource path="res://prefab_scenes/BallSpawner/BallSpawner.tscn" type="PackedScene" id=14]
@@ -56,6 +58,17 @@ smoothing_enabled = true
 script = ExtResource( 18 )
 
 [node name="Obstacles" type="Node2D" parent="."]
+
+[node name="GenericObstacle2" parent="Obstacles" instance=ExtResource( 10 )]
+position = Vector2( 448, -64 )
+
+[node name="GenericObstacle" parent="Obstacles" instance=ExtResource( 10 )]
+position = Vector2( -64, -192 )
+
+[node name="ObstaclesAligner" type="Node2D" parent="."]
+script = ExtResource( 8 )
+path_to_obstacle_parent = "Obstacles"
+path_to_tilemap = "TileMap"
 
 [node name="Spawner" type="Position2D" parent="."]
 script = ExtResource( 5 )
