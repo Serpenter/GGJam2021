@@ -144,6 +144,7 @@ func process_mouse_input():
         and not is_just_received_control_command:
         is_input_provided = true
         is_controlled = false
+        User.current_control = 0
         
     is_just_received_control_command = false
     
@@ -234,9 +235,11 @@ func _on_InteractionArea_input_event(viewport, event, shape_idx):
     
     if not is_input_disabled \
     and not is_controlled \
+    and User.current_control == 0\
     and event is InputEventMouseButton \
     and event.button_index == BUTTON_LEFT \
     and event.pressed:
+        User.current_control = 2
         is_controlled = true
         is_just_received_control_command = true
 

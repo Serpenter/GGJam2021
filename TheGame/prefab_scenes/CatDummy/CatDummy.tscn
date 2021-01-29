@@ -9,6 +9,8 @@
 [ext_resource path="res://assets/images/cat_ears.png" type="Texture" id=7]
 
 [sub_resource type="PhysicsMaterial" id=1]
+friction = 0.5
+bounce = 0.5
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 15.0

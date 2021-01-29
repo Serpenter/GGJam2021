@@ -7,7 +7,7 @@
 [sub_resource type="PhysicsMaterial" id=1]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 13.7388, 17.5986 )
+extents = Vector2( 23.4615, 28.9088 )
 
 [node name="CatFood" type="RigidBody2D" groups=[
 "CatFood",
@@ -32,7 +32,7 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.996078, 0.752941, 0.490196, 1 )
-scale = Vector2( 0.3, 0.3 )
+scale = Vector2( 0.5, 0.5 )
 z_index = 1
 texture = ExtResource( 2 )
 __meta__ = {
@@ -41,7 +41,7 @@ __meta__ = {
 
 [node name="Logo" type="Sprite" parent="."]
 modulate = Color( 0.32549, 0.164706, 0.0196078, 1 )
-scale = Vector2( 0.3, 0.3 )
+scale = Vector2( 0.5, 0.5 )
 z_index = 1
 texture = ExtResource( 3 )
 __meta__ = {

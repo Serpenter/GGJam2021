@@ -44,6 +44,7 @@ onready var game_time = $CanvasLayer/GameTime
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+    _on_cat_changed()
     pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -112,12 +113,9 @@ func _extra_fail_condition():
 func _on_Start_pressed():
     if is_launched:
         return
-
-    _on_cat_changed()
-
-    game_time.start_time()
-    $MinLevelDuration.start()
-    $MaxLevelDuration.start()
+        
+    if User.current_control != 0:
+        return
 
     var launchable_list = get_tree().get_nodes_in_group("ShouldLaunch")
 
@@ -126,6 +124,12 @@ func _on_Start_pressed():
             # add some popup
             # or maybe have some default impulse for all balls
             return
+            
+    _on_cat_changed()
+
+    game_time.start_time()
+    $MinLevelDuration.start()
+    $MaxLevelDuration.start()
 
     var resatable_list = get_tree().get_nodes_in_group("Resetable")
 
@@ -141,6 +145,7 @@ func _on_Start_pressed():
         
     launch_button.disabled = true
     reset_button.disabled = false
+    User.current_control = 1
 
 
 func _on_Pause_pressed():
@@ -152,6 +157,7 @@ func _on_Restart_pressed():
 
 
 func _on_level_restart():
+    User.current_control = 0
     is_launched = false
     victory_popup.visible = false
     failure_popup.visible = false

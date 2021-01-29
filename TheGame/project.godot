@@ -24,6 +24,7 @@ config/icon="res://icon.png"
 GSceneManager="*res://global_scripts/g_scene_manager.gd"
 GUtils="*res://global_scripts/g_utils.gd"
 Forcefields="*res://global_scripts/forcefields.gd"
+User="*res://global_scripts/user.gd"
 
 [input]
 

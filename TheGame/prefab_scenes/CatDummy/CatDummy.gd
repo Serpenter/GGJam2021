@@ -3,6 +3,9 @@ extends RigidBody2D
 var is_hovered = false
 var is_active_mode = false
 
+var is_captured = false
+var is_dead = false
+
 onready var face_normal_sprite = $FaceNormalSprite
 onready var face_sad_sprite = $FaceSadSprite
 onready var face_timer = $FaceTimer
