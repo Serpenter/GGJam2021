@@ -10,10 +10,13 @@ onready var face_normal_sprite = $FaceNormalSprite
 onready var face_sad_sprite = $FaceSadSprite
 onready var face_timer = $FaceTimer
 
+var capture_zones_sum = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
     hide_all_faces()
     face_normal_sprite.visible = true
+    get_tree().call_group("CatSubscriber", "_on_cat_changed")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -65,3 +68,34 @@ func hide_all_faces():
 func _on_FaceTimer_timeout():
     hide_all_faces()
     face_normal_sprite.visible = true
+    
+func on_cat_capture_zone_entered(capture_zone):
+    capture_zones_sum += 1
+    
+    if capture_zones_sum > 0:
+        is_captured = true
+    else:
+        print("Negative initial capture_zones_sum value!")
+        
+    get_tree().call_group("CatSubscriber", "_on_cat_changed")
+    
+func on_cat_capture_zone_exited(capture_zone):
+    capture_zones_sum -= 1
+    
+    if capture_zones_sum <= 0:
+        is_captured = false
+    
+    if capture_zones_sum < 0:
+        print("Negative  capture_zones_sum value!")
+        
+    get_tree().call_group("CatSubscriber", "_on_cat_changed")
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

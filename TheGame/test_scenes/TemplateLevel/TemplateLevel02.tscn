@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://test_scenes/TemplateLevel/TemplateLevel.gd" type="Script" id=1]
 [ext_resource path="res://test_scenes/tile_snap/Highlight.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://prefab_scenes/obstacles/item1.tscn" type="PackedScene" id=7]
 [ext_resource path="res://prefab_scenes/BallSpawner/BallSpawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://prefab_scenes/CatFoodSpawner/CatFoodSpawner.tscn" type="PackedScene" id=9]
+[ext_resource path="res://prefab_scenes/CatCaptureZone/CatCaptureZone.tscn" type="PackedScene" id=10]
 [ext_resource path="res://prefab_scenes/obstacles/GenericObstacle.tscn" type="PackedScene" id=11]
 [ext_resource path="res://prefab_scenes/obstacles/NewObstacle.tscn" type="PackedScene" id=15]
 [ext_resource path="res://prefab_scenes/obstacles/item2.tscn" type="PackedScene" id=17]
@@ -22,6 +23,7 @@ radius = 20.0
 
 [node name="TemplateLevel" type="Node2D" groups=[
 "ActivationZoneSubscriber",
+"CatSubscriber",
 ]]
 script = ExtResource( 1 )
 
@@ -410,6 +412,14 @@ position = Vector2( 182.012, 3.23541 )
 
 [node name="CatFoodSpawner20" parent="CatFoodSpawners" instance=ExtResource( 9 )]
 position = Vector2( 177.517, -97.1511 )
+
+[node name="CatCaptureZones" type="Node2D" parent="."]
+
+[node name="CatCaptureZone" parent="CatCaptureZones" instance=ExtResource( 10 )]
+position = Vector2( -191.106, 317.219 )
+
+[node name="CatCaptureZone" parent="." instance=ExtResource( 10 )]
+position = Vector2( -191.106, 192.766 )
 [connection signal="timeout" from="MinLevelDuration" to="." method="_on_MinLevelDuration_timeout"]
 [connection signal="input_event" from="Spawner/Area2D" to="Spawner" method="_on_Area2D_input_event"]
 [connection signal="pressed" from="CanvasLayer/GameFlowControls/Start" to="." method="_on_Start_pressed"]

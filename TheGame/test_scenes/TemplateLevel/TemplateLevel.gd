@@ -59,7 +59,7 @@ func on_victory():
 func on_failure():
     failure_popup.visible = true
 
-
+    
 func _on_cat_changed():
     _reset_cat_stats()
     var cats_list = get_tree().get_nodes_in_group("Cat")
@@ -79,8 +79,8 @@ func _on_cat_changed():
 
 func _update_cat_info():
     cat_free.text = "Free: %d" % free_cats
-    cat_caught = "Captured: %d" % captured_cats
-    cat_dead = "Dead: %d" % dead_cats
+    cat_caught.text  = "Captured: %d" % captured_cats
+    cat_dead.text  = "Dead: %d" % dead_cats
 
 
 func _reset_cat_stats():
