@@ -6,7 +6,7 @@ onready var line = $Line2D
 onready var arrow_sprite = $ArrowSprite
 onready var sprite = $Sprite
 onready var ball_spawn = $BallSpawn
-onready var current_ball = $BallSpawn/Ball
+onready var current_ball = null
 onready var ball_spawn_timer = $BallSpawnTimer
 onready var ball_launch_timer = $BallLaunchTimer
 
@@ -100,6 +100,10 @@ func load_state(state):
 	line.points[1] = state["end_position"]
 	arrow_sprite.position = state["end_position"]
 	arrow_sprite.rotation = state["end_position"].angle() + 0.5 * PI
+	
+	if current_ball:
+		current_ball.queue_free()
+		current_ball = null
 	
 	if state["has_ball"]:
 		spawn_ball()
