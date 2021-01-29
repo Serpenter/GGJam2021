@@ -1,5 +1,6 @@
 extends Node2D
 
+export(bool) var is_alignable = true
 # presistent parameters - to be saved-restored-loaded
 var initial_state
 
