@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://prefab_scenes/GameTime/GameTime.gd" type="Script" id=1]
 [ext_resource path="res://test_scenes/tile_snap/Highlight.gd" type="Script" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://prefab_scenes/CatSpawner/CatSpawner.tscn" type="PackedScene" id=13]
 [ext_resource path="res://prefab_scenes/CatFoodSpawner/CatFoodSpawner.tscn" type="PackedScene" id=14]
 [ext_resource path="res://prefab_scenes/PlacableSlope/PlaceableSlope.tscn" type="PackedScene" id=15]
+[ext_resource path="res://resources/ui_theme_two.tres" type="Theme" id=16]
+[ext_resource path="res://resources/ui_theme_one.tres" type="Theme" id=17]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 20.0
@@ -78,7 +80,6 @@ script = ExtResource( 8 )
 
 [node name="ObstaclesAligner" type="Node2D" parent="."]
 script = ExtResource( 5 )
-rerun = false
 path_to_obstacle_parent = "PlacedObstacles"
 path_to_tilemap = "TileMap"
 
@@ -111,13 +112,15 @@ margin_bottom = 44.0
 grow_horizontal = 0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
+theme = ExtResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MainMenu" type="Button" parent="CanvasLayer/Menu"]
-margin_right = 84.0
-margin_bottom = 20.0
+margin_right = 194.0
+margin_bottom = 33.0
+theme = ExtResource( 16 )
 text = "Main menu"
 
 [node name="Exit" type="Button" parent="CanvasLayer/Menu"]
@@ -125,6 +128,7 @@ visible = false
 margin_top = 24.0
 margin_right = 99.0
 margin_bottom = 44.0
+theme = ExtResource( 16 )
 text = "Exit"
 
 [node name="Pickers" type="HBoxContainer" parent="CanvasLayer"]
@@ -137,6 +141,7 @@ margin_bottom = -20.0
 grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -144,6 +149,7 @@ __meta__ = {
 [node name="Picker_01" type="TextureRect" parent="CanvasLayer/Pickers"]
 margin_bottom = 20.0
 mouse_filter = 0
+theme = ExtResource( 16 )
 script = ExtResource( 6 )
 how_many = 2
 item = ExtResource( 9 )
@@ -157,9 +163,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -20.0
-margin_top = -7.0
+margin_top = -16.5
 margin_right = 20.0
-margin_bottom = 7.0
+margin_bottom = 16.5
+theme = ExtResource( 17 )
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -169,6 +178,7 @@ margin_left = 4.0
 margin_right = 4.0
 margin_bottom = 20.0
 mouse_filter = 0
+theme = ExtResource( 16 )
 script = ExtResource( 6 )
 how_many = 4
 item = ExtResource( 15 )
@@ -182,9 +192,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -20.0
-margin_top = -7.0
+margin_top = -16.5
 margin_right = 20.0
-margin_bottom = 7.0
+margin_bottom = 16.5
+theme = ExtResource( 17 )
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -201,13 +214,15 @@ margin_bottom = -20.0
 grow_horizontal = 0
 grow_vertical = 0
 rect_min_size = Vector2( 0, 32 )
+theme = ExtResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Start" type="Button" parent="CanvasLayer/GameFlowControls"]
-margin_right = 57.0
-margin_bottom = 32.0
+margin_right = 131.0
+margin_bottom = 33.0
+theme = ExtResource( 16 )
 text = "Launch"
 
 [node name="Pause" type="Button" parent="CanvasLayer/GameFlowControls"]
@@ -215,13 +230,15 @@ visible = false
 margin_left = 61.0
 margin_right = 111.0
 margin_bottom = 32.0
+theme = ExtResource( 16 )
 toggle_mode = true
 text = "Pause"
 
 [node name="Restart" type="Button" parent="CanvasLayer/GameFlowControls"]
-margin_left = 61.0
-margin_right = 118.0
-margin_bottom = 32.0
+margin_left = 135.0
+margin_right = 288.0
+margin_bottom = 33.0
+theme = ExtResource( 16 )
 text = "Restart"
 
 [node name="FlatCatInfo" type="VBoxContainer" parent="CanvasLayer"]
@@ -229,25 +246,29 @@ margin_left = 20.0
 margin_top = 20.0
 margin_right = 40.0
 margin_bottom = 40.0
+theme = ExtResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Cats" type="Label" parent="CanvasLayer/FlatCatInfo"]
-margin_right = 59.0
-margin_bottom = 14.0
+margin_right = 194.0
+margin_bottom = 33.0
+theme = ExtResource( 16 )
 text = "Flat cats"
 
 [node name="Free" type="Label" parent="CanvasLayer/FlatCatInfo"]
-margin_top = 18.0
-margin_right = 59.0
-margin_bottom = 32.0
+margin_top = 37.0
+margin_right = 194.0
+margin_bottom = 70.0
+theme = ExtResource( 16 )
 text = "Free: 0"
 
 [node name="Caught" type="Label" parent="CanvasLayer/FlatCatInfo"]
-margin_top = 36.0
-margin_right = 59.0
-margin_bottom = 50.0
+margin_top = 74.0
+margin_right = 194.0
+margin_bottom = 107.0
+theme = ExtResource( 16 )
 text = "Caught: 0"
 
 [node name="Dead" type="Label" parent="CanvasLayer/FlatCatInfo"]
@@ -255,6 +276,7 @@ visible = false
 margin_top = 54.0
 margin_right = 59.0
 margin_bottom = 68.0
+theme = ExtResource( 16 )
 text = "Dead: 0"
 
 [node name="OnVictoryPopup" type="VBoxContainer" parent="CanvasLayer"]
@@ -267,6 +289,7 @@ margin_left = -38.0
 margin_top = -31.0
 margin_right = 38.0
 margin_bottom = 31.0
+theme = ExtResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -274,6 +297,7 @@ __meta__ = {
 [node name="VictoryLabel" type="Label" parent="CanvasLayer/OnVictoryPopup"]
 margin_right = 76.0
 margin_bottom = 14.0
+theme = ExtResource( 16 )
 text = "Well done!"
 align = 1
 valign = 1
@@ -282,6 +306,7 @@ valign = 1
 margin_top = 18.0
 margin_right = 76.0
 margin_bottom = 38.0
+theme = ExtResource( 16 )
 text = "Restart!"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -291,6 +316,7 @@ __meta__ = {
 margin_top = 42.0
 margin_right = 76.0
 margin_bottom = 62.0
+theme = ExtResource( 16 )
 text = "NextLevel"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -306,6 +332,7 @@ margin_left = -50.5
 margin_top = -20.0
 margin_right = 50.5
 margin_bottom = 20.0
+theme = ExtResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -313,6 +340,7 @@ __meta__ = {
 [node name="FailLabel" type="Label" parent="CanvasLayer/OnFailPopup"]
 margin_right = 101.0
 margin_bottom = 14.0
+theme = ExtResource( 16 )
 text = "Time is run out!"
 align = 1
 valign = 1
@@ -320,6 +348,7 @@ valign = 1
 [node name="Restart" type="Button" parent="CanvasLayer/OnFailPopup"]
 margin_right = 12.0
 margin_bottom = 20.0
+theme = ExtResource( 16 )
 text = "Restart!"
 
 [node name="TimerVBox" type="VBoxContainer" parent="CanvasLayer"]
@@ -328,6 +357,7 @@ anchor_right = 0.5
 margin_left = -20.0
 margin_right = 20.0
 margin_bottom = 40.0
+theme = ExtResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -340,6 +370,7 @@ margin_left = 472.0
 margin_top = 20.0
 margin_right = 512.0
 margin_bottom = 34.0
+theme = ExtResource( 16 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -350,16 +381,18 @@ autostart = true
 
 [node name="LimitTimerLabel" type="Label" parent="CanvasLayer/TimerVBox"]
 margin_right = 40.0
-margin_bottom = 14.0
+margin_bottom = 33.0
+theme = ExtResource( 16 )
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VictoryTimerLabel" type="Label" parent="CanvasLayer/TimerVBox"]
-margin_top = 18.0
+margin_top = 37.0
 margin_right = 40.0
-margin_bottom = 32.0
+margin_bottom = 70.0
+theme = ExtResource( 16 )
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -367,7 +400,6 @@ __meta__ = {
 
 [node name="BallSpawners" type="Node2D" parent="."]
 script = ExtResource( 5 )
-rerun = false
 path_to_obstacle_parent = "BallSpawners"
 path_to_tilemap = "TileMap"
 
@@ -384,7 +416,6 @@ max_balls_number = 1
 
 [node name="CatFoodSpawners" type="Node2D" parent="."]
 script = ExtResource( 5 )
-rerun = false
 path_to_obstacle_parent = "CatFoodSpawners"
 path_to_tilemap = "TileMap"
 
@@ -405,7 +436,6 @@ position = Vector2( -448, 64 )
 
 [node name="CatSpawners" type="Node2D" parent="."]
 script = ExtResource( 5 )
-rerun = false
 path_to_obstacle_parent = "CatSpawners"
 path_to_tilemap = "TileMap"
 
