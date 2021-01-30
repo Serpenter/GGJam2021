@@ -17,12 +17,14 @@ script = ExtResource( 1 )
 script = ExtResource( 2 )
 item_ui_size = Vector2( 64, 64 )
 item_ui_texture = ExtResource( 3 )
-item_ui_color = Color( 1, 1, 1, 1 )
+item_ui_color = Color( 0.603922, 0.501961, 0.152941, 1 )
 
 [node name="wall2" type="Sprite" parent="."]
+self_modulate = Color( 0.603922, 0.501961, 0.152941, 1 )
 texture = ExtResource( 3 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
 physics_material_override = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]

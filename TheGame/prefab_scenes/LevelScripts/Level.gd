@@ -239,6 +239,7 @@ func _on_LimitTimer_timeout():
 
 
 func _on_VictoryTimer_timeout():
+    limit_timer.stop()
     on_victory()
 
 func update_limit_timer_label():

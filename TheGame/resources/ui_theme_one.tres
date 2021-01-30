@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/fonts/electron 8f.ttf" type="DynamicFontData" id=1]
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.0470588, 0.298039, 0.176471, 0.27451 )
 
 [sub_resource type="DynamicFont" id=2]
@@ -21,4 +21,4 @@ Label/constants/shadow_as_outline = 0
 Label/constants/shadow_offset_x = 1
 Label/constants/shadow_offset_y = 1
 Label/fonts/font = null
-Label/styles/normal = SubResource( 1 )
+Label/styles/normal = SubResource( 3 )
