@@ -92,6 +92,13 @@ func on_cat_capture_zone_entered(capture_zone):
         
     get_tree().call_group("CatSubscriber", "_on_cat_changed")
     
+func on_cat_capture_box_entered(cat_box):
+    sleeping = true
+    is_captured = true
+    mode = MODE_STATIC
+    set_global_position(cat_box.position)
+    get_tree().call_group("CatSubscriber", "_on_cat_changed")
+    
 func on_cat_capture_zone_exited(capture_zone):
     capture_zones_sum -= 1
     
