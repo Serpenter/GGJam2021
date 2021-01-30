@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://prefab_scenes/PushingWall/PushingWall.gd" type="Script" id=1]
+[ext_resource path="res://prefab_scenes/obstacles/ItemUIData.gd" type="Script" id=2]
+[ext_resource path="res://assets/placeholders/wall2.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 64.1411, 64.0349 )
+
+[node name="PlaceableWall" type="Node2D" groups=[
+"Resetable",
+]]
+script = ExtResource( 1 )
+
+[node name="ItemUIData" type="Node2D" parent="."]
+script = ExtResource( 2 )
+item_ui_size = Vector2( 64, 64 )
+item_ui_texture = ExtResource( 3 )
+item_ui_color = Color( 1, 1, 1, 1 )
+
+[node name="wall2" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource( 1 )
