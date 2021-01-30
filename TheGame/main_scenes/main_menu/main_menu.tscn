@@ -4,6 +4,8 @@
 
 [node name="main_menu" type="Node2D"]
 script = ExtResource( 1 )
+level_names = [ "Simple one", "Bouncy food", "Forcefields", "Many forcefields" ]
+level_path = [ "res://main_scenes/levels/level_k_01/LevelK01.tscn", "res://main_scenes/levels/level_k_02/LevelK02.tscn", "res://main_scenes/levels/level_t_01/LevelT01.tscn", "res://main_scenes/levels/level_t_02/LevelT02.tscn" ]
 
 [node name="background" type="Node2D" parent="."]
 
@@ -46,10 +48,20 @@ __meta__ = {
 }
 
 [node name="tutorial" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons"]
+visible = false
+margin_top = 278.0
+margin_right = 338.0
+margin_bottom = 298.0
+text = "Tutorial"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="level_selector" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons"]
 margin_top = 290.0
 margin_right = 338.0
 margin_bottom = 310.0
-text = "Tutorial"
+text = "Level selector"
 __meta__ = {
 "_edit_lock_": true
 }
@@ -63,6 +75,19 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="Levels" type="VBoxContainer" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+visible = false
+margin_left = 514.0
+margin_right = 767.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Return" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/Levels"]
+margin_right = 12.0
+margin_bottom = 20.0
+text = "Return to menu"
+
 [node name="SpacerR" type="Control" parent="CanvasLayer/MarginContainer/HBoxContainer"]
 margin_left = 684.0
 margin_right = 1024.0
@@ -70,4 +95,6 @@ margin_bottom = 600.0
 size_flags_horizontal = 3
 [connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons/play_game" to="." method="_on_play_game_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons/tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons/level_selector" to="." method="_on_level_selector_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons/exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/Levels/Return" to="." method="_on_Return_pressed"]
