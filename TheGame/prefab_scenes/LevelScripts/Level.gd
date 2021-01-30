@@ -17,6 +17,7 @@ export(int) var dead_cats_to_fail = 100
 # equals or more
 export(int) var dead_cats_to_bad_level = 1
 
+export(String) var next_level_path = "res://main_scenes/main_menu/main_menu.tscn"
 
 # Cat stats
 var free_cats = 0
@@ -66,14 +67,12 @@ func _process(delta):
 
 func on_victory():
     victory_popup.visible = true
-    _on_level_restart()
 
 
 func on_failure():
     failure_popup.visible = true
-    _on_level_restart()
 
-    
+
 func _on_cat_changed():
     _reset_cat_stats()
     var cats_list = get_tree().get_nodes_in_group("Cat")
@@ -259,3 +258,7 @@ func _on_MainMenu_pressed():
 
 func _on_Exit_pressed():
     get_tree().quit()
+
+
+func _on_NextLevel_pressed():
+    GSceneManager.goto_scene_wloader(next_level_path)

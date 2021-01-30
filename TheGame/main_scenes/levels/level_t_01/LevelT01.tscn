@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://prefab_scenes/LevelScripts/Level.gd" type="Script" id=1]
 [ext_resource path="res://test_scenes/tile_snap/Highlight.gd" type="Script" id=2]
@@ -11,8 +11,7 @@
 [ext_resource path="res://prefab_scenes/CatFoodSpawner/CatFoodSpawner.tscn" type="PackedScene" id=9]
 [ext_resource path="res://prefab_scenes/ForcefieldWall/ForcefieldWallViolet.tscn" type="PackedScene" id=10]
 [ext_resource path="res://prefab_scenes/ForcefieldPanel/ForcefieldPanelViolet.tscn" type="PackedScene" id=11]
-[ext_resource path="res://prefab_scenes/obstacles/item2.tscn" type="PackedScene" id=12]
-[ext_resource path="res://prefab_scenes/obstacles/item1.tscn" type="PackedScene" id=13]
+[ext_resource path="res://prefab_scenes/PlacableWall/PlaceableWall.tscn" type="PackedScene" id=12]
 [ext_resource path="res://prefab_scenes/BallSpawner/BallSpawner.tscn" type="PackedScene" id=14]
 [ext_resource path="res://prefab_scenes/Tilemaps/testtilemap.tscn" type="PackedScene" id=15]
 [ext_resource path="res://prefab_scenes/CameraScripts/CameraJoint.gd" type="Script" id=16]
@@ -139,10 +138,13 @@ shape = SubResource( 1 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Menu" type="VBoxContainer" parent="CanvasLayer"]
-margin_left = 905.0
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -99.0
 margin_top = 20.0
-margin_right = 1004.0
-margin_bottom = 64.0
+margin_right = -20.0
+margin_bottom = 44.0
+grow_horizontal = 0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 __meta__ = {
@@ -150,11 +152,12 @@ __meta__ = {
 }
 
 [node name="MainMenu" type="Button" parent="CanvasLayer/Menu"]
-margin_right = 99.0
+margin_right = 84.0
 margin_bottom = 20.0
 text = "Main menu"
 
 [node name="Exit" type="Button" parent="CanvasLayer/Menu"]
+visible = false
 margin_top = 24.0
 margin_right = 99.0
 margin_bottom = 44.0
@@ -178,38 +181,13 @@ __meta__ = {
 margin_bottom = 20.0
 mouse_filter = 0
 script = ExtResource( 4 )
-how_many = 10
-item = ExtResource( 13 )
-compatible_tile_ids = [ 0 ]
-shade_color = Color( 0.882353, 0.819608, 0.819608, 0.54902 )
-resize_texture = true
-
-[node name="Label" type="Label" parent="CanvasLayer/Pickers/Picker_01"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -20.0
-margin_top = -7.0
-margin_right = 20.0
-margin_bottom = 7.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Picker_02" type="TextureRect" parent="CanvasLayer/Pickers"]
-margin_left = 4.0
-margin_right = 4.0
-margin_bottom = 20.0
-mouse_filter = 0
-script = ExtResource( 4 )
-how_many = 5
+how_many = 2
 item = ExtResource( 12 )
 compatible_tile_ids = [ 1 ]
 shade_color = Color( 0.882353, 0.819608, 0.819608, 0.54902 )
 resize_texture = true
 
-[node name="Label" type="Label" parent="CanvasLayer/Pickers/Picker_02"]
+[node name="Label" type="Label" parent="CanvasLayer/Pickers/Picker_01"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -291,18 +269,69 @@ margin_bottom = 68.0
 text = "Dead: 0"
 
 [node name="OnVictoryPopup" type="VBoxContainer" parent="CanvasLayer"]
-margin_right = 40.0
-margin_bottom = 40.0
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -38.0
+margin_top = -31.0
+margin_right = 38.0
+margin_bottom = 31.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VictoryLabel" type="Label" parent="CanvasLayer/OnVictoryPopup"]
+margin_right = 76.0
+margin_bottom = 14.0
+text = "Well done!"
+align = 1
+valign = 1
+
+[node name="Restart" type="Button" parent="CanvasLayer/OnVictoryPopup"]
+margin_top = 18.0
+margin_right = 76.0
+margin_bottom = 38.0
+text = "Restart!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NextLevel" type="Button" parent="CanvasLayer/OnVictoryPopup"]
+margin_top = 42.0
+margin_right = 76.0
+margin_bottom = 62.0
+text = "NextLevel"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="OnFailPopup" type="VBoxContainer" parent="CanvasLayer"]
-margin_right = 40.0
-margin_bottom = 40.0
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.5
+margin_top = -20.0
+margin_right = 50.5
+margin_bottom = 20.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="FailLabel" type="Label" parent="CanvasLayer/OnFailPopup"]
+margin_right = 101.0
+margin_bottom = 14.0
+text = "Time is run out!"
+align = 1
+valign = 1
+
+[node name="Restart" type="Button" parent="CanvasLayer/OnFailPopup"]
+margin_right = 12.0
+margin_bottom = 20.0
+text = "Restart!"
 
 [node name="TimerVBox" type="VBoxContainer" parent="CanvasLayer"]
 anchor_left = 0.5
@@ -387,6 +416,9 @@ default_end_pos = Vector2( 0, 0 )
 [connection signal="pressed" from="CanvasLayer/Menu/MainMenu" to="." method="_on_MainMenu_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu/Exit" to="." method="_on_Exit_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameFlowControls/Start" to="." method="_on_Start_pressed"]
-[connection signal="toggled" from="CanvasLayer/GameFlowControls/Pause" to="." method="_on_Pause_toggled"]
+[connection signal="pressed" from="CanvasLayer/GameFlowControls/Pause" to="." method="_on_Pause_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameFlowControls/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="CanvasLayer/OnVictoryPopup/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="CanvasLayer/OnVictoryPopup/NextLevel" to="." method="_on_NextLevel_pressed"]
+[connection signal="pressed" from="CanvasLayer/OnFailPopup/Restart" to="." method="_on_Restart_pressed"]
 [connection signal="timeout" from="CanvasLayer/TimerVBox/GameTime/LevelTime" to="CanvasLayer/TimerVBox/GameTime" method="_on_LevelTime_timeout"]

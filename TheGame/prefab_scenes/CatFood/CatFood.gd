@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 var is_active_mode = false
-
+export(bool) var is_alignable = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
     pass
