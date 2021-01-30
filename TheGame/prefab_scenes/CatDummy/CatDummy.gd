@@ -6,8 +6,17 @@ var is_active_mode = false
 var is_captured = false
 var is_dead = false
 
-onready var face_normal_sprite = $FaceNormalSprite
-onready var face_sad_sprite = $FaceSadSprite
+#onready var face_normal_sprite = $FaceNormalSprite
+#onready var face_sad_sprite = $FaceSadSprite
+
+
+onready var sprite_body = $SpriteBody
+onready var sprite_ears_in = $SpriteEarsIn
+onready var sprite_nose = $SpriteNose
+onready var sprite_mouth_closed = $SpriteMouthClosed
+onready var sprite_mouth_open = $SpriteMouthOpen
+onready var sprite_tongue = $SpriteTongue
+
 onready var face_timer = $FaceTimer
 
 var capture_zones_sum = 0
@@ -16,7 +25,9 @@ var capture_zones_sum = 0
 func _ready():
     disable_all_forcefield_passes()
     hide_all_faces()
-    face_normal_sprite.visible = true
+    sprite_mouth_closed.visible = true
+    sprite_mouth_open.visible = false
+    sprite_tongue.visible = false
     get_tree().call_group("CatSubscriber", "_on_cat_changed")
 
 
@@ -51,23 +62,25 @@ func on_cat_food_entered(cat_food):
 
 func _on_Cat_body_entered(body):
     hide_all_faces()
-    face_sad_sprite.visible = true
+    sprite_mouth_open.visible = true
+    sprite_tongue.visible = true
     face_timer.start()
     
     if body.is_in_group("CatFood"):
         on_cat_food_entered(body)
 
 func set_face_color(color):
-    face_normal_sprite.modulate = color
-    face_sad_sprite.modulate = color
+    sprite_ears_in.modulate = color 
+    sprite_nose.modulate = color 
 
 func hide_all_faces():
-    face_normal_sprite.visible = false
-    face_sad_sprite.visible = false
+    sprite_mouth_closed.visible = true
+    sprite_mouth_open.visible = false
+    sprite_tongue.visible = false
 
 func _on_FaceTimer_timeout():
     hide_all_faces()
-    face_normal_sprite.visible = true
+    sprite_mouth_closed.visible = true
     
 func on_cat_capture_zone_entered(capture_zone):
     capture_zones_sum += 1
