@@ -1,10 +1,12 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://prefab_scenes/LevelSelectorButton/LevelSelectorButton.gd" type="Script" id=1]
+[ext_resource path="res://resources/ui_theme_two.tres" type="Theme" id=2]
 
 [node name="LevelSelectorButton" type="Button"]
 margin_right = 12.0
 margin_bottom = 20.0
+theme = ExtResource( 2 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false

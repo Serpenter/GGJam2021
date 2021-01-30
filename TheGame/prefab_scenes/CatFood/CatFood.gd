@@ -10,6 +10,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+    disable_all_forcefield_passes()
     pass
 
 
@@ -37,4 +38,9 @@ func _on_Timer_timeout():
     var cat_ang_vel = angular_velocity
     cat_spawner.spawn_additional_cat(cat_position, cat_impulse, cat_rotation, cat_ang_vel)
     queue_free()
-
+    
+func disable_all_forcefield_passes():
+    var layers_list = Forcefields.get_all_forcefield_layers()
+    
+    for layer in layers_list:
+        set_collision_mask_bit(layer, true)

@@ -14,6 +14,7 @@ var capture_zones_sum = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+    disable_all_forcefield_passes()
     hide_all_faces()
     face_normal_sprite.visible = true
     get_tree().call_group("CatSubscriber", "_on_cat_changed")
@@ -91,7 +92,11 @@ func on_cat_capture_zone_exited(capture_zone):
     
     
     
+func disable_all_forcefield_passes():
+    var layers_list = Forcefields.get_all_forcefield_layers()
     
+    for layer in layers_list:
+        set_collision_mask_bit(layer, true)   
     
     
     
