@@ -25,6 +25,11 @@ var forcefield_dict = {
         {
             "color": Color.red,
             "layer":6
+        },
+        "directional":
+        {
+            "color": Color.lightcyan,
+            "layer":7
         }
 }
 

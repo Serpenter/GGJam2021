@@ -75,6 +75,7 @@ right_click={
 2d_physics/layer_4="blue_field"
 2d_physics/layer_5="red_field"
 2d_physics/layer_6="purple_field"
+2d_physics/layer_7="directional_field"
 
 [physics]
 

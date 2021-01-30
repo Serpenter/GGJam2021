@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://prefab_scenes/RotatingWall/RotatingWall.gd" type="Script" id=1]
+[ext_resource path="res://prefab_scenes/obstacles/ItemUIData.gd" type="Script" id=2]
+[ext_resource path="res://assets/images/white_big.png" type="Texture" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 8.77686
+height = 110.795
+
+[node name="RotatingWall" type="KinematicBody2D" groups=[
+"Resetable",
+]]
+script = ExtResource( 1 )
+
+[node name="ItemUIData" type="Node2D" parent="."]
+script = ExtResource( 2 )
+item_ui_size = Vector2( 64, 64 )
+item_ui_texture = ExtResource( 3 )
+item_ui_color = Color( 0.607843, 0.121569, 0.647059, 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.125, 1 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )

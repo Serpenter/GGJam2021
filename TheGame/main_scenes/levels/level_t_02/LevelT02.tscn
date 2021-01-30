@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://prefab_scenes/LevelScripts/Level.gd" type="Script" id=1]
 [ext_resource path="res://test_scenes/tile_snap/Highlight.gd" type="Script" id=2]
@@ -21,6 +21,8 @@
 [ext_resource path="res://prefab_scenes/ForcefieldWall/ForcefieldWallAqua.tscn" type="PackedScene" id=19]
 [ext_resource path="res://prefab_scenes/ForcefieldPanel/ForcefieldPanelRed.tscn" type="PackedScene" id=20]
 [ext_resource path="res://prefab_scenes/ForcefieldPanel/ForcefieldPanelAqua.tscn" type="PackedScene" id=21]
+[ext_resource path="res://prefab_scenes/DirectionalForcefield/DirectionalForceField.tscn" type="PackedScene" id=22]
+[ext_resource path="res://prefab_scenes/RotatingWall/RotatingWall.tscn" type="PackedScene" id=23]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 20.0
@@ -162,6 +164,30 @@ position = Vector2( -320, 64 )
 
 [node name="Forcefield12" parent="Obstacles" instance=ExtResource( 17 )]
 position = Vector2( -320, -64 )
+
+[node name="DirectionalForcefield" parent="Obstacles" instance=ExtResource( 22 )]
+position = Vector2( -576, 192 )
+
+[node name="DirectionalForcefield2" parent="Obstacles" instance=ExtResource( 22 )]
+position = Vector2( -576, -64 )
+
+[node name="DirectionalForcefield3" parent="Obstacles" instance=ExtResource( 22 )]
+position = Vector2( -576, 64 )
+
+[node name="DirectionalForcefield4" parent="Obstacles" instance=ExtResource( 22 )]
+position = Vector2( 576, 64 )
+rotation = 3.14159
+
+[node name="DirectionalForcefield5" parent="Obstacles" instance=ExtResource( 22 )]
+position = Vector2( 576, 192 )
+rotation = 3.14159
+
+[node name="DirectionalForcefield6" parent="Obstacles" instance=ExtResource( 22 )]
+position = Vector2( 576, -64 )
+rotation = 3.14159
+
+[node name="RotatingWall" parent="Obstacles" instance=ExtResource( 23 )]
+position = Vector2( 256.349, 58.9711 )
 
 [node name="Spawner" type="Position2D" parent="."]
 script = ExtResource( 5 )
