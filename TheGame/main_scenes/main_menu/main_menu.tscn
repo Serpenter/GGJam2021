@@ -33,7 +33,7 @@ size_flags_horizontal = 3
 
 [node name="MenuButtons" type="VBoxContainer" parent="CanvasLayer/MarginContainer/HBoxContainer"]
 margin_left = 342.0
-margin_right = 680.0
+margin_right = 681.0
 margin_bottom = 600.0
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -41,7 +41,7 @@ alignment = 1
 
 [node name="play_game" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons"]
 margin_top = 246.0
-margin_right = 338.0
+margin_right = 339.0
 margin_bottom = 279.0
 theme = ExtResource( 2 )
 text = "Game"
@@ -62,7 +62,7 @@ __meta__ = {
 
 [node name="level_selector" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons"]
 margin_top = 283.0
-margin_right = 338.0
+margin_right = 339.0
 margin_bottom = 316.0
 theme = ExtResource( 2 )
 text = "Level selector"
@@ -72,7 +72,7 @@ __meta__ = {
 
 [node name="exit" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons"]
 margin_top = 320.0
-margin_right = 338.0
+margin_right = 339.0
 margin_bottom = 353.0
 theme = ExtResource( 2 )
 text = "Exit"
@@ -96,7 +96,7 @@ theme = ExtResource( 2 )
 text = "Return to menu"
 
 [node name="SpacerR" type="Control" parent="CanvasLayer/MarginContainer/HBoxContainer"]
-margin_left = 684.0
+margin_left = 685.0
 margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
