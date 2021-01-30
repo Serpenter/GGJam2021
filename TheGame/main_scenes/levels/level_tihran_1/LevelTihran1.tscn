@@ -148,13 +148,13 @@ position = Vector2( 448, 2240 )
 position = Vector2( 576, 2240 )
 
 [node name="CatCaptureZone40" parent="Obstacles" instance=ExtResource( 6 )]
-position = Vector2( 839.702, 2248.99 )
+position = Vector2( 832, 2240 )
 
 [node name="CatCaptureZone41" parent="Obstacles" instance=ExtResource( 6 )]
-position = Vector2( 839.702, 2120.14 )
+position = Vector2( 832, 2112 )
 
 [node name="CatCaptureZone42" parent="Obstacles" instance=ExtResource( 6 )]
-position = Vector2( 833.709, 2362.86 )
+position = Vector2( 832, 2368 )
 
 [node name="CatCaptureZone36" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 576, 2368 )
@@ -167,6 +167,18 @@ position = Vector2( 320, 2368 )
 
 [node name="CatCaptureZone39" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 192, 2368 )
+
+[node name="RotatingWall34" parent="Obstacles" instance=ExtResource( 23 )]
+position = Vector2( 1728, 960 )
+
+[node name="RotatingWall35" parent="Obstacles" instance=ExtResource( 23 )]
+position = Vector2( 1856, 960 )
+
+[node name="RotatingWall36" parent="Obstacles" instance=ExtResource( 23 )]
+position = Vector2( 1984, 960 )
+
+[node name="RotatingWall37" parent="Obstacles" instance=ExtResource( 23 )]
+position = Vector2( 1856, 1984 )
 
 [node name="PushingWall" parent="Obstacles" instance=ExtResource( 24 )]
 position = Vector2( 576, 2112 )
@@ -193,69 +205,69 @@ position = Vector2( -64, 2240 )
 rotation = 3.14159
 
 [node name="PushingWall7" parent="Obstacles" instance=ExtResource( 24 )]
-position = Vector2( 1992.35, 1351.01 )
+position = Vector2( 1984, 1344 )
 rotation = 3.14159
 
 [node name="PushingWall8" parent="Obstacles" instance=ExtResource( 24 )]
-position = Vector2( 1992.35, 1225.29 )
+position = Vector2( 1984, 1216 )
 rotation = 3.14159
 
 [node name="PushingWall9" parent="Obstacles" instance=ExtResource( 24 )]
-position = Vector2( 1983.37, 1090.6 )
+position = Vector2( 1984, 1088 )
 rotation = 3.14159
 
 [node name="PushingWall10" parent="Obstacles" instance=ExtResource( 24 )]
-position = Vector2( 1983.37, 955.903 )
+position = Vector2( 1984, 960 )
 rotation = 3.14159
 
 [node name="PushingWall11" parent="Obstacles" instance=ExtResource( 24 )]
-position = Vector2( 1983.37, 1588.97 )
+position = Vector2( 1984, 1600 )
 rotation = 3.14159
 
 [node name="PushingWall12" parent="Obstacles" instance=ExtResource( 24 )]
-position = Vector2( 1983.37, 1737.14 )
+position = Vector2( 1984, 1728 )
 rotation = 3.14159
 
 [node name="PushingWall13" parent="Obstacles" instance=ExtResource( 24 )]
-position = Vector2( 1983.37, 1871.83 )
+position = Vector2( 1984, 1856 )
 rotation = 3.14159
 
 [node name="PushingWall14" parent="Obstacles" instance=ExtResource( 24 )]
-position = Vector2( 1987.86, 1993.06 )
+position = Vector2( 1984, 1984 )
 rotation = 3.14159
 
 [node name="PushingWall15" parent="Obstacles" instance=ExtResource( 24 )]
-position = Vector2( 1987.86, 2118.77 )
+position = Vector2( 1984, 2112 )
 rotation = 3.14159
 
 [node name="PushingWall16" parent="Obstacles" instance=ExtResource( 24 )]
-position = Vector2( 1857.66, 2244.49 )
+position = Vector2( 1856, 2240 )
 rotation = 3.14159
 
 [node name="PushingWall17" parent="Obstacles" instance=ExtResource( 24 )]
-position = Vector2( 1727.45, 2370.21 )
+position = Vector2( 1728, 2368 )
 rotation = 3.14159
 
 [node name="PushingWall18" parent="Obstacles" instance=ExtResource( 24 )]
-position = Vector2( 833.166, 1856.47 )
+position = Vector2( 832, 1856 )
 
 [node name="PushingWall19" parent="Obstacles" instance=ExtResource( 24 )]
-position = Vector2( 828.409, 1732.79 )
+position = Vector2( 832, 1728 )
 
 [node name="PushingWall20" parent="Obstacles" instance=ExtResource( 24 )]
-position = Vector2( 823.652, 1590.09 )
+position = Vector2( 832, 1600 )
 
 [node name="PushingWall21" parent="Obstacles" instance=ExtResource( 24 )]
-position = Vector2( 833.166, 1485.44 )
+position = Vector2( 832, 1472 )
 
 [node name="PushingWall22" parent="Obstacles" instance=ExtResource( 24 )]
-position = Vector2( 837.923, 1347.49 )
+position = Vector2( 832, 1344 )
 
 [node name="PushingWall23" parent="Obstacles" instance=ExtResource( 24 )]
-position = Vector2( 833.166, 1219.05 )
+position = Vector2( 832, 1216 )
 
 [node name="PushingWall24" parent="Obstacles" instance=ExtResource( 24 )]
-position = Vector2( 837.923, 1095.38 )
+position = Vector2( 832, 1088 )
 
 [node name="PlaceableWall" parent="Obstacles" instance=ExtResource( 12 )]
 position = Vector2( -2240, 1216 )
@@ -292,13 +304,13 @@ position = Vector2( -2112, 2240 )
 position = Vector2( -1984, 2368 )
 
 [node name="DirectionalForcefield2" parent="Obstacles" instance=ExtResource( 22 )]
-position = Vector2( 957.506, 2119.27 )
+position = Vector2( 960, 2112 )
 
 [node name="DirectionalForcefield3" parent="Obstacles" instance=ExtResource( 22 )]
-position = Vector2( 957.506, 2248.13 )
+position = Vector2( 960, 2240 )
 
 [node name="DirectionalForcefield4" parent="Obstacles" instance=ExtResource( 22 )]
-position = Vector2( 957.506, 2370.99 )
+position = Vector2( 960, 2368 )
 
 [node name="PlaceableWall30" parent="Obstacles" instance=ExtResource( 12 )]
 position = Vector2( -1856, 2496 )
@@ -919,114 +931,114 @@ position = Vector2( 704, 1600 )
 position = Vector2( 704, 1728 )
 
 [node name="PlaceableWall290" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 699.243, 1860.76 )
+position = Vector2( 704, 1856 )
 
 [node name="PlaceableWall291" parent="Obstacles" instance=ExtResource( 12 )]
 position = Vector2( 704, 1984 )
 
 [node name="PlaceableWall299" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 832.145, 1989.34 )
+position = Vector2( 832, 1984 )
 
 [node name="PlaceableWall300" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 960.289, 1989.34 )
+position = Vector2( 960, 1984 )
 
 [node name="PlaceableWall301" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 1088.43, 1989.34 )
+position = Vector2( 1088, 1984 )
 
 [node name="PlaceableWall302" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 1211.24, 1984 )
+position = Vector2( 1216, 1984 )
 
 [node name="PlaceableWall303" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 1344.72, 1989.34 )
+position = Vector2( 1344, 1984 )
 
 [node name="PlaceableWall304" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 1478.21, 1984 )
+position = Vector2( 1472, 1984 )
 
 [node name="PlaceableWall312" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 1595.67, 1978.66 )
+position = Vector2( 1600, 1984 )
 
 [node name="PlaceableWall313" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 826.805, 958.843 )
+position = Vector2( 832, 960 )
 
 [node name="PlaceableWall314" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 944.271, 958.843 )
+position = Vector2( 960, 960 )
 
 [node name="PlaceableWall315" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 1072.42, 958.843 )
+position = Vector2( 1088, 960 )
 
 [node name="PlaceableWall316" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 1200.56, 958.843 )
+position = Vector2( 1216, 960 )
 
 [node name="PlaceableWall317" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 1334.04, 958.843 )
+position = Vector2( 1344, 960 )
 
 [node name="PlaceableWall318" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 1467.53, 958.843 )
+position = Vector2( 1472, 960 )
 
 [node name="PlaceableWall319" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 1590.33, 958.843 )
+position = Vector2( 1600, 960 )
 rotation = 0.0173395
 
 [node name="PlaceableWall320" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 829.342, 66.8189 )
+position = Vector2( 832, 64 )
 rotation = 0.0173395
 
 [node name="PlaceableWall321" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 960.373, 66.8189 )
+position = Vector2( 960, 64 )
 rotation = 0.0173395
 
 [node name="PlaceableWall322" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 1086.37, 61.7792 )
+position = Vector2( 1088, 64 )
 rotation = 0.0173395
 
 [node name="PlaceableWall323" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 1202.28, 66.8189 )
+position = Vector2( 1216, 64 )
 rotation = 0.0173395
 
 [node name="PlaceableWall324" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 1328.27, 61.7792 )
+position = Vector2( 1344, 64 )
 rotation = 0.0173395
 
 [node name="PlaceableWall325" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 1459.3, 61.7792 )
+position = Vector2( 1472, 64 )
 rotation = 0.0173395
 
 [node name="PlaceableWall326" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 1590.33, 66.8189 )
+position = Vector2( 1600, 64 )
 rotation = 0.0173395
 
 [node name="PlaceableWall327" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 1726.41, 66.8189 )
+position = Vector2( 1728, 64 )
 rotation = 0.0173395
 
 [node name="PlaceableWall328" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 1857.44, 71.8586 )
+position = Vector2( 1856, 64 )
 rotation = 0.0173395
 
 [node name="PlaceableWall329" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 1983.43, 66.8189 )
+position = Vector2( 1984, 64 )
 rotation = 0.0173395
 
 [node name="PlaceableWall305" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 2001.46, 1460.74 )
+position = Vector2( 1984, 1472 )
 
 [node name="PlaceableWall306" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 1873.32, 1460.74 )
+position = Vector2( 1856, 1472 )
 
 [node name="PlaceableWall307" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 1745.18, 1466.08 )
+position = Vector2( 1728, 1472 )
 
 [node name="PlaceableWall308" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 1627.71, 1482.1 )
+position = Vector2( 1600, 1472 )
 
 [node name="PlaceableWall309" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 1488.89, 1471.42 )
+position = Vector2( 1472, 1472 )
 
 [node name="PlaceableWall310" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 1334.04, 1471.42 )
+position = Vector2( 1344, 1472 )
 
 [node name="PlaceableWall311" parent="Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 1211.24, 1471.42 )
+position = Vector2( 1216, 1472 )
 
 [node name="PlaceableWall292" parent="Obstacles" instance=ExtResource( 12 )]
 position = Vector2( 704, 2112 )
