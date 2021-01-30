@@ -251,3 +251,11 @@ func update_victory_timer_label():
     if not victory_timer_label.visible:
         return
     victory_timer_label.text = GUtils.format_time(victory_timer.time_left)
+
+
+func _on_MainMenu_pressed():
+    GSceneManager.goto_scene_wloader("res://main_scenes/main_menu/main_menu.tscn")
+
+
+func _on_Exit_pressed():
+    get_tree().quit()

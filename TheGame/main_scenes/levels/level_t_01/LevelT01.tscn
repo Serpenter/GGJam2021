@@ -75,7 +75,6 @@ script = ExtResource( 18 )
 
 [node name="ObstaclesAligner" type="Node2D" parent="."]
 script = ExtResource( 8 )
-rerun = false
 path_to_obstacle_parent = "Obstacles"
 path_to_tilemap = "TileMap"
 
@@ -350,7 +349,6 @@ __meta__ = {
 
 [node name="BallSpawners" type="Node2D" parent="."]
 script = ExtResource( 8 )
-rerun = false
 path_to_obstacle_parent = "BallSpawners"
 path_to_tilemap = "TileMap"
 
@@ -368,7 +366,6 @@ max_balls_number = 1
 
 [node name="CatFoodSpawners" type="Node2D" parent="."]
 script = ExtResource( 8 )
-rerun = false
 path_to_obstacle_parent = "CatFoodSpawners"
 path_to_tilemap = "TileMap"
 
@@ -377,7 +374,6 @@ position = Vector2( 306.598, 54.4864 )
 
 [node name="CatSpawners" type="Node2D" parent="."]
 script = ExtResource( 8 )
-rerun = false
 path_to_obstacle_parent = "CatSpawners"
 path_to_tilemap = "TileMap"
 
@@ -388,6 +384,8 @@ default_end_pos = Vector2( 0, 0 )
 [connection signal="timeout" from="LimitTimer" to="." method="_on_LimitTimer_timeout"]
 [connection signal="timeout" from="MinLevelDuration" to="." method="_on_MinLevelDuration_timeout"]
 [connection signal="input_event" from="Spawner/Area2D" to="Spawner" method="_on_Area2D_input_event"]
+[connection signal="pressed" from="CanvasLayer/Menu/MainMenu" to="." method="_on_MainMenu_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu/Exit" to="." method="_on_Exit_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameFlowControls/Start" to="." method="_on_Start_pressed"]
 [connection signal="toggled" from="CanvasLayer/GameFlowControls/Pause" to="." method="_on_Pause_toggled"]
 [connection signal="pressed" from="CanvasLayer/GameFlowControls/Restart" to="." method="_on_Restart_pressed"]
