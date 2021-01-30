@@ -4,8 +4,6 @@ export(bool) var is_alignable = true
 # presistent parameters - to be saved-restored-loaded
 var initial_state
 
-onready var animation_player = $AnimationPlayer
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
     pass # Replace with function body.
