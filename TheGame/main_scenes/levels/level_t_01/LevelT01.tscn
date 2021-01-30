@@ -127,7 +127,7 @@ rotation = 2.35619
 is_alignable = false
 
 [node name="CatCaptureBox" parent="Obstacles" instance=ExtResource( 19 )]
-position = Vector2( 192.145, 193.335 )
+position = Vector2( 61.9394, 194.458 )
 
 [node name="Spawner" type="Position2D" parent="."]
 script = ExtResource( 5 )

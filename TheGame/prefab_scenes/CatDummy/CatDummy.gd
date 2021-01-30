@@ -23,6 +23,17 @@ onready var sprite_legacy_face_surprised = $SpriteLegacyFaceSurprised
 
 onready var face_timer = $FaceTimer
 
+onready var long_meow = $long_meow
+
+var rng = RandomNumberGenerator.new()
+
+onready var meow_dict = {
+    1: $meow_1,
+     2: $meow_3,
+     3: $meow_3,
+     4: $meow_4,
+   }
+
 var capture_zones_sum = 0
 
 var use_legacy_faces = true
@@ -77,6 +88,7 @@ func _on_Cat_body_entered(body):
         return
     hide_all_faces()
     face_timer.start()
+    play_random_meow()
     set_appropriate_face()
     
     if body.is_in_group("CatFood"):
@@ -145,6 +157,7 @@ func on_cat_capture_box_entered(cat_box):
     set_global_position(cat_box.position)
     get_tree().call_group("CatSubscriber", "_on_cat_changed")
     set_appropriate_face()
+    long_meow.play()
     
 func on_cat_capture_zone_exited(capture_zone):
     capture_zones_sum -= 1
@@ -172,4 +185,8 @@ func disable_all_colision_layers_and_masks():
         set_collision_mask_bit(i, false) 
         set_collision_layer_bit(i, false) 
     
-    
+
+func play_random_meow():
+    rng.randomize()
+    var meow_number = rng.randi_range(1,4)
+    meow_dict[meow_number].play()
