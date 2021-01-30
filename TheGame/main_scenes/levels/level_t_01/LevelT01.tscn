@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://prefab_scenes/LevelScripts/Level.gd" type="Script" id=1]
 [ext_resource path="res://test_scenes/tile_snap/Highlight.gd" type="Script" id=2]
@@ -9,7 +9,8 @@
 [ext_resource path="res://prefab_scenes/CatSpawner/CatSpawner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://prefab_scenes/ObstacleAligner/ObstaclesAligner.gd" type="Script" id=8]
 [ext_resource path="res://prefab_scenes/CatFoodSpawner/CatFoodSpawner.tscn" type="PackedScene" id=9]
-[ext_resource path="res://assets/images/cat_food_logo_1.png" type="Texture" id=10]
+[ext_resource path="res://prefab_scenes/ForcefieldWall/ForcefieldWallViolet.tscn" type="PackedScene" id=10]
+[ext_resource path="res://prefab_scenes/ForcefieldPanel/ForcefieldPanelViolet.tscn" type="PackedScene" id=11]
 [ext_resource path="res://prefab_scenes/obstacles/item2.tscn" type="PackedScene" id=12]
 [ext_resource path="res://prefab_scenes/obstacles/item1.tscn" type="PackedScene" id=13]
 [ext_resource path="res://prefab_scenes/BallSpawner/BallSpawner.tscn" type="PackedScene" id=14]
@@ -107,16 +108,29 @@ position = Vector2( 192, 576 )
 [node name="CatCaptureZone5" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( -64, 576 )
 
+[node name="Forcefield" parent="Obstacles" instance=ExtResource( 10 )]
+position = Vector2( 448, 192 )
+
+[node name="Forcefield2" parent="Obstacles" instance=ExtResource( 10 )]
+position = Vector2( 448, 64 )
+
+[node name="Forcefield3" parent="Obstacles" instance=ExtResource( 10 )]
+position = Vector2( 448, -64 )
+
+[node name="Forcefield4" parent="Obstacles" instance=ExtResource( 10 )]
+position = Vector2( 448, -192 )
+
+[node name="ForcefieldPanel" parent="Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 476.532, -73.7495 )
+rotation = 2.35619
+is_alignable = false
+
 [node name="Spawner" type="Position2D" parent="."]
 script = ExtResource( 5 )
 modulate_selector = Color( 1, 1, 1, 0.376471 )
 path_to_pickers = "CanvasLayer/Pickers"
 
 [node name="Sprite" type="Sprite" parent="Spawner"]
-
-[node name="DirectionMark" type="Sprite" parent="Spawner/Sprite"]
-texture = ExtResource( 10 )
-offset = Vector2( 0, -48 )
 
 [node name="Area2D" type="Area2D" parent="Spawner"]
 
