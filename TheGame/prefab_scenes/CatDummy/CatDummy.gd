@@ -17,14 +17,20 @@ onready var sprite_mouth_closed = $SpriteMouthClosed
 onready var sprite_mouth_open = $SpriteMouthOpen
 onready var sprite_tongue = $SpriteTongue
 
+onready var sprite_legacy_face_normal = $SpriteLegacyFaceNormal
+onready var sprite_legacy_face_closed = $SpriteLegacyFaceClosed
+onready var sprite_legacy_face_surprised = $SpriteLegacyFaceSurprised
+
 onready var face_timer = $FaceTimer
 
 var capture_zones_sum = 0
 
+var use_legacy_faces = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
     disable_all_forcefield_passes()
-    hide_all_faces()
+    set_normal_face()
     sprite_mouth_closed.visible = true
     sprite_mouth_open.visible = false
     sprite_tongue.visible = false
@@ -74,13 +80,46 @@ func set_face_color(color):
     sprite_nose.modulate = color 
 
 func hide_all_faces():
-    sprite_mouth_closed.visible = true
+    sprite_mouth_closed.visible = false
     sprite_mouth_open.visible = false
     sprite_tongue.visible = false
+    sprite_legacy_face_normal.visible = false
+    sprite_legacy_face_closed.visible = false
+    sprite_legacy_face_surprised.visible = false
+    
+func set_normal_face():
+    hide_all_faces()
+    
+    if use_legacy_faces:
+        sprite_legacy_face_normal.visible = true
+    else:
+        sprite_mouth_closed.visible = true
+    
+func set_surprised_face():
+    hide_all_faces()
+    
+    if use_legacy_faces:
+        sprite_legacy_face_surprised.visible = true
+    else:
+        sprite_mouth_open.visible = true
+        sprite_tongue.visible = true
+    
+
+func set_closed_face():
+    hide_all_faces()
+    
+    if use_legacy_faces:
+        sprite_legacy_face_closed.visible = true
+    else:
+        sprite_mouth_open.visible = false
+        sprite_tongue.visible = false
+    
 
 func _on_FaceTimer_timeout():
-    hide_all_faces()
-    sprite_mouth_closed.visible = true
+    if is_captured:
+        set_surprised_face()
+    else:
+        set_normal_face()
     
 func on_cat_capture_zone_entered(capture_zone):
     capture_zones_sum += 1
@@ -91,6 +130,12 @@ func on_cat_capture_zone_entered(capture_zone):
         print("Negative initial capture_zones_sum value!")
         
     get_tree().call_group("CatSubscriber", "_on_cat_changed")
+    face_timer.stop()
+    
+    if is_captured:
+        set_surprised_face()
+    else:
+        set_normal_face()
     
 func on_cat_capture_box_entered(cat_box):
     sleeping = true
@@ -98,6 +143,7 @@ func on_cat_capture_box_entered(cat_box):
     mode = MODE_STATIC
     set_global_position(cat_box.position)
     get_tree().call_group("CatSubscriber", "_on_cat_changed")
+    set_surprised_face()
     
 func on_cat_capture_zone_exited(capture_zone):
     capture_zones_sum -= 1
@@ -109,6 +155,11 @@ func on_cat_capture_zone_exited(capture_zone):
         print("Negative  capture_zones_sum value!")
         
     get_tree().call_group("CatSubscriber", "_on_cat_changed")
+    
+    if is_captured:
+        set_surprised_face()
+    else:
+        set_normal_face()
     
     
     
