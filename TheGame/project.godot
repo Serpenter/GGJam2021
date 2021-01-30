@@ -26,6 +26,10 @@ GUtils="*res://global_scripts/g_utils.gd"
 Forcefields="*res://global_scripts/forcefields.gd"
 User="*res://global_scripts/user.gd"
 
+[display]
+
+window/size/fullscreen=true
+
 [input]
 
 ui_left={
