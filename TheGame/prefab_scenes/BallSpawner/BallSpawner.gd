@@ -19,9 +19,11 @@ export var max_angle = 360
 export var min_length = 50
 export var max_length = 350
 
+export(Vector2) var initial_impulse
 
 export var is_input_disabled = false
 export var is_input_provided = false
+export var is_user_input_allowed = true
 export var infinite_ball_spawn = true
 
 export var max_balls_number = 10
@@ -69,7 +71,7 @@ func launch_ball():
     current_ball.visible = true
     current_ball.mode = 0
     current_ball.go_to_actibe_mode()
-    var initial_impulse = get_impulse()
+    initial_impulse = get_impulse()
     current_ball.apply_central_impulse(initial_impulse)
 #	get_tree().call_group("BallManager", "take_control_of_ball", current_ball)
     current_ball = null
@@ -122,7 +124,6 @@ func load_state(state):
     arrow_sprite.rotation = state["end_position"].angle() + 0.5 * PI
     
     update_label()
-    
 
 
 func set_default_initial_impulse():
@@ -130,13 +131,13 @@ func set_default_initial_impulse():
     var end_position = Vector2(min_length, 0).rotated(angle)
     set_end_position(end_position)
 
+
 func get_impulse():
     if not is_input_provided:
         print("Getting impulse without input")
-    
-    var impulse =  line.points[1]
+    var impulse = line.points[1] if is_user_input_allowed else initial_impulse
     return impulse
-    
+
 
 func process_mouse_input():
     var mouse_pos = get_global_mouse_position()

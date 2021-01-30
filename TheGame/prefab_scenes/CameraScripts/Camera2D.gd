@@ -15,13 +15,13 @@ func _input(event):
     if event is InputEventMouseButton:
         if event.is_pressed():
             # zoom in
-            if event.button_index == BUTTON_WHEEL_UP:
+            if event.button_index == BUTTON_WHEEL_DOWN:
                 zoom += zoom_step
                 zoom = max_zoom if max_zoom.length_squared() < zoom.length_squared() else zoom
                 zoom_pos = get_global_mouse_position()
 
             # zoom out
-            elif event.button_index == BUTTON_WHEEL_DOWN:
+            elif event.button_index == BUTTON_WHEEL_UP:
                 zoom -= zoom_step
                 zoom = min_zoom if min_zoom.length_squared() > zoom.length_squared() else zoom
                 zoom_pos = get_global_mouse_position()

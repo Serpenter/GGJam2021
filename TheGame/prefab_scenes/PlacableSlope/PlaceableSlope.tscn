@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://prefab_scenes/PushingWall/PushingWall.gd" type="Script" id=1]
+[ext_resource path="res://prefab_scenes/PlacableSlope/PlaceableSlope.gd" type="Script" id=1]
 [ext_resource path="res://prefab_scenes/obstacles/ItemUIData.gd" type="Script" id=2]
 [ext_resource path="res://assets/placeholders/slope.png" type="Texture" id=3]
 
-[node name="PushingWall" type="Node2D" groups=[
+[node name="PlaceableSlope" type="Node2D" groups=[
 "Resetable",
 ]]
 script = ExtResource( 1 )
