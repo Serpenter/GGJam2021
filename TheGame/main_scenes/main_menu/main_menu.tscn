@@ -104,4 +104,3 @@ size_flags_horizontal = 3
 [connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons/tutorial" to="." method="_on_tutorial_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons/level_selector" to="." method="_on_level_selector_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons/exit" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/Levels/Return" to="." method="_on_Return_pressed"]
