@@ -212,6 +212,9 @@ rotation = 3.14159
 [node name="ForcefieldPanel3" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 192, 192 )
 
+[node name="ForcefieldPanel6" parent="Obstacles" instance=ExtResource( 25 )]
+position = Vector2( -315.464, 186.83 )
+
 [node name="Spawner" type="Position2D" parent="."]
 script = ExtResource( 5 )
 modulate_selector = Color( 1, 1, 1, 0.376471 )
@@ -501,6 +504,7 @@ path_to_tilemap = "TileMap"
 [node name="BallSpawner" parent="BallSpawners" instance=ExtResource( 14 )]
 position = Vector2( 478.61, -61.8578 )
 max_length = 500
+initial_impulse = Vector2( 0, 200 )
 infinite_ball_spawn = false
 
 [node name="CatFoodSpawners" type="Node2D" parent="."]
@@ -515,10 +519,7 @@ path_to_tilemap = "TileMap"
 
 [node name="CatSpawner" parent="CatSpawners" instance=ExtResource( 7 )]
 position = Vector2( -566.739, 61.1716 )
-default_end_pos = Vector2( 0, 0 )
-
-[node name="ForcefieldPanel" parent="." instance=ExtResource( 25 )]
-position = Vector2( -315.464, 186.83 )
+default_end_pos = Vector2( 100, 200 )
 [connection signal="timeout" from="VictoryTimer" to="." method="_on_VictoryTimer_timeout"]
 [connection signal="timeout" from="LimitTimer" to="." method="_on_LimitTimer_timeout"]
 [connection signal="timeout" from="MinLevelDuration" to="." method="_on_MinLevelDuration_timeout"]
