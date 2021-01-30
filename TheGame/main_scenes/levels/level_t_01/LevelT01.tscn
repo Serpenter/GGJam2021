@@ -127,7 +127,7 @@ rotation = 2.35619
 is_alignable = false
 
 [node name="CatCaptureBox" parent="Obstacles" instance=ExtResource( 19 )]
-position = Vector2( 64, 192 )
+position = Vector2( 192.145, 193.335 )
 
 [node name="Spawner" type="Position2D" parent="."]
 script = ExtResource( 5 )
@@ -416,7 +416,7 @@ path_to_obstacle_parent = "BallSpawners"
 path_to_tilemap = "TileMap"
 
 [node name="BallSpawner" parent="BallSpawners" instance=ExtResource( 14 )]
-position = Vector2( 576, 64 )
+position = Vector2( 581.339, 73.3439 )
 max_length = 500
 infinite_ball_spawn = false
 max_balls_number = 2

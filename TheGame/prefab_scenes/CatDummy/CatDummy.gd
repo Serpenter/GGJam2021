@@ -27,13 +27,12 @@ var capture_zones_sum = 0
 
 var use_legacy_faces = true
 
+var is_in_box = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
     disable_all_forcefield_passes()
-    set_normal_face()
-    sprite_mouth_closed.visible = true
-    sprite_mouth_open.visible = false
-    sprite_tongue.visible = false
+    set_appropriate_face()
     get_tree().call_group("CatSubscriber", "_on_cat_changed")
 
 
@@ -55,6 +54,13 @@ func on_activation_zone_activated(activation_zone):
         go_to_sleep_mode()
         pass
 
+func set_appropriate_face():
+    if face_timer.time_left > 0:
+        set_closed_face()
+    elif is_captured:
+        set_surprised_face()
+    else:
+        set_normal_face()
 
 func _on_InteractionArea_mouse_entered():
     is_hovered = true
@@ -67,10 +73,11 @@ func on_cat_food_entered(cat_food):
 
 
 func _on_Cat_body_entered(body):
+    if sleeping:
+        return
     hide_all_faces()
-    sprite_mouth_open.visible = true
-    sprite_tongue.visible = true
     face_timer.start()
+    set_appropriate_face()
     
     if body.is_in_group("CatFood"):
         on_cat_food_entered(body)
@@ -116,10 +123,7 @@ func set_closed_face():
     
 
 func _on_FaceTimer_timeout():
-    if is_captured:
-        set_surprised_face()
-    else:
-        set_normal_face()
+    set_appropriate_face()
     
 func on_cat_capture_zone_entered(capture_zone):
     capture_zones_sum += 1
@@ -130,20 +134,17 @@ func on_cat_capture_zone_entered(capture_zone):
         print("Negative initial capture_zones_sum value!")
         
     get_tree().call_group("CatSubscriber", "_on_cat_changed")
-    face_timer.stop()
-    
-    if is_captured:
-        set_surprised_face()
-    else:
-        set_normal_face()
+    set_appropriate_face()
     
 func on_cat_capture_box_entered(cat_box):
+    is_in_box = true
     sleeping = true
     is_captured = true
+    disable_all_colision_layers_and_masks()
     mode = MODE_STATIC
     set_global_position(cat_box.position)
     get_tree().call_group("CatSubscriber", "_on_cat_changed")
-    set_surprised_face()
+    set_appropriate_face()
     
 func on_cat_capture_zone_exited(capture_zone):
     capture_zones_sum -= 1
@@ -156,10 +157,7 @@ func on_cat_capture_zone_exited(capture_zone):
         
     get_tree().call_group("CatSubscriber", "_on_cat_changed")
     
-    if is_captured:
-        set_surprised_face()
-    else:
-        set_normal_face()
+    set_appropriate_face()
     
     
     
@@ -169,8 +167,9 @@ func disable_all_forcefield_passes():
     for layer in layers_list:
         set_collision_mask_bit(layer, true)   
     
-    
-    
-    
+func disable_all_colision_layers_and_masks():
+    for i in range(0,20):
+        set_collision_mask_bit(i, false) 
+        set_collision_layer_bit(i, false) 
     
     
