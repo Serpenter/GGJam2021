@@ -226,12 +226,15 @@ func spawn_ball():
         current_ball.rotate(PI)
     spawned_balls += 1
 
-func spawn_additional_cat(cat_global_position):
+func spawn_additional_cat(cat_global_position, cat_impulse, cat_rot, cat_rot_speed):
     var new_cat = ball_prefab.instance()
     ball_spawn.add_child(new_cat)
     new_cat.sleeping = false
     new_cat.mode = 0
     new_cat.set_global_position(cat_global_position)
+    new_cat.apply_central_impulse(cat_impulse)
+    new_cat.rotation = cat_rot
+    new_cat.angular_velocity = cat_rot_speed
 
 func _on_InteractionArea_mouse_entered():
     is_hovered = true

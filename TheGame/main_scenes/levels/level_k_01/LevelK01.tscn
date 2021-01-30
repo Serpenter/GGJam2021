@@ -364,7 +364,7 @@ path_to_tilemap = "TileMap"
 
 [node name="CatSpawner" parent="CatSpawners" instance=ExtResource( 11 )]
 position = Vector2( -64, 64 )
-default_end_pos = Vector2( 70, 0 )
+default_end_pos = Vector2( 50, 0 )
 [connection signal="timeout" from="VictoryTimer" to="." method="_on_VictoryTimer_timeout"]
 [connection signal="timeout" from="LimitTimer" to="." method="_on_LimitTimer_timeout"]
 [connection signal="timeout" from="MinLevelDuration" to="." method="_on_MinLevelDuration_timeout"]

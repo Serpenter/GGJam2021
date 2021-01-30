@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://prefab_scenes/PlacableSlope/PlaceableSlope.gd" type="Script" id=1]
 [ext_resource path="res://prefab_scenes/obstacles/ItemUIData.gd" type="Script" id=2]
 [ext_resource path="res://assets/placeholders/slope.png" type="Texture" id=3]
+[ext_resource path="res://resources/bouncing_material.res" type="PhysicsMaterial" id=4]
 
 [node name="PlaceableSlope" type="Node2D" groups=[
 "Resetable",
@@ -20,6 +21,7 @@ visible = false
 texture = ExtResource( 3 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+physics_material_override = ExtResource( 4 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PoolVector2Array( -64.5989, -64.3193, 63.8324, 63.5573, -64.0442, 63.8347 )

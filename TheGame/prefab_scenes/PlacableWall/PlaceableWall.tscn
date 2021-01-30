@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://prefab_scenes/PlacableWall/PlaceableWall.gd" type="Script" id=1]
 [ext_resource path="res://prefab_scenes/obstacles/ItemUIData.gd" type="Script" id=2]
 [ext_resource path="res://assets/placeholders/wall2.png" type="Texture" id=3]
+[ext_resource path="res://resources/bouncing_material.res" type="PhysicsMaterial" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 64.1411, 64.0349 )
@@ -22,6 +23,7 @@ item_ui_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 3 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+physics_material_override = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource( 1 )

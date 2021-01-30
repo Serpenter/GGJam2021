@@ -45,9 +45,8 @@ func _on_InteractionArea_mouse_exited():
     is_hovered = false
 
 func on_cat_food_entered(cat_food):
-    var cat_position = cat_food.get_global_position()
-    cat_food.queue_free()
-    get_parent().get_parent().spawn_additional_cat(cat_position)
+    cat_food.on_cat_striked(get_parent().get_parent())
+
 
 func _on_Cat_body_entered(body):
     hide_all_faces()
