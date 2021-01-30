@@ -32,6 +32,7 @@ func _ready():
 #    area_sprite.modulate = Forcefields.get_forcefield_color(forcefield_name)
     var color  = Forcefields.get_forcefield_color(forcefield_name)
     sprite.modulate = color
+    sprite.modulate.a = 0.3
     light.color = color
     animation_player.play("idle")
 

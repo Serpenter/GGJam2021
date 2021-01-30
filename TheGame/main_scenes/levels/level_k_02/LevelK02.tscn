@@ -77,6 +77,7 @@ script = ExtResource( 8 )
 
 [node name="ObstaclesAligner" type="Node2D" parent="."]
 script = ExtResource( 5 )
+rerun = false
 path_to_obstacle_parent = "PlacedObstacles"
 path_to_tilemap = "TileMap"
 
@@ -340,6 +341,7 @@ __meta__ = {
 
 [node name="BallSpawners" type="Node2D" parent="."]
 script = ExtResource( 5 )
+rerun = false
 path_to_obstacle_parent = "BallSpawners"
 path_to_tilemap = "TileMap"
 
@@ -356,6 +358,7 @@ max_balls_number = 1
 
 [node name="CatFoodSpawners" type="Node2D" parent="."]
 script = ExtResource( 5 )
+rerun = false
 path_to_obstacle_parent = "CatFoodSpawners"
 path_to_tilemap = "TileMap"
 
@@ -376,6 +379,7 @@ position = Vector2( -448, 64 )
 
 [node name="CatSpawners" type="Node2D" parent="."]
 script = ExtResource( 5 )
+rerun = false
 path_to_obstacle_parent = "CatSpawners"
 path_to_tilemap = "TileMap"
 

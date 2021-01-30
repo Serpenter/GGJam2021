@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/images/circle_grad.png" type="Texture" id=1]
+[ext_resource path="res://prefab_scenes/ForcefieldPanel/ForcefieldPanel.gd" type="Script" id=2]
+[ext_resource path="res://assets/images/white.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 32 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+length = 2.0
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Lights/Light2D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 32, -0.25, 0, 0.25, 0, -32, -0.25, 0, 0.25, 0, -32, -0.25, 0, 0.25, 0, 32, -0.25, 0, 0.25, 0, 32, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Lights/Light2D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 32, -0.25, 0, 0.25, 0, 32, -0.25, 0, 0.25, 0, -32, -0.25, 0, 0.25, 0, -32, -0.25, 0, 0.25, 0, 32, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2 )
+}
+
+[node name="ForcefieldPanel" type="Node2D"]
+script = ExtResource( 2 )
+forcefield_name = "red"
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 0, 0, 0.392157 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 3 )
+
+[node name="Lights" type="Node2D" parent="."]
+
+[node name="Light2D" type="Light2D" parent="Lights"]
+position = Vector2( 32, 32 )
+texture = ExtResource( 1 )
+texture_scale = 0.5
+color = Color( 1, 0, 0, 1 )
+energy = 2.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+method_call_mode = 1
+anims/idle = SubResource( 2 )
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_InteractionArea_body_entered"]

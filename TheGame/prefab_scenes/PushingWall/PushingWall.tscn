@@ -13,10 +13,24 @@ extents = Vector2( 8, 64 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "push"
+length = 2.0
 loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("KinematicBody2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -56, 0 ), Vector2( 0, 0 ), Vector2( -56, 0 ) ]
+}
 
 [node name="PushingWall" type="Node2D" groups=[
 "Resetable",
+"ShouldLaunch",
 ]]
 script = ExtResource( 1 )
 
@@ -27,7 +41,8 @@ item_ui_texture = ExtResource( 3 )
 item_ui_color = Color( 1, 1, 1, 1 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
-position = Vector2( -59.9409, 0 )
+position = Vector2( -56, 0 )
+motion/sync_to_physics = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
 shape = SubResource( 1 )
@@ -36,7 +51,7 @@ shape = SubResource( 1 )
 texture = ExtResource( 4 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2( -60, 0 )
+position = Vector2( -56, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource( 2 )
