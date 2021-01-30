@@ -5,7 +5,7 @@ export(int) var how_many
 export(PackedScene) var item
 export(Array, int) var compatible_tile_ids
 
-export(Color, RGBA) var shade_color
+export(Color, RGBA) var shade_color = Color(0.882353, 0.819608, 0.819608, 0.54902)
 
 export(bool) var resize_texture = false
 

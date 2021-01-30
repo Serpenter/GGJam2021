@@ -91,6 +91,7 @@ modulate_selector = Color( 1, 1, 1, 0.376471 )
 path_to_pickers = "CanvasLayer/Pickers"
 
 [node name="Sprite" type="Sprite" parent="Spawner"]
+scale = Vector2( 2, 2 )
 
 [node name="Area2D" type="Area2D" parent="Spawner"]
 

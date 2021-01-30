@@ -155,7 +155,6 @@ script = ExtResource( 6 )
 how_many = 1
 item = ExtResource( 9 )
 compatible_tile_ids = [ 1 ]
-shade_color = Color( 0.882353, 0.819608, 0.819608, 0.54902 )
 resize_texture = true
 
 [node name="Label" type="Label" parent="CanvasLayer/Pickers/Picker_01"]
@@ -184,7 +183,6 @@ script = ExtResource( 6 )
 how_many = 4
 item = ExtResource( 15 )
 compatible_tile_ids = [ 1 ]
-shade_color = Color( 0.882353, 0.819608, 0.819608, 0.54902 )
 resize_texture = true
 
 [node name="Label" type="Label" parent="CanvasLayer/Pickers/Picker_02"]

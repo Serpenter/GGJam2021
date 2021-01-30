@@ -131,6 +131,7 @@ modulate_selector = Color( 1, 1, 1, 0.376471 )
 path_to_pickers = "CanvasLayer/Pickers"
 
 [node name="Sprite" type="Sprite" parent="Spawner"]
+scale = Vector2( 2, 2 )
 
 [node name="Area2D" type="Area2D" parent="Spawner"]
 
@@ -191,7 +192,6 @@ script = ExtResource( 4 )
 how_many = 2
 item = ExtResource( 12 )
 compatible_tile_ids = [ 1 ]
-shade_color = Color( 0.882353, 0.819608, 0.819608, 0.54902 )
 resize_texture = true
 
 [node name="Label" type="Label" parent="CanvasLayer/Pickers/Picker_01"]
