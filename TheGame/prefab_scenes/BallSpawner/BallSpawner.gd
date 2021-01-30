@@ -45,6 +45,7 @@ var default_ball_spawn_pos = Vector2(0,0)
 func _ready():
     label.visible = true
     update_label()
+    set_end_position(initial_impulse)
     spawn_ball()
     pass # Replace with function body.
 
@@ -129,7 +130,7 @@ func load_state(state):
 func set_default_initial_impulse():
     var angle = 0.5 * (max_angle + min_angle) * PI / 180
     var end_position = Vector2(min_length, 0).rotated(angle)
-    set_end_position(end_position)
+    set_end_position(initial_impulse)
 
 
 func get_impulse():
