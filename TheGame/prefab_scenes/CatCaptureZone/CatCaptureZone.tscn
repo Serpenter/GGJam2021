@@ -1,15 +1,46 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://prefab_scenes/obstacles/ItemUIData.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/cat_floor.png" type="Texture" id=2]
 [ext_resource path="res://prefab_scenes/CatCaptureZone/CatCaptureZone.gd" type="Script" id=3]
 [ext_resource path="res://assets/images/cat_capture_zone_icon.png" type="Texture" id=4]
 [ext_resource path="res://assets/images/cat_logo.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/circle_grad.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 64, 64 )
 
-[node name="CatCaptureZone" type="Node2D"]
+[sub_resource type="ParticlesMaterial" id=2]
+emission_shape = 2
+emission_box_extents = Vector3( 256, 256, 1 )
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 50.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+color = Color( 0.823529, 0.823529, 0.172549, 0.901961 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 2
+emission_box_extents = Vector3( 256, 256, 1 )
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 50.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.5
+orbit_velocity_random = 0.0
+color = Color( 1.05, 1.05, 0, 0.9 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 57.8564, 58.1457 )
+
+[node name="CatCaptureZone" type="Node2D" groups=[
+"CaptureZones",
+"Resetable",
+]]
 script = ExtResource( 3 )
 
 [node name="ItemUIData" type="Node2D" parent="."]
@@ -30,5 +61,29 @@ texture = ExtResource( 5 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 visible = false
 shape = SubResource( 1 )
+
+[node name="InZoneParticles" type="Particles2D" parent="."]
+scale = Vector2( 0.2, 0.2 )
+emitting = false
+amount = 16
+randomness = 0.51
+process_material = SubResource( 2 )
+texture = ExtResource( 7 )
+
+[node name="VictoryParticles" type="Particles2D" parent="."]
+scale = Vector2( 0.2, 0.2 )
+emitting = false
+amount = 32
+randomness = 0.51
+process_material = SubResource( 3 )
+texture = ExtResource( 7 )
+
+[node name="Area2D" type="Area2D" parent="."]
+gravity_point = true
+gravity_vec = Vector2( 0, 0 )
+gravity = 980.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 4 )
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_InteractionArea_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="." method="_on_InteractionArea_body_exited"]

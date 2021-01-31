@@ -64,6 +64,8 @@ func _ready():
     victory_timer_label.visible = false
     _on_cat_changed()
     set_time_scale(1.0)
+    get_node("CanvasLayer/OnFailPopup/FailLabel").text = "Time has run out!"
+    get_node("CanvasLayer/FlatCatInfo/Cats").text = "Cats"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -76,6 +78,7 @@ func on_victory():
     if has_won or has_lost:
         return
     has_won = true
+    set_time_scale(0.0)
     victory_popup.visible = true
 
 
@@ -127,11 +130,17 @@ func check_win_condition():
             victory_timer.start()
             victory_timer_label.visible = true
             update_victory_timer_label()
+            var capture_list = get_tree().get_nodes_in_group("CaptureZones")
+            for zone in capture_list:
+                zone._on_victory_timer(true)
     #        on_victory()
             return
     else:
         victory_timer.stop()
         victory_timer_label.visible = false
+        var capture_list = get_tree().get_nodes_in_group("CaptureZones")
+        for zone in capture_list:
+            zone._on_victory_timer(false)
 
     if free_cats >= free_cats_to_fail\
     and dead_cats >= dead_cats_to_fail:
@@ -297,5 +306,17 @@ func _on_Fast_pressed():
     set_time_scale(fast_timescale)
 
 
+
 func _on_CheckBox_toggled(button_pressed):
     User.disable_tile_selection = button_pressed
+
+func _input(event):
+
+    if event is InputEventKey\
+    and event.pressed:
+        if event.scancode == KEY_SPACE:
+            _on_Start_pressed()
+        elif event.scancode == KEY_R:
+            _on_Restart_pressed()
+        elif event.scancode == KEY_F:
+            _on_Fast_pressed()
