@@ -18,7 +18,8 @@ var current_speed = Vector2(0,0)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
     if Input.is_mouse_button_pressed(3):
-        set_global_position(get_global_mouse_position())
+        #set_global_position(get_global_mouse_position())
+        set_position(get_global_mouse_position())
 
     current_speed.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
     current_speed.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
