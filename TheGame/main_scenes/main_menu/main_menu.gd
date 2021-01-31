@@ -111,4 +111,4 @@ func _on_controls_pressed():
 
 
 func _on_sandbox_pressed():
-    GSceneManager.goto_scene_wloader("res://main_scenes/levels/level_k_01/LevelK01.tscn")
+    GSceneManager.goto_scene_wloader("res://main_scenes/levels/level_sandbox/LevelSandbox.tscn")
