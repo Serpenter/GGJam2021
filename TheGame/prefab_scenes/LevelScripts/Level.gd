@@ -19,6 +19,8 @@ export(int) var dead_cats_to_bad_level = 1
 
 export(String) var next_level_path = "res://main_scenes/main_menu/main_menu.tscn"
 
+export(float) var fast_timescale = 2.0
+
 # Cat stats
 var free_cats = 0
 var captured_cats = 0
@@ -60,7 +62,7 @@ func _ready():
     limit_timer_label.visible = false
     victory_timer_label.visible = false
     _on_cat_changed()
-    pass # Replace with function body.
+    set_time_scale(1.0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -144,9 +146,11 @@ func _extra_fail_condition():
 
 
 func _on_Start_pressed():
+    set_time_scale(1.0)
+
     if is_launched:
         return
-        
+
     if User.current_control != 0:
         return
 
@@ -180,7 +184,8 @@ func _on_Start_pressed():
     for launchable in launchable_list:
         launchable.initial_launch()
 
-    launch_button.disabled = true
+    # changed to true to cintrol timewarp
+    launch_button.disabled = false
     reset_button.disabled = false
     pause_button.disabled = false
     User.current_control = 1
@@ -191,6 +196,7 @@ func _on_Pause_pressed():
 
 
 func _on_Restart_pressed():
+    set_time_scale(1.0)
     print(User.current_control)
     if not (User.current_control == 0 or User.current_control == 1):
         return
@@ -279,3 +285,12 @@ func _on_Exit_pressed():
 
 func _on_NextLevel_pressed():
     GSceneManager.goto_scene_wloader(next_level_path)
+
+func set_time_scale(time_scale_value):
+    Engine.time_scale = time_scale_value
+
+
+func _on_Fast_pressed():
+    if not is_launched:
+        _on_Start_pressed()
+    set_time_scale(fast_timescale)

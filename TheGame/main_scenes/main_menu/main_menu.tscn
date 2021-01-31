@@ -1,11 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://main_scenes/main_menu/main_menu.gd" type="Script" id=1]
 [ext_resource path="res://resources/ui_theme_two.tres" type="Theme" id=2]
 [ext_resource path="res://prefab_scenes/SpaceBackground/SpaceBackground.tscn" type="PackedScene" id=3]
 [ext_resource path="res://prefab_scenes/MainMenuShip/ShipAnimation.tscn" type="PackedScene" id=4]
-[ext_resource path="res://resources/ui_theme_three.tres" type="Theme" id=5]
 [ext_resource path="res://assets/fonts/electron 8f.ttf" type="DynamicFontData" id=6]
+
 [sub_resource type="DynamicFont" id=1]
 size = 20
 font_data = ExtResource( 6 )
@@ -37,11 +37,11 @@ __meta__ = {
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
 margin_right = 1024.0
-margin_bottom = 864.0
+margin_bottom = 600.0
 
 [node name="SpacerL" type="Control" parent="CanvasLayer/MarginContainer/HBoxContainer"]
 margin_right = 338.0
-margin_bottom = 864.0
+margin_bottom = 600.0
 grow_horizontal = 2
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -49,18 +49,16 @@ size_flags_horizontal = 3
 [node name="MenuButtons" type="VBoxContainer" parent="CanvasLayer/MarginContainer/HBoxContainer"]
 margin_left = 342.0
 margin_right = 680.0
-margin_bottom = 864.0
+margin_bottom = 600.0
 grow_vertical = 2
 size_flags_horizontal = 3
 alignment = 1
 
 [node name="play_game" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons"]
-margin_top = 360.0
+margin_top = 228.0
 margin_right = 338.0
-
 margin_bottom = 261.0
 mouse_filter = 1
-
 theme = ExtResource( 2 )
 text = "Game"
 __meta__ = {
@@ -80,12 +78,10 @@ __meta__ = {
 }
 
 [node name="level_selector" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons"]
-margin_top = 397.0
+margin_top = 265.0
 margin_right = 338.0
-
 margin_bottom = 298.0
 mouse_filter = 1
-
 theme = ExtResource( 2 )
 text = "Level selector"
 __meta__ = {
@@ -93,12 +89,10 @@ __meta__ = {
 }
 
 [node name="options_selector" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons"]
-margin_top = 434.0
+margin_top = 302.0
 margin_right = 338.0
-
 margin_bottom = 335.0
 mouse_filter = 1
-
 theme = ExtResource( 2 )
 text = "Options"
 __meta__ = {
@@ -106,12 +100,10 @@ __meta__ = {
 }
 
 [node name="exit" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons"]
-margin_top = 471.0
+margin_top = 339.0
 margin_right = 338.0
-
 margin_bottom = 372.0
 mouse_filter = 1
-
 theme = ExtResource( 2 )
 text = "Exit"
 __meta__ = {
@@ -144,37 +136,30 @@ size_flags_stretch_ratio = 2.0
 alignment = 1
 
 [node name="Return" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/Options"]
-
 margin_top = 282.0
 margin_right = 253.0
 margin_bottom = 318.0
 mouse_filter = 1
-
 theme = ExtResource( 2 )
 text = "Return to menu"
 
 [node name="Sound" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/Options"]
-
 margin_top = 282.0
 margin_right = 253.0
 margin_bottom = 318.0
 mouse_filter = 1
-
 theme = ExtResource( 2 )
 text = "Sound:on"
 
 [node name="Music" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/Options"]
-
 margin_top = 282.0
 margin_right = 253.0
 margin_bottom = 318.0
 mouse_filter = 1
-
 theme = ExtResource( 2 )
 text = "Music:on"
 
 [node name="Label" type="Label" parent="CanvasLayer/MarginContainer/HBoxContainer/Options"]
-
 margin_top = 352.0
 margin_right = 354.0
 margin_bottom = 622.0
@@ -192,10 +177,8 @@ Cat Plays Video Game, Spaceship Adventure - WaxTerK, https://waxterk.newgrounds.
 [node name="SpacerR" type="Control" parent="CanvasLayer/MarginContainer/HBoxContainer"]
 margin_left = 684.0
 margin_right = 1024.0
-
 margin_bottom = 600.0
 mouse_filter = 1
-
 size_flags_horizontal = 3
 [connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons/play_game" to="." method="_on_play_game_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons/tutorial" to="." method="_on_tutorial_pressed"]
