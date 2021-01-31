@@ -51,6 +51,7 @@ onready var limit_timer = $LimitTimer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+    MusicController.play_game_music()
     pause_button.disabled = true
     reset_button.disabled = true
     limit_timer_label.visible = false
@@ -179,6 +180,9 @@ func _on_Pause_pressed():
 
 
 func _on_Restart_pressed():
+    print(User.current_control)
+    if not (User.current_control == 0 or User.current_control == 1):
+        return
     _on_level_restart()
 
 

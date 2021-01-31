@@ -13,6 +13,7 @@ onready var menu_ui = $CanvasLayer/MarginContainer/HBoxContainer/MenuButtons
 var level_selector_prefab = preload("res://prefab_scenes/LevelSelectorButton/LevelSelectorButton.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
+    MusicController.play_main_menu_music()
     pass
 
     if len(level_names) != len(level_path):

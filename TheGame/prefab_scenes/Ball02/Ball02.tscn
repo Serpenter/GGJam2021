@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/images/Robot Body.png" type="Texture" id=1]
 [ext_resource path="res://prefab_scenes/Ball02/Ball02.gd" type="Script" id=2]
 [ext_resource path="res://assets/images/Robot Face Expression Good.png" type="Texture" id=3]
 [ext_resource path="res://assets/images/Robot Face.png" type="Texture" id=4]
 [ext_resource path="res://assets/images/Robot Face Expression Sad.png" type="Texture" id=5]
+[ext_resource path="res://assets/sounds/hit_2.wav" type="AudioStream" id=6]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
@@ -73,6 +74,9 @@ shape = SubResource( 3 )
 
 [node name="FaceTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
 [connection signal="body_entered" from="." to="." method="_on_Ball_body_entered"]
 [connection signal="mouse_entered" from="InteractionArea" to="." method="_on_InteractionArea_mouse_entered"]
 [connection signal="mouse_exited" from="InteractionArea" to="." method="_on_InteractionArea_mouse_exited"]
