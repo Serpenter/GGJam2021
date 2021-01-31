@@ -1,15 +1,15 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://prefab_scenes/CatFood/CatFood.gd" type="Script" id=1]
-[ext_resource path="res://assets/images/cat_food_pack.png" type="Texture" id=2]
-[ext_resource path="res://assets/images/cat_food_logo_1.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/Food.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/Fish.png" type="Texture" id=3]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
 bounce = 1.0
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 23.4615, 28.9088 )
+extents = Vector2( 46, 54 )
 
 [node name="CatFood" type="RigidBody2D" groups=[
 "CatFood",
@@ -34,7 +34,6 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.996078, 0.752941, 0.490196, 1 )
-scale = Vector2( 0.5, 0.5 )
 z_index = 1
 texture = ExtResource( 2 )
 __meta__ = {
@@ -42,8 +41,8 @@ __meta__ = {
 }
 
 [node name="Logo" type="Sprite" parent="."]
-modulate = Color( 0.32549, 0.164706, 0.0196078, 1 )
-scale = Vector2( 0.5, 0.5 )
+modulate = Color( 0.164706, 0.164706, 0.439216, 1 )
+rotation = 2.35619
 z_index = 1
 texture = ExtResource( 3 )
 __meta__ = {

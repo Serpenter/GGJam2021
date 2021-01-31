@@ -12,6 +12,8 @@ onready var current_ball = null
 onready var ball_spawn_timer = $BallSpawnTimer
 onready var ball_launch_timer = $BallLaunchTimer
 onready var label = $Labels/Label
+onready var prompt_arrow = $PromptArrow
+onready var animaton_player = $AnimationPlayer
 
 export var min_angle = 0
 export var max_angle = 360
@@ -43,9 +45,19 @@ var default_ball_spawn_pos = Vector2(0,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+    if is_input_disabled:
+        arrow_sprite.modulate = Color.red
+        line.modulate = Color.red
+        line.modulate.a = 1
+        prompt_arrow.visible = false
+        set_end_position(initial_impulse)
+    else:
+        set_end_position(Vector2.ZERO)
+        animaton_player.play("idle")
+
     label.visible = true
     update_label()
-    set_end_position(initial_impulse)
+    
     spawn_ball()
     pass # Replace with function body.
 
@@ -136,6 +148,7 @@ func set_default_initial_impulse():
 func get_impulse():
     if not is_input_provided:
         print("Getting impulse without input")
+
     var impulse = line.points[1] if is_user_input_allowed else initial_impulse
     return impulse
 
@@ -147,8 +160,10 @@ func process_mouse_input():
     if Input.is_action_just_pressed("left_click") \
         and not is_just_received_control_command:
         is_input_provided = true
+        prompt_arrow.visible = false
         is_controlled = false
         User.current_control = 0
+        initial_impulse = get_impulse()
         
     is_just_received_control_command = false
     
