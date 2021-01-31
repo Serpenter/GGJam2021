@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/images/white.png" type="Texture" id=3]
 [ext_resource path="res://prefab_scenes/obstacles/ItemUIData.gd" type="Script" id=4]
 [ext_resource path="res://assets/sounds/beep_1.wav" type="AudioStream" id=5]
-[ext_resource path="res://assets/images/face_normal.png" type="Texture" id=6]
+[ext_resource path="res://assets/images/key_panel_square_icon.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
@@ -43,7 +43,7 @@ forcefield_name = "red"
 script = ExtResource( 4 )
 item_ui_size = Vector2( 64, 64 )
 item_ui_texture = ExtResource( 6 )
-item_ui_color = Color( 0.607843, 0.121569, 0.647059, 1 )
+item_ui_color = Color( 1, 0, 0, 1 )
 
 [node name="InteractionArea" type="Area2D" parent="."]
 collision_layer = 4

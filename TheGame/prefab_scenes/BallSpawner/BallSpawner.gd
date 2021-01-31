@@ -18,17 +18,17 @@ onready var animaton_player = $AnimationPlayer
 export var min_angle = 0
 export var max_angle = 360
 
-export var min_length = 50
-export var max_length = 350
+export var min_length = 10
+export var max_length = 500
 
 export(Vector2) var initial_impulse
 
 export var is_input_disabled = false
 export var is_input_provided = false
 export var is_user_input_allowed = true
-export var infinite_ball_spawn = true
+export var infinite_ball_spawn = false
 
-export var max_balls_number = 10
+export var max_balls_number = 1
 var spawned_balls = 0
 var launched_balls = 0
 
@@ -42,6 +42,9 @@ var is_just_received_control_command = false
 var initial_state = null
 
 var default_ball_spawn_pos = Vector2(0,0)
+
+func get_item_ui_data():
+    return $ItemUIData
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

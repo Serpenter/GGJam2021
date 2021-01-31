@@ -27,6 +27,10 @@ Forcefields="*res://global_scripts/forcefields.gd"
 User="*res://global_scripts/user.gd"
 MusicController="*res://main_scenes/music_controller/MusicController.tscn"
 
+[display]
+
+window/size/fullscreen=true
+
 [input]
 
 ui_left={
@@ -81,3 +85,7 @@ right_click={
 [physics]
 
 2d/default_gravity=0
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

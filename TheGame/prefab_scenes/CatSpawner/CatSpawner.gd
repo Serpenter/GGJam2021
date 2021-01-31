@@ -39,6 +39,11 @@ var initial_state = null
 export var default_end_pos = Vector2(1, 0)
 var default_ball_spawn_pos = Vector2(0,0)
 
+
+func get_item_ui_data():
+    return $ItemUIData
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
     label.visible = false
