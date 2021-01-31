@@ -72,7 +72,8 @@ func _on_Ball_body_entered(body):
     hide_all_faces()
     face_sad_sprite.visible = true
     face_timer.start()
-    hit_sound.play()
+    if MusicController.is_sound_on:
+        hit_sound.play()
 
 func set_face_color(color):
     face_normal_sprite.modulate = color

@@ -6,6 +6,8 @@ onready var game_music_2 = $GameMusic2
 onready var main_menu_music = $MainMenuMusic
 
 export var is_music_on = true
+export var is_sound_on = true
+
 var is_playing_main_menu_music = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,6 +17,16 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #    pass
+
+
+func toggle_music(is_main_menu = true):
+    if is_music_on:
+        disable_music()
+    else:
+        enable_music(is_main_menu)
+        
+func toggle_sound():
+    is_sound_on = not is_sound_on
 
 func disable_music():
     is_music_on = false

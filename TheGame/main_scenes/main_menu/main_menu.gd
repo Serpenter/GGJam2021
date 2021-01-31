@@ -9,10 +9,14 @@ export(Array, String) var level_path
 
 onready var levels_ui = $CanvasLayer/MarginContainer/HBoxContainer/Levels
 onready var menu_ui = $CanvasLayer/MarginContainer/HBoxContainer/MenuButtons
+onready var options_ui = $CanvasLayer/MarginContainer/HBoxContainer/Options
+onready var options_music_button = $CanvasLayer/MarginContainer/HBoxContainer/Options/Music
+onready var options_sound_button = $CanvasLayer/MarginContainer/HBoxContainer/Options/Sound
 
 var level_selector_prefab = preload("res://prefab_scenes/LevelSelectorButton/LevelSelectorButton.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
+    update_options_visualization()
     MusicController.play_main_menu_music()
     pass
 
@@ -57,3 +61,30 @@ func _on_level_selector_pressed():
 func _on_Return_pressed():
     menu_ui.show()
     levels_ui.hide()
+    options_ui.hide()
+
+
+func _on_options_selector_pressed():
+    menu_ui.hide()
+    options_ui.show()
+
+func update_options_visualization():
+    if MusicController.is_music_on:
+        options_music_button.text = "Music: ON"
+    else:
+        options_music_button.text = "Music: OFF"
+        
+    if MusicController.is_sound_on:
+        options_sound_button.text = "Sound: ON"
+    else:
+        options_sound_button.text = "Sound: OFF"
+
+
+func _on_Sound_pressed():
+    MusicController.toggle_sound()
+    update_options_visualization()
+
+
+func _on_Music_pressed():
+    MusicController.toggle_music()
+    update_options_visualization()

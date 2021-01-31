@@ -157,7 +157,8 @@ func on_cat_capture_box_entered(cat_box):
     set_global_position(cat_box.position)
     get_tree().call_group("CatSubscriber", "_on_cat_changed")
     set_appropriate_face()
-    long_meow.play()
+    if MusicController.is_sound_on:
+        long_meow.play()
     
 func on_cat_capture_zone_exited(capture_zone):
     capture_zones_sum -= 1
@@ -187,6 +188,8 @@ func disable_all_colision_layers_and_masks():
     
 
 func play_random_meow():
+    if not MusicController.is_sound_on:
+        return
     rng.randomize()
     var meow_number = rng.randi_range(1,4)
     meow_dict[meow_number].play()

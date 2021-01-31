@@ -46,4 +46,5 @@ func _on_InteractionArea_body_entered(body):
     for group_name in activation_groups:
         if body.is_in_group(group_name) and body.has_method("on_forcefield_panel_activation"):
             body.on_forcefield_panel_activation(self)
-            activation_sound.play()
+            if MusicController.is_sound_on:
+                activation_sound.play()
