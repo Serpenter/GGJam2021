@@ -184,12 +184,19 @@ __meta__ = {
 }
 
 [node name="Start" type="Button" parent="CanvasLayer/GameFlowControls"]
-margin_left = 672.0
-margin_right = 768.0
+margin_right = 96.0
 margin_bottom = 89.0
 theme = ExtResource( 14 )
 custom_fonts/font = ExtResource( 16 )
 text = "P"
+
+[node name="Fast" type="Button" parent="CanvasLayer/GameFlowControls"]
+margin_left = 100.0
+margin_right = 196.0
+margin_bottom = 89.0
+theme = ExtResource( 14 )
+custom_fonts/font = ExtResource( 16 )
+text = "F"
 
 [node name="Pause" type="Button" parent="CanvasLayer/GameFlowControls"]
 visible = false
@@ -201,8 +208,8 @@ toggle_mode = true
 text = "Pause"
 
 [node name="Restart" type="Button" parent="CanvasLayer/GameFlowControls"]
-margin_left = 772.0
-margin_right = 868.0
+margin_left = 200.0
+margin_right = 296.0
 margin_bottom = 89.0
 theme = ExtResource( 14 )
 custom_fonts/font = ExtResource( 16 )
@@ -398,6 +405,7 @@ default_end_pos = Vector2( 0, 0 )
 [connection signal="input_event" from="Spawner/Area2D" to="Spawner" method="_on_Area2D_input_event"]
 [connection signal="pressed" from="CanvasLayer/Menu/MainMenu" to="." method="_on_MainMenu_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameFlowControls/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameFlowControls/Fast" to="." method="_on_Fast_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameFlowControls/Pause" to="." method="_on_Pause_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameFlowControls/Restart" to="." method="_on_Restart_pressed"]
 [connection signal="pressed" from="CanvasLayer/OnVictoryPopup/Restart" to="." method="_on_Restart_pressed"]
