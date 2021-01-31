@@ -14,6 +14,7 @@ font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 36
+
 use_filter = true
 extra_spacing_char = 1
 font_data = ExtResource( 6 )
@@ -252,21 +253,21 @@ Cat Plays Video Game, Spaceship Adventure - WaxTerK, https://waxterk.newgrounds.
 
 [node name="Controls" type="VBoxContainer" parent="CanvasLayer/MarginContainer/HBoxContainer"]
 visible = false
-margin_left = 207.0
-margin_right = 816.0
+margin_left = 684.0
+margin_right = 985.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 alignment = 1
 
 [node name="Control2" type="Control" parent="CanvasLayer/MarginContainer/HBoxContainer/Controls"]
-margin_right = 609.0
+margin_right = 301.0
 margin_bottom = 127.0
 size_flags_vertical = 3
 
 [node name="Return2" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/Controls"]
 margin_top = 131.0
-margin_right = 609.0
+margin_right = 301.0
 margin_bottom = 164.0
 mouse_filter = 1
 theme = ExtResource( 2 )
@@ -274,7 +275,7 @@ text = "Return to menu"
 
 [node name="HSeparator2" type="HSeparator" parent="CanvasLayer/MarginContainer/HBoxContainer/Controls"]
 margin_top = 168.0
-margin_right = 609.0
+margin_right = 301.0
 margin_bottom = 172.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -282,7 +283,7 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="CanvasLayer/MarginContainer/HBoxContainer/Controls"]
 margin_top = 176.0
-margin_right = 609.0
+margin_right = 301.0
 margin_bottom = 209.0
 theme = ExtResource( 2 )
 text = "Controls"
@@ -294,7 +295,7 @@ __meta__ = {
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer/HBoxContainer/Controls"]
 margin_top = 213.0
-margin_right = 609.0
+margin_right = 301.0
 margin_bottom = 468.0
 size_flags_horizontal = 3
 size_flags_vertical = 11
@@ -317,7 +318,7 @@ __meta__ = {
 
 [node name="Control" type="Control" parent="CanvasLayer/MarginContainer/HBoxContainer/Controls"]
 margin_top = 472.0
-margin_right = 609.0
+margin_right = 301.0
 margin_bottom = 600.0
 size_flags_vertical = 3
 
