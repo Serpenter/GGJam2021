@@ -3,7 +3,7 @@
 [ext_resource path="res://prefab_scenes/obstacles/ItemUIData.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/cat_floor.png" type="Texture" id=2]
 [ext_resource path="res://prefab_scenes/CatCaptureZone/CatCaptureZone.gd" type="Script" id=3]
-[ext_resource path="res://assets/images/cat_food_logo_1.png" type="Texture" id=4]
+[ext_resource path="res://assets/images/cat_capture_zone_icon.png" type="Texture" id=4]
 [ext_resource path="res://assets/images/cat_logo.png" type="Texture" id=5]
 [ext_resource path="res://assets/images/circle_grad.png" type="Texture" id=7]
 
@@ -47,7 +47,7 @@ script = ExtResource( 3 )
 script = ExtResource( 1 )
 item_ui_size = Vector2( 64, 64 )
 item_ui_texture = ExtResource( 4 )
-item_ui_color = Color( 0.921569, 1, 0, 1 )
+item_ui_color = Color( 1, 1, 1, 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )

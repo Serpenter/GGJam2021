@@ -11,6 +11,7 @@ var initial_state
 func get_item_ui_data():
     return $ItemUIData
 
+
 func save_initial_state():
     initial_state = {
         "initial_rotation": rotation

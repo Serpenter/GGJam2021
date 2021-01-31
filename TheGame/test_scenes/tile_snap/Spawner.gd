@@ -120,6 +120,9 @@ func clear_selection():
 func _handle_event_with_item(event):
 
     if event.button_index == BUTTON_LEFT:
+        
+        if User.disable_tile_selection:
+            return
 
         if not target_tile_id in current_picker.compatible_tile_ids\
             or target_tile_map_pos in obstacles_dict:
@@ -149,6 +152,9 @@ func _handle_event_without_item(event):
     
     if User.current_control != 0:
         return
+        
+    if User.disable_tile_selection:
+            return
 
     if target_tile_map_pos in obstacles_dict and event.button_index in [1, 2]:
 

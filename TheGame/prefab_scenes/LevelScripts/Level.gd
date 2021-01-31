@@ -56,6 +56,7 @@ var has_lost = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+    User.disable_tile_selection = false
     MusicController.play_game_music()
     pause_button.disabled = true
     reset_button.disabled = true
@@ -304,6 +305,10 @@ func _on_Fast_pressed():
         _on_Start_pressed()
     set_time_scale(fast_timescale)
 
+
+
+func _on_CheckBox_toggled(button_pressed):
+    User.disable_tile_selection = button_pressed
 
 func _input(event):
 

@@ -9,6 +9,8 @@ enum UserControl {
     OBSTACLE_PLACEMENT = 3,
 }
 
+var disable_tile_selection = false
+
 var current_control = UserControl.NONE_ON_START
 
 # Called when the node enters the scene tree for the first time.
