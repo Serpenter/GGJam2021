@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var ball_prefab = preload("res://prefab_scenes/CatDummy/CatDummy.tscn")
+onready var food_particles_prefab = preload("res://prefab_scenes/FoodParticles/FoodParticles.tscn")
 
 export(bool) var is_alignable = true
 
@@ -227,6 +228,13 @@ func spawn_ball():
     spawned_balls += 1
 
 func spawn_additional_cat(cat_global_position, cat_impulse, cat_rot, cat_rot_speed):
+    
+    var new_particles = food_particles_prefab.instance()
+    ball_spawn.add_child(new_particles)
+    new_particles.set_global_position(cat_global_position)
+    new_particles.emitting = true
+
+
     var new_cat = ball_prefab.instance()
     ball_spawn.add_child(new_cat)
     new_cat.sleeping = false

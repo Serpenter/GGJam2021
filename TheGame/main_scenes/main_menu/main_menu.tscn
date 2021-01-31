@@ -40,9 +40,9 @@ size_flags_horizontal = 3
 alignment = 1
 
 [node name="play_game" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons"]
-margin_top = 246.0
+margin_top = 228.0
 margin_right = 338.0
-margin_bottom = 279.0
+margin_bottom = 261.0
 theme = ExtResource( 2 )
 text = "Game"
 __meta__ = {
@@ -61,19 +61,29 @@ __meta__ = {
 }
 
 [node name="level_selector" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons"]
-margin_top = 283.0
+margin_top = 265.0
 margin_right = 338.0
-margin_bottom = 316.0
+margin_bottom = 298.0
 theme = ExtResource( 2 )
 text = "Level selector"
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="exit" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons"]
-margin_top = 320.0
+[node name="options_selector" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons"]
+margin_top = 302.0
 margin_right = 338.0
-margin_bottom = 353.0
+margin_bottom = 335.0
+theme = ExtResource( 2 )
+text = "Options"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="exit" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons"]
+margin_top = 339.0
+margin_right = 338.0
+margin_bottom = 372.0
 theme = ExtResource( 2 )
 text = "Exit"
 __meta__ = {
@@ -95,6 +105,45 @@ margin_bottom = 318.0
 theme = ExtResource( 2 )
 text = "Return to menu"
 
+[node name="Options" type="VBoxContainer" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+visible = false
+margin_left = 514.0
+margin_right = 767.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Return" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/Options"]
+margin_top = 282.0
+margin_right = 253.0
+margin_bottom = 318.0
+theme = ExtResource( 2 )
+text = "Return to menu"
+
+[node name="Sound" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/Options"]
+margin_top = 282.0
+margin_right = 253.0
+margin_bottom = 318.0
+theme = ExtResource( 2 )
+text = "Sound:on"
+
+[node name="Music" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/Options"]
+margin_top = 282.0
+margin_right = 253.0
+margin_bottom = 318.0
+theme = ExtResource( 2 )
+text = "Music:on"
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/HBoxContainer/Options"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Credits
+Sound:
+Joseph Sardin, https://bigsoundbank.com
+Music:
+Cat in Space - mutantleg, https://opengameart.org/content/cat-in-space
+Cat Plays Video Game, Spaceship Adventure - WaxTerK, https://waxterk.newgrounds.com/"
+
 [node name="SpacerR" type="Control" parent="CanvasLayer/MarginContainer/HBoxContainer"]
 margin_left = 684.0
 margin_right = 1024.0
@@ -103,5 +152,9 @@ size_flags_horizontal = 3
 [connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons/play_game" to="." method="_on_play_game_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons/tutorial" to="." method="_on_tutorial_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons/level_selector" to="." method="_on_level_selector_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons/options_selector" to="." method="_on_options_selector_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons/exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/Levels/Return" to="." method="_on_Return_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/Options/Return" to="." method="_on_Return_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/Options/Sound" to="." method="_on_Sound_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/Options/Music" to="." method="_on_Music_pressed"]

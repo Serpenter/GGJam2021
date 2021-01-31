@@ -1,11 +1,29 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/images/white_big.png" type="Texture" id=1]
+[ext_resource path="res://assets/images/Screen Cover.png" type="Texture" id=1]
 [ext_resource path="res://assets/images/triangle_64x64.png" type="Texture" id=2]
 [ext_resource path="res://prefab_scenes/BallSpawner/BallSpawner.gd" type="Script" id=3]
+[ext_resource path="res://assets/images/Screen.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 50.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PromptArrow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -64 ), Vector2( 0, -128 ), Vector2( 0, -64 ) ]
+}
 
 [node name="BallSpawner" type="Node2D" groups=[
 "Resetable",
@@ -14,10 +32,21 @@ radius = 50.0
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 0.243137, 0.243137, 0.243137, 1 )
 scale = Vector2( 0.5, 0.5 )
 z_index = 2
 texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="MonitorSprite" type="Sprite" parent="."]
+position = Vector2( 0, 0.280612 )
+scale = Vector2( 0.346937, 0.535077 )
+z_index = 2
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PoolVector2Array( 0, 0, -100, 0 )
@@ -32,8 +61,14 @@ position = Vector2( -100, 0 )
 rotation = -1.5708
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="InteractionArea" type="Area2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 position = Vector2( 0, -0.140306 )
@@ -50,26 +85,39 @@ wait_time = 3.0
 one_shot = true
 
 [node name="BallSpawn" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Labels" type="Node2D" parent="."]
-position = Vector2( 0, -20 )
+position = Vector2( 0.530327, 0.506096 )
 scale = Vector2( 2, 2 )
 z_index = 2
 
 [node name="Label" type="Label" parent="Labels"]
 modulate = Color( 0.109804, 1, 0, 1 )
-margin_left = -20.2679
-margin_top = -6.45901
-margin_right = 19.7321
-margin_bottom = 24.541
+margin_left = -16.0
+margin_top = -6.0
+margin_right = 16.0
+margin_bottom = 26.0
 text = "1
 "
 align = 1
-valign = 1
 uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="PromptArrow" type="Sprite" parent="."]
+modulate = Color( 0.113725, 0.858824, 0.113725, 0.784314 )
+position = Vector2( 0, -92.0241 )
+rotation = 3.14159
+scale = Vector2( 1, 0.75 )
+texture = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+method_call_mode = 1
+anims/idle = SubResource( 2 )
 [connection signal="input_event" from="InteractionArea" to="." method="_on_InteractionArea_input_event"]
 [connection signal="mouse_entered" from="InteractionArea" to="." method="_on_InteractionArea_mouse_entered"]
 [connection signal="mouse_exited" from="InteractionArea" to="." method="_on_InteractionArea_mouse_exited"]
