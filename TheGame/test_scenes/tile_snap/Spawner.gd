@@ -56,7 +56,7 @@ func _on_item_selected(item_pfb, picker):
     $Sprite.self_modulate = picker.self_modulate
     $Sprite.modulate = modulate_selector
     $Sprite.show()
-    current_prefab_rotation = 0.0
+    $Sprite.rotation_degrees = current_prefab_rotation
     current_prefab_rotation_step = picker.item_ui_rotation_step
 
     current_prefab = item_pfb
@@ -78,6 +78,8 @@ func _on_item_selected(item_pfb, picker):
 
 func _input(event):
 
+    var pickers = get_parent().get_node(path_to_pickers).get_children()
+
     if event is InputEventKey\
     and event.pressed:
         if event.scancode == KEY_Q:
@@ -86,6 +88,12 @@ func _input(event):
         if event.scancode == KEY_E:
             current_prefab_rotation += current_prefab_rotation_step
             $Sprite.rotation_degrees = current_prefab_rotation
+        if event.scancode > KEY_0 and event.scancode <= KEY_9:
+            var index = event.scancode - KEY_1
+            if index < len(pickers):
+                var _picker = pickers[index]
+                if _picker and _picker.is_items_available():
+                    _on_item_selected(_picker.item, _picker)
 
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
@@ -145,6 +153,7 @@ func _handle_event_without_item(event):
     if target_tile_map_pos in obstacles_dict and event.button_index in [1, 2]:
 
         var obj_handle = obstacles_dict.get(target_tile_map_pos)
+        current_prefab_rotation = obj_handle.object_itself.rotation_degrees
         obstacles_dict.erase(target_tile_map_pos)
 
         var node_to_erase = obj_handle.object_itself

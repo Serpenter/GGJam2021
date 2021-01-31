@@ -212,15 +212,13 @@ rotation = 3.14159
 [node name="ForcefieldPanel3" parent="Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 192, 192 )
 
-[node name="ForcefieldPanel6" parent="Obstacles" instance=ExtResource( 25 )]
-position = Vector2( -315.464, 186.83 )
-
 [node name="Spawner" type="Position2D" parent="."]
 script = ExtResource( 5 )
 modulate_selector = Color( 1, 1, 1, 0.376471 )
 path_to_pickers = "CanvasLayer/Pickers"
 
 [node name="Sprite" type="Sprite" parent="Spawner"]
+scale = Vector2( 2, 2 )
 
 [node name="Area2D" type="Area2D" parent="Spawner"]
 
@@ -281,7 +279,6 @@ script = ExtResource( 4 )
 how_many = 2
 item = ExtResource( 12 )
 compatible_tile_ids = [ 1 ]
-shade_color = Color( 0.882353, 0.819608, 0.819608, 0.54902 )
 resize_texture = true
 
 [node name="Label" type="Label" parent="CanvasLayer/Pickers/Picker_01"]
@@ -387,23 +384,25 @@ margin_left = -38.0
 margin_top = -31.0
 margin_right = 38.0
 margin_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource( 27 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VictoryLabel" type="Label" parent="CanvasLayer/OnVictoryPopup"]
-margin_right = 76.0
-margin_bottom = 14.0
+margin_right = 216.0
+margin_bottom = 33.0
 theme = ExtResource( 27 )
 text = "Well done!"
 align = 1
 valign = 1
 
 [node name="Restart" type="Button" parent="CanvasLayer/OnVictoryPopup"]
-margin_top = 18.0
-margin_right = 76.0
-margin_bottom = 38.0
+margin_top = 37.0
+margin_right = 216.0
+margin_bottom = 70.0
 theme = ExtResource( 27 )
 text = "Restart!"
 __meta__ = {
@@ -411,9 +410,9 @@ __meta__ = {
 }
 
 [node name="NextLevel" type="Button" parent="CanvasLayer/OnVictoryPopup"]
-margin_top = 42.0
-margin_right = 76.0
-margin_bottom = 62.0
+margin_top = 74.0
+margin_right = 216.0
+margin_bottom = 107.0
 theme = ExtResource( 27 )
 text = "NextLevel"
 __meta__ = {
@@ -430,22 +429,25 @@ margin_left = -50.5
 margin_top = -20.0
 margin_right = 50.5
 margin_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource( 27 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="FailLabel" type="Label" parent="CanvasLayer/OnFailPopup"]
-margin_right = 101.0
-margin_bottom = 14.0
+margin_right = 342.0
+margin_bottom = 33.0
 theme = ExtResource( 27 )
 text = "Time is run out!"
 align = 1
 valign = 1
 
 [node name="Restart" type="Button" parent="CanvasLayer/OnFailPopup"]
-margin_right = 12.0
-margin_bottom = 20.0
+margin_top = 37.0
+margin_right = 342.0
+margin_bottom = 70.0
 theme = ExtResource( 27 )
 text = "Restart!"
 
@@ -504,7 +506,6 @@ path_to_tilemap = "TileMap"
 [node name="BallSpawner" parent="BallSpawners" instance=ExtResource( 14 )]
 position = Vector2( 478.61, -61.8578 )
 max_length = 500
-initial_impulse = Vector2( 0, 200 )
 infinite_ball_spawn = false
 
 [node name="CatFoodSpawners" type="Node2D" parent="."]
@@ -519,7 +520,10 @@ path_to_tilemap = "TileMap"
 
 [node name="CatSpawner" parent="CatSpawners" instance=ExtResource( 7 )]
 position = Vector2( -566.739, 61.1716 )
-default_end_pos = Vector2( 100, 200 )
+default_end_pos = Vector2( 0, 0 )
+
+[node name="ForcefieldPanel" parent="." instance=ExtResource( 25 )]
+position = Vector2( -315.464, 186.83 )
 [connection signal="timeout" from="VictoryTimer" to="." method="_on_VictoryTimer_timeout"]
 [connection signal="timeout" from="LimitTimer" to="." method="_on_LimitTimer_timeout"]
 [connection signal="timeout" from="MinLevelDuration" to="." method="_on_MinLevelDuration_timeout"]

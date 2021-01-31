@@ -14,7 +14,7 @@ script = ExtResource( 1 )
 script = ExtResource( 2 )
 item_ui_size = Vector2( 64, 64 )
 item_ui_texture = ExtResource( 3 )
-item_ui_color = Color( 1, 1, 1, 1 )
+item_ui_color = Color( 0.603922, 0.501961, 0.152941, 1 )
 
 [node name="slope" type="Sprite" parent="."]
 visible = false
@@ -27,6 +27,7 @@ physics_material_override = ExtResource( 4 )
 polygon = PoolVector2Array( -64.5989, -64.3193, 63.8324, 63.5573, -64.0442, 63.8347 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+self_modulate = Color( 0.603922, 0.501961, 0.152941, 1 )
 position = Vector2( -64.0936, -64.282 )
 texture = ExtResource( 3 )
 polygon = PoolVector2Array( 0, -0.185185, 2.96297, -0.37037, 127.963, 125.185, 127.593, 127.407, -0.370369, 127.778 )
