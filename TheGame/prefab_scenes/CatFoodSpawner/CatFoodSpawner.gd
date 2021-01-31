@@ -225,6 +225,7 @@ func spawn_ball():
     current_ball.sleeping = false
     current_ball.mode = 0
     ball_spawn.add_child(current_ball)
+    current_ball.set_owner(ball_spawn)
     spawned_balls += 1
 
 func _on_InteractionArea_mouse_entered():
