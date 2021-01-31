@@ -125,6 +125,7 @@ script = ExtResource( 6 )
 item_ui_size = Vector2( 64, 64 )
 item_ui_texture = ExtResource( 1 )
 item_ui_color = Color( 1, 1, 1, 1 )
+item_ui_rotation_step = 360.0
 [connection signal="input_event" from="InteractionArea" to="." method="_on_InteractionArea_input_event"]
 [connection signal="mouse_entered" from="InteractionArea" to="." method="_on_InteractionArea_mouse_entered"]
 [connection signal="mouse_exited" from="InteractionArea" to="." method="_on_InteractionArea_mouse_exited"]
