@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://prefab_scenes/LevelScripts/Level.gd" type="Script" id=1]
 [ext_resource path="res://test_scenes/tile_snap/Highlight.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://prefab_scenes/ForcefieldWall/ForcefieldWallViolet.tscn" type="PackedScene" id=10]
 [ext_resource path="res://prefab_scenes/ForcefieldPanel/ForcefieldPanelViolet.tscn" type="PackedScene" id=11]
 [ext_resource path="res://prefab_scenes/PlacableWall/PlaceableWall.tscn" type="PackedScene" id=12]
+[ext_resource path="res://resources/icofont.tres" type="DynamicFont" id=13]
 [ext_resource path="res://prefab_scenes/BallSpawner/BallSpawner.tscn" type="PackedScene" id=14]
 [ext_resource path="res://prefab_scenes/Tilemaps/testtilemap.tscn" type="PackedScene" id=15]
 [ext_resource path="res://prefab_scenes/CameraScripts/CameraJoint.gd" type="Script" id=16]
@@ -1757,15 +1758,18 @@ grow_horizontal = 0
 grow_vertical = 0
 rect_min_size = Vector2( 0, 32 )
 theme = ExtResource( 27 )
+alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Start" type="Button" parent="CanvasLayer/GameFlowControls"]
-margin_right = 131.0
-margin_bottom = 33.0
+margin_left = 672.0
+margin_right = 768.0
+margin_bottom = 89.0
 theme = ExtResource( 27 )
-text = "Launch"
+custom_fonts/font = ExtResource( 13 )
+text = "P"
 
 [node name="Pause" type="Button" parent="CanvasLayer/GameFlowControls"]
 visible = false
@@ -1773,15 +1777,17 @@ margin_left = 61.0
 margin_right = 111.0
 margin_bottom = 32.0
 theme = ExtResource( 27 )
+custom_fonts/font = ExtResource( 13 )
 toggle_mode = true
 text = "Pause"
 
 [node name="Restart" type="Button" parent="CanvasLayer/GameFlowControls"]
-margin_left = 135.0
-margin_right = 288.0
-margin_bottom = 33.0
+margin_left = 772.0
+margin_right = 868.0
+margin_bottom = 89.0
 theme = ExtResource( 27 )
-text = "Restart"
+custom_fonts/font = ExtResource( 13 )
+text = "p"
 
 [node name="FlatCatInfo" type="VBoxContainer" parent="CanvasLayer"]
 margin_left = 20.0

@@ -179,7 +179,7 @@ func _on_Start_pressed():
     is_launched = true
     for launchable in launchable_list:
         launchable.initial_launch()
-        
+
     launch_button.disabled = true
     reset_button.disabled = false
     pause_button.disabled = false

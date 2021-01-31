@@ -67,7 +67,7 @@ func launch_ball():
     if not current_ball:
         print("called launch_ball without current_ball")
         return
-    
+
     current_ball.visible = true
     current_ball.mode = 0
     current_ball.go_to_actibe_mode()

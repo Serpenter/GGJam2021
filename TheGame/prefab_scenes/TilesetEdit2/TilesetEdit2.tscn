@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/placeholders/floor.png" type="Texture" id=1]
 [ext_resource path="res://assets/placeholders/floor2.png" type="Texture" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://assets/placeholders/wall2.png" type="Texture" id=5]
 [ext_resource path="res://assets/placeholders/block.png" type="Texture" id=6]
 [ext_resource path="res://resources/bouncing_material.res" type="PhysicsMaterial" id=7]
+[ext_resource path="res://assets/images/Fllor 2.png" type="Texture" id=8]
+[ext_resource path="res://assets/images/Floor2.png" type="Texture" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 64.3108, 64.3202 )
@@ -60,3 +62,11 @@ physics_material_override = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="block/StaticBody2D"]
 shape = SubResource( 1 )
+
+[node name="pipes" type="Sprite" parent="."]
+position = Vector2( -306, 147 )
+texture = ExtResource( 9 )
+
+[node name="pipes_rack" type="Sprite" parent="."]
+position = Vector2( -143, 149 )
+texture = ExtResource( 8 )

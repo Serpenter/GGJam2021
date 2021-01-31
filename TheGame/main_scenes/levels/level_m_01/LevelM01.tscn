@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://prefab_scenes/LevelScripts/Level.gd" type="Script" id=1]
+[ext_resource path="res://resources/icofont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://test_scenes/tile_snap/Spawner.gd" type="Script" id=3]
 [ext_resource path="res://prefab_scenes/GameTime/GameTime.gd" type="Script" id=4]
 [ext_resource path="res://prefab_scenes/CameraScripts/Camera2D.gd" type="Script" id=5]
@@ -149,15 +150,18 @@ margin_bottom = -20.0
 grow_horizontal = 0
 grow_vertical = 0
 rect_min_size = Vector2( 0, 32 )
+alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Start" type="Button" parent="CanvasLayer/GameFlowControls"]
-margin_right = 131.0
-margin_bottom = 33.0
+margin_left = 672.0
+margin_right = 768.0
+margin_bottom = 89.0
 theme = ExtResource( 14 )
-text = "Launch"
+custom_fonts/font = ExtResource( 2 )
+text = "P"
 
 [node name="Pause" type="Button" parent="CanvasLayer/GameFlowControls"]
 visible = false
@@ -169,11 +173,12 @@ toggle_mode = true
 text = "Pause"
 
 [node name="Restart" type="Button" parent="CanvasLayer/GameFlowControls"]
-margin_left = 135.0
-margin_right = 288.0
-margin_bottom = 33.0
+margin_left = 772.0
+margin_right = 868.0
+margin_bottom = 89.0
 theme = ExtResource( 14 )
-text = "Restart"
+custom_fonts/font = ExtResource( 2 )
+text = "p"
 
 [node name="FlatCatInfo" type="VBoxContainer" parent="CanvasLayer"]
 margin_left = 20.0
