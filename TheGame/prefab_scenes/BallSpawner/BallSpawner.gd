@@ -46,9 +46,8 @@ var default_ball_spawn_pos = Vector2(0,0)
 # Called when the node enters the scene tree for the first time.
 func _ready():
     if is_input_disabled:
-        arrow_sprite.modulate = Color.red
-        line.modulate = Color.red
-        line.modulate.a = 1
+#        arrow_sprite.modulate = Color.red
+#        line.modulate = Color.red
         prompt_arrow.visible = false
         set_end_position(initial_impulse)
     else:

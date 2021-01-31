@@ -190,6 +190,11 @@ func disable_all_colision_layers_and_masks():
 func play_random_meow():
     if not MusicController.is_sound_on:
         return
+    stop_all_meows()
     rng.randomize()
     var meow_number = rng.randi_range(1,4)
     meow_dict[meow_number].play()
+
+func stop_all_meows():
+    for meow in meow_dict.values():
+        meow.stop()

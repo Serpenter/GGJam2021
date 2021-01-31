@@ -15,12 +15,15 @@ __meta__ = {
 
 [node name="GameMusic1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+volume_db = -10.0
 
 [node name="GameMusic2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+volume_db = -10.0
 
 [node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+volume_db = -10.0
 [connection signal="finished" from="GameMusic1" to="." method="_on_GameMusic1_finished"]
 [connection signal="finished" from="GameMusic2" to="." method="_on_GameMusic2_finished"]
 [connection signal="finished" from="MainMenuMusic" to="." method="_on_MainMenuMusic_finished"]

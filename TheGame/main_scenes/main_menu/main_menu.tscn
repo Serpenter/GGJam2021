@@ -1,12 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://main_scenes/main_menu/main_menu.gd" type="Script" id=1]
 [ext_resource path="res://resources/ui_theme_two.tres" type="Theme" id=2]
-[ext_resource path="res://assets/fonts/electron 8f.ttf" type="DynamicFontData" id=3]
-
+[ext_resource path="res://prefab_scenes/SpaceBackground/SpaceBackground.tscn" type="PackedScene" id=3]
+[ext_resource path="res://prefab_scenes/MainMenuShip/ShipAnimation.tscn" type="PackedScene" id=4]
+[ext_resource path="res://resources/ui_theme_three.tres" type="Theme" id=5]
+[ext_resource path="res://assets/fonts/electron 8f.ttf" type="DynamicFontData" id=6]
 [sub_resource type="DynamicFont" id=1]
 size = 20
-font_data = ExtResource( 3 )
+font_data = ExtResource( 6 )
 
 [node name="main_menu" type="Node2D"]
 script = ExtResource( 1 )
@@ -14,6 +16,12 @@ level_names = [ "Simple one", "Bouncy food", "Forcefields", "Many forcefields" ]
 level_path = [ "res://main_scenes/levels/level_k_01/LevelK01.tscn", "res://main_scenes/levels/level_k_02/LevelK02.tscn", "res://main_scenes/levels/level_t_01/LevelT01.tscn", "res://main_scenes/levels/level_t_02/LevelT02.tscn" ]
 
 [node name="background" type="Node2D" parent="."]
+
+[node name="SpaceBackground" parent="background" instance=ExtResource( 3 )]
+position = Vector2( 441.271, 272.45 )
+
+[node name="ShipAnimation" parent="." instance=ExtResource( 4 )]
+position = Vector2( 912.963, 85.3002 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -35,6 +43,7 @@ margin_bottom = 864.0
 margin_right = 338.0
 margin_bottom = 864.0
 grow_horizontal = 2
+mouse_filter = 1
 size_flags_horizontal = 3
 
 [node name="MenuButtons" type="VBoxContainer" parent="CanvasLayer/MarginContainer/HBoxContainer"]
@@ -48,7 +57,10 @@ alignment = 1
 [node name="play_game" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons"]
 margin_top = 360.0
 margin_right = 338.0
-margin_bottom = 393.0
+
+margin_bottom = 261.0
+mouse_filter = 1
+
 theme = ExtResource( 2 )
 text = "Game"
 __meta__ = {
@@ -60,6 +72,7 @@ visible = false
 margin_top = 278.0
 margin_right = 338.0
 margin_bottom = 320.0
+mouse_filter = 1
 theme = ExtResource( 2 )
 text = "Tutorial"
 __meta__ = {
@@ -69,7 +82,10 @@ __meta__ = {
 [node name="level_selector" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons"]
 margin_top = 397.0
 margin_right = 338.0
-margin_bottom = 430.0
+
+margin_bottom = 298.0
+mouse_filter = 1
+
 theme = ExtResource( 2 )
 text = "Level selector"
 __meta__ = {
@@ -79,7 +95,10 @@ __meta__ = {
 [node name="options_selector" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons"]
 margin_top = 434.0
 margin_right = 338.0
-margin_bottom = 467.0
+
+margin_bottom = 335.0
+mouse_filter = 1
+
 theme = ExtResource( 2 )
 text = "Options"
 __meta__ = {
@@ -89,7 +108,10 @@ __meta__ = {
 [node name="exit" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons"]
 margin_top = 471.0
 margin_right = 338.0
-margin_bottom = 504.0
+
+margin_bottom = 372.0
+mouse_filter = 1
+
 theme = ExtResource( 2 )
 text = "Exit"
 __meta__ = {
@@ -108,6 +130,7 @@ alignment = 1
 margin_top = 282.0
 margin_right = 253.0
 margin_bottom = 318.0
+mouse_filter = 1
 theme = ExtResource( 2 )
 text = "Return to menu"
 
@@ -121,27 +144,37 @@ size_flags_stretch_ratio = 2.0
 alignment = 1
 
 [node name="Return" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/Options"]
-margin_top = 241.0
-margin_right = 354.0
-margin_bottom = 274.0
+
+margin_top = 282.0
+margin_right = 253.0
+margin_bottom = 318.0
+mouse_filter = 1
+
 theme = ExtResource( 2 )
 text = "Return to menu"
 
 [node name="Sound" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/Options"]
-margin_top = 278.0
-margin_right = 354.0
-margin_bottom = 311.0
+
+margin_top = 282.0
+margin_right = 253.0
+margin_bottom = 318.0
+mouse_filter = 1
+
 theme = ExtResource( 2 )
 text = "Sound:on"
 
 [node name="Music" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/Options"]
-margin_top = 315.0
-margin_right = 354.0
-margin_bottom = 348.0
+
+margin_top = 282.0
+margin_right = 253.0
+margin_bottom = 318.0
+mouse_filter = 1
+
 theme = ExtResource( 2 )
 text = "Music:on"
 
 [node name="Label" type="Label" parent="CanvasLayer/MarginContainer/HBoxContainer/Options"]
+
 margin_top = 352.0
 margin_right = 354.0
 margin_bottom = 622.0
@@ -159,7 +192,10 @@ Cat Plays Video Game, Spaceship Adventure - WaxTerK, https://waxterk.newgrounds.
 [node name="SpacerR" type="Control" parent="CanvasLayer/MarginContainer/HBoxContainer"]
 margin_left = 684.0
 margin_right = 1024.0
-margin_bottom = 864.0
+
+margin_bottom = 600.0
+mouse_filter = 1
+
 size_flags_horizontal = 3
 [connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons/play_game" to="." method="_on_play_game_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/MenuButtons/tutorial" to="." method="_on_tutorial_pressed"]

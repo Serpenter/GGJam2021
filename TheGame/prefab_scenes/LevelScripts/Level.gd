@@ -70,11 +70,15 @@ func _process(delta):
 
 
 func on_victory():
+    if has_won or has_lost:
+        return
     has_won = true
     victory_popup.visible = true
 
 
 func on_failure():
+    if has_won or has_lost:
+        return
     has_lost = true
     failure_popup.visible = true
 
