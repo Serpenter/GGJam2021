@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://main_scenes/music_controller/MusicController.gd" type="Script" id=1]
+[ext_resource path="res://assets/music/Spaceship-Adventure.ogg" type="AudioStream" id=2]
+[ext_resource path="res://assets/music/Cat-Plays-Video-Games.ogg" type="AudioStream" id=3]
+[ext_resource path="res://assets/music/catinspace_hq.ogg" type="AudioStream" id=4]
+
+[node name="MusicController" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameMusic1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+
+[node name="GameMusic2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+[connection signal="finished" from="GameMusic1" to="." method="_on_GameMusic1_finished"]
+[connection signal="finished" from="GameMusic2" to="." method="_on_GameMusic2_finished"]
+[connection signal="finished" from="MainMenuMusic" to="." method="_on_MainMenuMusic_finished"]

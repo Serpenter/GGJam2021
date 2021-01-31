@@ -5,6 +5,7 @@ onready var interaction_area = $InteractionArea
 onready var sprite = $Sprite
 onready var animation_player = $AnimationPlayer
 onready var light = $Lights/Light2D
+onready var activation_sound = $ActivationSound
 
 export var forcefield_name = "green"
 
@@ -45,3 +46,5 @@ func _on_InteractionArea_body_entered(body):
     for group_name in activation_groups:
         if body.is_in_group(group_name) and body.has_method("on_forcefield_panel_activation"):
             body.on_forcefield_panel_activation(self)
+            if MusicController.is_sound_on:
+                activation_sound.play()

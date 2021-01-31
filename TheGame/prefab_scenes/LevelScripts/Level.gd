@@ -48,9 +48,13 @@ onready var game_time = $CanvasLayer/TimerVBox/GameTime
 onready var victory_timer = $VictoryTimer
 onready var limit_timer = $LimitTimer
 
+var has_won = false
+var has_lost = false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+    MusicController.play_game_music()
     pause_button.disabled = true
     reset_button.disabled = true
     limit_timer_label.visible = false
@@ -66,10 +70,12 @@ func _process(delta):
 
 
 func on_victory():
+    has_won = true
     victory_popup.visible = true
 
 
 func on_failure():
+    has_lost = true
     failure_popup.visible = true
 
 
@@ -103,6 +109,8 @@ func _reset_cat_stats():
 
 
 func check_win_condition():
+    if has_won or has_lost:
+        return
     # equals or less
     if free_cats <= free_cats_to_win\
     and  captured_cats >= captured_cats_to_win\
@@ -179,11 +187,15 @@ func _on_Pause_pressed():
 
 
 func _on_Restart_pressed():
+    print(User.current_control)
+    if not (User.current_control == 0 or User.current_control == 1):
+        return
     _on_level_restart()
 
 
 func _on_level_restart():
-
+    has_won = false
+    has_lost = false
     limit_timer_label.visible = false
     victory_timer_label.visible = false
     limit_timer.stop()
