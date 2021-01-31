@@ -298,8 +298,10 @@ margin_left = -108.0
 margin_top = -53.5
 margin_right = 108.0
 margin_bottom = 53.5
+grow_horizontal = 2
+grow_vertical = 2
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
 
 [node name="VictoryLabel" type="Label" parent="CanvasLayer/OnVictoryPopup"]
@@ -340,8 +342,10 @@ margin_left = -171.0
 margin_top = -35.0
 margin_right = 171.0
 margin_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
 
 [node name="FailLabel" type="Label" parent="CanvasLayer/OnFailPopup"]
