@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/images/ship1.png" type="Texture" id=1]
+[ext_resource path="res://prefab_scenes/EngineParticles/EngineParticles.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/images/circle_grad.png" type="Texture" id=3]
+[ext_resource path="res://prefab_scenes/InteractableBox/InteractableBox.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "EnginesOn"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 2 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "EnginesOn (copy)"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1, 1 ), Vector2( 1, 1 ), Vector2( 1, -1 ), Vector2( -1, -1 ), Vector2( -1, 1 ) ]
+}
+
+[node name="ShipAnimation" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="EngineParticles" parent="Node2D" instance=ExtResource( 2 )]
+position = Vector2( -61.2364, -28.8238 )
+rotation = -2.72446
+
+[node name="Sprite" type="Sprite" parent="Node2D"]
+position = Vector2( -0.280609, -0.280617 )
+texture = ExtResource( 1 )
+offset = Vector2( 0, 1.75204 )
+
+[node name="Light2D" type="Light2D" parent="Node2D/Sprite"]
+position = Vector2( -64.0661, -29.4179 )
+texture = ExtResource( 3 )
+color = Color( 0.105882, 1, 0.854902, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D"]
+autoplay = "EnginesOn"
+anims/EnginesOn = SubResource( 1 )
+"anims/EnginesOn (copy)" = SubResource( 2 )
+
+[node name="InteractableBox" parent="Node2D" instance=ExtResource( 4 )]
+position = Vector2( -1244.94, 324.98 )
