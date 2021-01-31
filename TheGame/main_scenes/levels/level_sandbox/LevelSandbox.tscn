@@ -134,15 +134,29 @@ __meta__ = {
 }
 
 [node name="MainMenu" type="Button" parent="CanvasLayer/Menu"]
-margin_right = 194.0
+margin_right = 216.0
 margin_bottom = 33.0
 theme = ExtResource( 17 )
 text = "Main menu"
 
-[node name="Exit" type="Button" parent="CanvasLayer/Menu"]
+[node name="Save" type="Button" parent="CanvasLayer/Menu"]
 margin_top = 37.0
-margin_right = 194.0
+margin_right = 216.0
 margin_bottom = 70.0
+theme = ExtResource( 17 )
+text = "Save level"
+
+[node name="Load" type="Button" parent="CanvasLayer/Menu"]
+margin_top = 74.0
+margin_right = 216.0
+margin_bottom = 107.0
+theme = ExtResource( 17 )
+text = "Load level"
+
+[node name="Exit" type="Button" parent="CanvasLayer/Menu"]
+margin_top = 111.0
+margin_right = 216.0
+margin_bottom = 144.0
 theme = ExtResource( 17 )
 text = "Exit"
 
@@ -1011,6 +1025,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="SavePopups" type="VBoxContainer" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -34.0
+margin_right = 20.0
+margin_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SaveNLoad" type="FileDialog" parent="CanvasLayer/SavePopups"]
+visible = true
+margin_right = 500.0
+margin_bottom = 500.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 500, 500 )
+rect_pivot_offset = Vector2( 254.944, 259.174 )
+resizable = true
+filters = PoolStringArray( "*.tscn" )
+
 [node name="BallSpawners" type="Node2D" parent="."]
 script = ExtResource( 7 )
 path_to_obstacle_parent = "BallSpawners"
@@ -1030,6 +1070,8 @@ path_to_tilemap = "TileMap"
 [connection signal="timeout" from="MinLevelDuration" to="." method="_on_MinLevelDuration_timeout"]
 [connection signal="input_event" from="Spawner/Area2D" to="Spawner" method="_on_Area2D_input_event"]
 [connection signal="pressed" from="CanvasLayer/Menu/MainMenu" to="." method="_on_MainMenu_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu/Save" to="." method="_on_Save_pressed"]
+[connection signal="pressed" from="CanvasLayer/Menu/Load" to="." method="_on_Load_pressed"]
 [connection signal="pressed" from="CanvasLayer/Menu/Exit" to="." method="_on_Exit_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameFlowControls/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameFlowControls/Fast" to="." method="_on_Fast_pressed"]
@@ -1040,3 +1082,5 @@ path_to_tilemap = "TileMap"
 [connection signal="pressed" from="CanvasLayer/OnVictoryPopup/NextLevel" to="." method="_on_NextLevel_pressed"]
 [connection signal="pressed" from="CanvasLayer/OnFailPopup/Restart" to="." method="_on_Restart_pressed"]
 [connection signal="timeout" from="CanvasLayer/TimerVBox/GameTime/LevelTime" to="CanvasLayer/TimerVBox/GameTime" method="_on_LevelTime_timeout"]
+[connection signal="file_selected" from="CanvasLayer/SavePopups/SaveNLoad" to="." method="_on_Save_file_selected"]
+[connection signal="files_selected" from="CanvasLayer/SavePopups/SaveNLoad" to="." method="_on_SaveNLoad_files_selected"]

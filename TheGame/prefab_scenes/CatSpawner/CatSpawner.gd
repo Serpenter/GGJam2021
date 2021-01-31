@@ -228,6 +228,8 @@ func spawn_ball():
     current_ball.sleeping = true
     current_ball.mode = 1
     ball_spawn.add_child(current_ball)
+    current_ball.set_owner(ball_spawn)
+    ball_spawn
     if line.points[1] != Vector2.ZERO:
         current_ball.rotate(PI)
     spawned_balls += 1
@@ -236,12 +238,14 @@ func spawn_additional_cat(cat_global_position, cat_impulse, cat_rot, cat_rot_spe
     
     var new_particles = food_particles_prefab.instance()
     ball_spawn.add_child(new_particles)
+    new_particles.set_owner(ball_spawn)
     new_particles.set_global_position(cat_global_position)
     new_particles.emitting = true
 
 
     var new_cat = ball_prefab.instance()
     ball_spawn.add_child(new_cat)
+    new_cat.set_owner(ball_spawn)
     new_cat.sleeping = false
     new_cat.mode = 0
     new_cat.set_global_position(cat_global_position)

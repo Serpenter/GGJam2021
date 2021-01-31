@@ -242,6 +242,7 @@ func spawn_ball():
     current_ball.sleeping = true
     current_ball.mode = 1
     ball_spawn.add_child(current_ball)
+    current_ball.set_owner(ball_spawn)
     current_ball.rotate(PI)
     spawned_balls += 1
     update_label()

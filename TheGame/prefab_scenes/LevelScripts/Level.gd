@@ -320,3 +320,31 @@ func _input(event):
             _on_Restart_pressed()
         elif event.scancode == KEY_F:
             _on_Fast_pressed()
+
+
+func _on_Save_file_selected(path):
+    if $CanvasLayer/SavePopups/SaveNLoad.mode == FileDialog.MODE_SAVE_FILE:
+        var packed_scene = PackedScene.new()
+        _set_owner(get_tree().get_current_scene(), get_tree().get_current_scene())
+        packed_scene.pack(get_tree().get_current_scene())
+        ResourceSaver.save(path, packed_scene)
+
+
+func _on_Save_pressed():
+    $CanvasLayer/SavePopups/SaveNLoad.mode = FileDialog.MODE_SAVE_FILE
+    $CanvasLayer/SavePopups/SaveNLoad.popup()
+
+
+func _on_Load_pressed():
+    $CanvasLayer/SavePopups/SaveNLoad.mode = FileDialog.MODE_OPEN_FILES
+    $CanvasLayer/SavePopups/SaveNLoad.popup()
+
+
+func _on_SaveNLoad_files_selected(paths):
+    GSceneManager.goto_scene_wloader(paths[0])
+    
+func _set_owner(node, root):
+    if node != root and node.has_method("get_item_ui_data"):
+        node.owner = root
+    for child in node.get_children():
+        _set_owner(child, root)

@@ -132,7 +132,7 @@ func _handle_event_with_item(event):
         new_obstacle.position = target_position
         new_obstacle.rotation_degrees = current_prefab_rotation
         obstacles_container.add_child(new_obstacle)
-
+        new_obstacle.set_owner(obstacles_container)
         var obj_handle = ObstacleInGameHadle.new()
         obj_handle.object_itself = new_obstacle
         obj_handle.picker = current_picker
