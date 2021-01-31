@@ -16,6 +16,7 @@ onready var menu_ui = $CanvasLayer/MarginContainer/HBoxContainer/MenuButtons
 onready var options_ui = $CanvasLayer/MarginContainer/HBoxContainer/Options
 onready var options_music_button = $CanvasLayer/MarginContainer/HBoxContainer/Options/Music
 onready var options_sound_button = $CanvasLayer/MarginContainer/HBoxContainer/Options/Sound
+onready var controls_panel = $CanvasLayer/MarginContainer/HBoxContainer/Controls
 
 var level_selector_prefab = preload("res://prefab_scenes/LevelSelectorButton/LevelSelectorButton.tscn")
 # Called when the node enters the scene tree for the first time.
@@ -64,6 +65,7 @@ func _on_Return_pressed():
     levels_ui.hide()
     tutorials_ui.hide()
     options_ui.hide()
+    controls_panel.hide()
 
 
 func _on_options_selector_pressed():
@@ -101,3 +103,12 @@ func attach_levels(names, pathes, control, signal_name):
             new_button.text = names[i]
             new_button.stored_level_name = pathes[i]
             new_button.connect("selected", self, signal_name)
+
+
+func _on_controls_pressed():
+    controls_panel.show()
+    menu_ui.hide()
+
+
+func _on_sandbox_pressed():
+    GSceneManager.goto_scene_wloader("res://main_scenes/levels/level_k_01/LevelK01.tscn")
