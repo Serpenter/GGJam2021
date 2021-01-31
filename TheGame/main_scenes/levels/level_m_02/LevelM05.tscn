@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://prefab_scenes/LevelScripts/Level.gd" type="Script" id=1]
 [ext_resource path="res://prefab_scenes/CatFoodSpawner/CatFoodSpawner.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://test_scenes/tile_snap/Highlight.gd" type="Script" id=6]
 [ext_resource path="res://prefab_scenes/ObstacleAligner/ObstaclesAligner.gd" type="Script" id=7]
 [ext_resource path="res://prefab_scenes/CameraScripts/CameraJoint.gd" type="Script" id=8]
+[ext_resource path="res://resources/icofont.tres" type="DynamicFont" id=9]
 [ext_resource path="res://prefab_scenes/Tilemaps/testtilemap.tscn" type="PackedScene" id=10]
 [ext_resource path="res://prefab_scenes/CatSpawner/CatSpawner.tscn" type="PackedScene" id=11]
 [ext_resource path="res://prefab_scenes/BallSpawner/BallSpawner.tscn" type="PackedScene" id=12]
@@ -150,15 +151,18 @@ margin_bottom = -20.0
 grow_horizontal = 0
 grow_vertical = 0
 rect_min_size = Vector2( 0, 32 )
+alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Start" type="Button" parent="CanvasLayer/GameFlowControls"]
-margin_right = 131.0
-margin_bottom = 33.0
+margin_left = 672.0
+margin_right = 768.0
+margin_bottom = 89.0
 theme = ExtResource( 14 )
-text = "Launch"
+custom_fonts/font = ExtResource( 9 )
+text = "P"
 
 [node name="Pause" type="Button" parent="CanvasLayer/GameFlowControls"]
 visible = false
@@ -166,15 +170,17 @@ margin_left = 61.0
 margin_right = 111.0
 margin_bottom = 32.0
 theme = ExtResource( 14 )
+custom_fonts/font = ExtResource( 9 )
 toggle_mode = true
 text = "Pause"
 
 [node name="Restart" type="Button" parent="CanvasLayer/GameFlowControls"]
-margin_left = 135.0
-margin_right = 288.0
-margin_bottom = 33.0
+margin_left = 772.0
+margin_right = 868.0
+margin_bottom = 89.0
 theme = ExtResource( 14 )
-text = "Restart"
+custom_fonts/font = ExtResource( 9 )
+text = "p"
 
 [node name="FlatCatInfo" type="VBoxContainer" parent="CanvasLayer"]
 margin_left = 20.0
